@@ -5,9 +5,3 @@ Note:
 
 ---
 
-#### What are you here? What are you searching for?
-
-<a href="https://wayfinding-project.herokuapp.com/" target="_blank">Wayfinding</a>
-
----
-
