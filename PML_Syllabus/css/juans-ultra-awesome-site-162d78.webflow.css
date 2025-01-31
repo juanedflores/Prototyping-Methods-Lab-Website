@@ -1847,6 +1847,8 @@
 }
 
 .paragraph-2 {
+  color: #000;
+  -webkit-text-stroke-color: #000;
   margin-top: 20px;
   padding-top: 0;
 }
@@ -1864,6 +1866,7 @@
 }
 
 .paragraph-3 {
+  color: #000;
   margin-top: 20px;
 }
 
@@ -1960,7 +1963,7 @@
   border-bottom: 2px solid #000;
   padding-bottom: 14px;
   font-family: Merriweather, serif;
-  font-weight: 300;
+  font-weight: 700;
 }
 
 .div-block-25 {
@@ -1984,6 +1987,7 @@
 }
 
 .tablecell {
+  background-color: #46607e;
   border: 1px solid #000;
   padding-left: 10px;
   padding-right: 10px;
@@ -2020,8 +2024,7 @@
 
 .paragraph-4 {
   color: #000;
-  border: 1px solid #000;
-  border-top-width: 2px;
+  border: 1px #000;
   padding-top: 0;
   font-size: 16px;
 }
@@ -2080,6 +2083,51 @@
 
 .heading-39, .paragraph-13 {
   color: #000;
+}
+
+.text-block-57 {
+  color: #000;
+  background-color: #c9c9c9;
+  padding-left: 20px;
+}
+
+.heading-40, .heading-41, .heading-42, .heading-43, .heading-44, .heading-45 {
+  text-decoration: underline;
+}
+
+.heading-46 {
+  color: #ffa0a0;
+  text-decoration: underline;
+}
+
+.heading-47 {
+  color: #ffa0a0;
+}
+
+.heading-48, .paragraph-14, .list-4, .paragraph-15, .link, .paragraph-16, .heading-49, .list-item-9, .list-5, .link-2, .link-3, .paragraph-17, .paragraph-18 {
+  color: #000;
+}
+
+.div-block-27 {
+  color: #fff0;
+}
+
+.heading-50 {
+  color: #000;
+  padding-left: 20px;
+  font-family: Merriweather, serif;
+}
+
+.container-23 {
+  background-color: #c9c9c9;
+}
+
+.paragraph-19, .paragraph-20, .paragraph-21 {
+  color: #000;
+}
+
+.cell-14 {
+  color: var(--black);
 }
 
 @media screen and (max-width: 991px) {
