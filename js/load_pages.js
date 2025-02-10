@@ -140,6 +140,9 @@ function week3() {
           style="border: solid black 1px" />
       </section>
       <div style="padding-left:30px; padding-right:30px" uk-card>
+      <a href="./slides/week3/index.html">
+      Open Slides in New Tab
+      </a>
         <h3>Agenda</h3>
         <ul>
           <li>Check In</li>
@@ -149,6 +152,7 @@ function week3() {
           <li>Demonstration</li>
         </ul>
       </div>
+      <div style="padding-top: 50px;"></div>
   `;
 
   $('#right-col').html(html);

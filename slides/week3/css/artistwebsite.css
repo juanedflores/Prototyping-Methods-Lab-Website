@@ -88,3 +88,13 @@ p {
   font-family: 'MenloRegular';
   /*   text-align: center; */
 }
+
+.column {
+  width: 33.3%;
+  float: left;
+}
+
+.column2 {
+  width: 50%;
+  float: left;
+}
