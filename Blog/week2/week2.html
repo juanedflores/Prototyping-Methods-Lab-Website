@@ -176,6 +176,7 @@
 
   <!-- Blog Style CSS -->
   <link rel="stylesheet" href="../../css/blog_style.css" />
+  <link rel="stylesheet" href="../../css/custom.css" />
 
   <!-- Includes other header content if needed -->
   
@@ -183,31 +184,38 @@
 
 <!--<body class="uk-background-fixed" style="background-image: url('../images/background2.png'); background-size: cover">-->
 
-<body class="uk-background-fixed" style="background: #3c64a7">
+<body class="uk-background-fixed">
   <!-- NAV AND HEADING -->
-  <div class="uk-flex uk-flex-left" uk-sticky style="background-color: rgb(197, 75, 59); height: 50px">
+  <nav class="uk-flex uk-flex-left" uk-sticky style="background-color: rgb(197, 75, 59); height: 80">
     <button class="uk-button uk-button-default" type="button" style="border: none; background: rgb(243, 201, 91)"
       uk-toggle="target: #blog-toc">
       <span class="fas fa-bars fa-2xl" style="color: #4444dd; background: rgb(243, 201, 91)"></span>
     </button>
 
-    <h2 id="heading" style="width: 100%; pointer-events: none"
-      class="uk-flex uk-flex-center uk-margin-remove uk-padding-small uk-padding-remove-vertical uk-position-center-left"
-      style="font-family: 'Inter-ExtraLight', serif; color: white">
-      <a class="uk-text" style="color: black; font-weight: normal; font-size: 1em">Week
-2</a>
-    </h2>
-  </div>
+    <div class="nav-overlay uk-navbar-left">
+      <a class="uk-navbar-item uk-logo" href="../../index.html">PROTOTYPING METHODS LAB</a>
+    </div>
+
+    <!--<h2 id="heading" style="width: 100%; pointer-events: none"-->
+    <!--  class="uk-flex uk-flex-center uk-margin-remove uk-padding-small uk-padding-remove-vertical uk-position-center-left"-->
+    <!--  style="font-family: 'Inter-ExtraLight', serif; color: white">-->
+    <!--  <a class="uk-text" style="color: black; font-weight: normal; font-size: 1em">Week
+2</a>-->
+    <!--</h2>-->
+  </nav>
 
   <!-- OFFCANVAS -->
   <div class="uk-align-center uk-margin-remove-top uk-width-1-2@l uk-width-2-3@m" id="contentArea">
     <!-- TABLE OF CONTENTS -->
-    <div id="blog-toc" style="top: 50px" uk-offcanvas="mode: slide; container: #contentArea; bg-close: true;">
+    <div id="blog-toc" style="top: 80px" uk-offcanvas="mode: slide; container: #contentArea; bg-close: true;">
       <div class="uk-offcanvas-bar">
         <h3 style="color: white">Table of Contents</h3>
         <div><ul>
 <li><a href="#design-of-everyday-things"
-id="toc-design-of-everyday-things">Design of Everyday Things</a></li>
+id="toc-design-of-everyday-things">Design of Everyday Things</a>
+<ul>
+<li><a href="#section" id="toc-section"></a></li>
+</ul></li>
 </ul></div>
       </div>
     </div>
@@ -216,7 +224,9 @@ id="toc-design-of-everyday-things">Design of Everyday Things</a></li>
     <div id="ArticleBody" class="uk-overflow-auto" style="overflow-y: scroll"><section
 id="design-of-everyday-things" class="level1">
 <h1>Design of Everyday Things</h1>
-<p>Test test</p>
+<section id="section" class="level2">
+<h2></h2>
+</section>
 </section></div>
   </div>
 

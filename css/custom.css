@@ -7,6 +7,85 @@
   src: url('../fonts/Inter-Black.ttf') format('truetype');
 }
 
+.mobile {
+  display: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: 'Inter-Black';
+}
+
+a {
+  font-family: 'Inter-Black';
+}
+
+.uk-nav-default > li.uk-active > a {
+  color: white;
+}
+
+.menu_header > h3 {
+  background: #222222;
+  color: rgb(238, 221, 195);
+  padding: 10px;
+}
+
+.uk-inactive > a {
+  color: #363131 !important;
+  pointer-events: none;
+  width: 100%;
+}
+
+.uk-nav-default > li {
+  position: relative;
+}
+
+li {
+  font-size: 1em;
+  color: black;
+  font-family: 'Inter-ExtraLight', sans-serif;
+  font-weight: bold;
+}
+
+.uk-nav:not(.arduino-menu) > li > a {
+  /*display: block !important;*/
+}
+
+/*.uk-nav-default:not(.arduino-menu) > .uk-active > a::after {*/
+/*  content: '>';*/
+/*  font-family: 'Inter-ExtraLight', sans-serif;*/
+/*  /*position: absolute;*/
+*/
+/*  text-align: right;*/
+/*  float: right;*/
+/*}*/
+
+.uk-nav-default > .uk-active > a::after {
+  content: '>';
+  font-family: 'Inter-ExtraLight', sans-serif;
+  /*position: absolute;*/
+  text-align: right;
+  float: right;
+}
+
+.uk-table > table {
+  width: 100% !important;
+}
+
+.uk-table th {
+  padding: 0 !important;
+  background: rgb(220, 220, 220);
+  color: #363131;
+}
+
+.uk-table td {
+  padding: 0 !important;
+  width: 100%;
+}
+
 .pdf,
 html,
 body {
@@ -194,18 +273,29 @@ ul {
   padding: 0;
 }
 
-@media screen and (max-width: 700px) {
-  #right-col {
-    margin-left: 0px;
+@media screen and (max-width: 915px) {
+  .uk-navbar-nav {
+    display: none;
+  }
+
+  .desktop {
+    display: none;
+  }
+
+  .mobile {
+    display: block;
   }
 
   #left-col {
     visibility: hidden;
   }
 
-  #canvas-button {
-    display: block;
+  #right-col {
+    margin-left: 0px;
   }
+}
+
+@media screen and (max-width: 700px) {
 }
 
 @media screen and (max-width: 494px) {

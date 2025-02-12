@@ -20,6 +20,7 @@ Go to the menu bar: `File -> Examples -> 01.Basics -> Blink`
 <li class=" uk-open">
 <a id="code-file" class="uk-accordion-title" href="#">Makefile</a>
 <div class="uk-accordion-content">
+
 ```c
 void setup() {
   // initialize digital pin LED_BUILTIN as an output.
@@ -34,6 +35,7 @@ void loop() {
   delay(1000);                      // wait for a second
 }
 ```
+
 </div>
 </li>
 </ul>

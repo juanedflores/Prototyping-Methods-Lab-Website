@@ -17,7 +17,6 @@ all: $(HTML)
 %.html: %.md
 	@echo $@
 	pandoc $< -o $@ -F "mermaid-filter" $(PANDOCFLAGSHTML)
-	python3 newBlogEntry.py $(@D)
 
 clean:
 	rm $(HTML)

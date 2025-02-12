@@ -8,19 +8,29 @@
     <title>Toggle LED with Button</title>
 
     <!-- UIKit files -->
-    <link rel="stylesheet" href="../../../css/uikit.min.css" />
-    <script src="../../../js/uikit.min.js"></script>
-    <script src="../../../js/uikit-icons.min.js"></script>
+    <link rel="stylesheet" href="../../css/uikit.min.css" />
+    <script src="../../js/uikit.min.js"></script>
+
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="../resources/favicon.ico" type="image/x-icon" />
 
-    <!-- Fonts -->
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" <!-- Fonts -->
+      < !--Ajax Style-- >
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin = "anonymous" >
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 
     <!-- Code Style -->
-    <link rel="stylesheet" href="../../../css/pojoaque.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" href="../../css/pojoaque.css" />
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>-->
+    <script src="../../js/highlight.min.js"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Rozha+One&display=swap" rel="stylesheet" />
 
     <!-- hljs -->
     <script>
@@ -39,9 +49,6 @@
         });
       });
     </script>
-
-    <!-- Blog Style CSS -->
-    <link rel="stylesheet" href="../../../css/blog_style.css" />
 
     <style>
       #left-col {
@@ -132,7 +139,8 @@
       .code-badge {
         display: flex !important;
         flex-direction: row !important;
-        background: #555 !important;
+        background: #4444dd !important;
+        opacity: 0.9 !important;
         padding: 8px !important;
         position: absolute !important;
         right: 0px !important;
@@ -163,69 +171,62 @@
         z-index: -1;
       }
     </style>
+    <!--background: #555 !important;-->
+
+    <!-- Blog Style CSS -->
+    <link rel="stylesheet" href="../../css/blog_style.css" />
+    <link rel="stylesheet" href="../../css/custom.css" />
 
     <!-- Includes other header content if needed -->
     
   </head>
 
-  <body>
+  <!--<body class="uk-background-fixed" style="background-image: url('../images/background2.png'); background-size: cover">-->
+
+  <body class="uk-background-fixed">
     <!-- NAV AND HEADING -->
-    <nav class="uk-navbar-container" uk-navbar>
+    <nav class="uk-flex uk-flex-left" uk-sticky style="background-color: rgb(197, 75, 59); height: 80">
+      <button class="uk-button uk-button-default" type="button" style="border: none; background: rgb(243, 201, 91)" uk-toggle="target: #blog-toc">
+        <span class="fas fa-bars fa-2xl" style="color: #4444dd; background: rgb(243, 201, 91)"></span>
+      </button>
+
       <div class="nav-overlay uk-navbar-left">
-        <a class="uk-navbar-item uk-logo" href="../../../index.html" style="border: 1px solid #cccccc">Mechanisms, Movement, and Meaning</a>
-
-        <ul class="uk-navbar-nav" style="">
-          <li class=""><a href="">Toggle LED with Button</a></li>
-        </ul>
-      </div>
-
-      <div class="nav-overlay uk-navbar-left uk-flex-1" hidden>
-        <div class="uk-navbar-item uk-width-expand">
-          <form class="uk-search uk-search-navbar uk-width-1-1">
-            <input class="uk-search-input" type="search" placeholder="Search" aria-label="Search" autofocus />
-          </form>
-        </div>
-
-        <a class="uk-navbar-toggle" uk-close uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#"></a>
+        <a class="uk-navbar-item uk-logo" href="../../index.html">PROTOTYPING METHODS LAB</a>
+        <h2 id="heading" style="width: 100%; pointer-events: none" class="uk-flex uk-flex-center uk-margin-remove uk-padding-small uk-padding-remove-vertical uk-position-center-left" style="font-family: 'Inter-ExtraLight', serif; color: black">
+          <a class="uk-text" style="color: yellow; font-weight: normal; font-size: 1em"></a>
+        </h2>
       </div>
     </nav>
 
     <!-- OFFCANVAS -->
-    <div id="off-canvas" class="bar-wrap uk-light" style="padding-top: 100px" uk-offcanvas>
-      <div class="uk-offcanvas-bar">
-        <button class="uk-offcanvas-close" type="button" uk-close></button>
-        <hr />
-        <h3>Table of Contents</h3>
-        <div><ul>
+    <div class="uk-align-center uk-margin-remove-top uk-width-1-2@l uk-width-2-3@m" id="contentArea">
+      <!-- TABLE OF CONTENTS -->
+      <div id="blog-toc" style="top: 80px" uk-offcanvas="mode: slide; container: #contentArea; bg-close: true;">
+        <div class="uk-offcanvas-bar">
+          <h3 style="color: white">Table of Contents</h3>
+          <div><ul>
 <li><a href="#summary" id="toc-summary">Summary</a></li>
 <li><a href="#wiring" id="toc-wiring">Wiring</a></li>
 <li><a href="#the-sketch" id="toc-the-sketch">The Sketch</a></li>
 </ul></div>
+        </div>
       </div>
-    </div>
 
-    <aside id="left-col" class="uk-light">
-      <div class="bar-wrap" style="padding-top: 100px">
-        <h3>Table of Contents</h3>
-        <div><ul>
-<li><a href="#summary" id="toc-summary">Summary</a></li>
-<li><a href="#wiring" id="toc-wiring">Wiring</a></li>
-<li><a href="#the-sketch" id="toc-the-sketch">The Sketch</a></li>
-</ul></div>
-      </div>
-    </aside>
-
-    <div id="right-col">
-      <div class="uk-container uk-margin-medium-top"><h4
-id="summary">Summary</h4>
+      <!-- BODY -->
+      <div id="ArticleBody" class="uk-overflow-auto" style="overflow-y: scroll"><section
+id="summary" class="level4">
+<h4>Summary</h4>
 <p>Instead of lighting the LED when the button is pressed, pushing the
 button will result in toggling the state of the LED from changing
 between on and off.</p>
-<h3 id="wiring">Wiring</h3>
+</section>
+<section id="wiring" class="level3">
+<h3>Wiring</h3>
 <p><img style="height:300px" src="./toggle_led_wiring.png"></img></p>
-<h3 id="the-sketch">The Sketch</h3>
-<div class="sourceCode" id="cb1"><pre
-class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LED_PIN </span><span class="dv">8</span></span>
+</section>
+<section id="the-sketch" class="level3">
+<h3>The Sketch</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#define LED_PIN </span><span class="dv">8</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#define BUTTON_PIN </span><span class="dv">7</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lastButtonState <span class="op">=</span> LOW<span class="op">;</span></span>
@@ -248,26 +249,35 @@ class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span>
 <span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div></div>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section></div>
     </div>
 
     <!-- highlightjs badge -->
-    <script src="../../../js/highlightjs-badge.js"></script>
+    <script src="../../js/highlightjs-badge.js"></script>
 
     <script>
+      // apply HighlightJS
       var pres = document.querySelectorAll('pre>code');
       for (var i = 0; i < pres.length; i++) {
         hljs.highlightBlock(pres[i]);
       }
+
+      // add HighlightJS-badge (options are optional)
       var options = {
-        contentSelector: '#right-col',
+        // optional
+        contentSelector: '#ArticleBody',
+
         // CSS class(es) used to render the copy icon.
-        copyIconClass: 'fa fa-copy',
+        copyIconClass: 'fas fa-solid fa-clone',
         // CSS class(es) used to render the done icon.
-        checkIconClass: 'fa fa-check text-success',
+        checkIconClass: 'fas fa-check text-success',
       };
       window.highlightJsBadge(options);
     </script>
+
+    <script src="../../js/styling.js"></script>
+
     <br />
     <br />
     <br />

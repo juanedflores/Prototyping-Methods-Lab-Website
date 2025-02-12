@@ -1,7 +1,8 @@
 ---
-heading: Terminology
+title: Week 4
 ---
 
+# Arduino Intro
 ## Get Familiar with the Arduino Software
 
 The programs written in the Arduino Software are called **sketches**.
@@ -61,3 +62,5 @@ Notice the Blink example. This is usually the example that most people start wit
 ### Other Helpful Resources
 
 - <a href="https://itp.nyu.edu/physcomp/lessons/programming-terms-and-programming-environments/">ITP Physical Computing - Programming Terms</a>
+
+ddfdfsSdsdidjdffdfsdfgdf

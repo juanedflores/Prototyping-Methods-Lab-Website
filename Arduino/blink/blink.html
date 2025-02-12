@@ -8,19 +8,29 @@
     <title>Blink (On and Off)</title>
 
     <!-- UIKit files -->
-    <link rel="stylesheet" href="../../../css/uikit.min.css" />
-    <script src="../../../js/uikit.min.js"></script>
-    <script src="../../../js/uikit-icons.min.js"></script>
+    <link rel="stylesheet" href="../../css/uikit.min.css" />
+    <script src="../../js/uikit.min.js"></script>
+
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="../resources/favicon.ico" type="image/x-icon" />
 
-    <!-- Fonts -->
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" <!-- Fonts -->
+      < !--Ajax Style-- >
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin = "anonymous" >
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 
     <!-- Code Style -->
-    <link rel="stylesheet" href="../../../css/pojoaque.css" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link rel="stylesheet" href="../../css/pojoaque.css" />
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>-->
+    <script src="../../js/highlight.min.js"></script>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Rozha+One&display=swap" rel="stylesheet" />
 
     <!-- hljs -->
     <script>
@@ -39,9 +49,6 @@
         });
       });
     </script>
-
-    <!-- Blog Style CSS -->
-    <link rel="stylesheet" href="../../../css/blog_style.css" />
 
     <style>
       #left-col {
@@ -132,7 +139,8 @@
       .code-badge {
         display: flex !important;
         flex-direction: row !important;
-        background: #555 !important;
+        background: #4444dd !important;
+        opacity: 0.9 !important;
         padding: 8px !important;
         position: absolute !important;
         right: 0px !important;
@@ -163,40 +171,40 @@
         z-index: -1;
       }
     </style>
+    <!--background: #555 !important;-->
+
+    <!-- Blog Style CSS -->
+    <link rel="stylesheet" href="../../css/blog_style.css" />
+    <link rel="stylesheet" href="../../css/custom.css" />
 
     <!-- Includes other header content if needed -->
     
   </head>
 
-  <body>
+  <!--<body class="uk-background-fixed" style="background-image: url('../images/background2.png'); background-size: cover">-->
+
+  <body class="uk-background-fixed">
     <!-- NAV AND HEADING -->
-    <nav class="uk-navbar-container" uk-navbar>
+    <nav class="uk-flex uk-flex-left" uk-sticky style="background-color: rgb(197, 75, 59); height: 80">
+      <button class="uk-button uk-button-default" type="button" style="border: none; background: rgb(243, 201, 91)" uk-toggle="target: #blog-toc">
+        <span class="fas fa-bars fa-2xl" style="color: #4444dd; background: rgb(243, 201, 91)"></span>
+      </button>
+
       <div class="nav-overlay uk-navbar-left">
-        <a class="uk-navbar-item uk-logo" href="../../../index.html" style="border: 1px solid #cccccc">Mechanisms, Movement, and Meaning</a>
-
-        <ul class="uk-navbar-nav" style="">
-          <li class=""><a href="">Blink (On and Off)</a></li>
-        </ul>
-      </div>
-
-      <div class="nav-overlay uk-navbar-left uk-flex-1" hidden>
-        <div class="uk-navbar-item uk-width-expand">
-          <form class="uk-search uk-search-navbar uk-width-1-1">
-            <input class="uk-search-input" type="search" placeholder="Search" aria-label="Search" autofocus />
-          </form>
-        </div>
-
-        <a class="uk-navbar-toggle" uk-close uk-toggle="target: .nav-overlay; animation: uk-animation-fade" href="#"></a>
+        <a class="uk-navbar-item uk-logo" href="../../index.html">PROTOTYPING METHODS LAB</a>
+        <h2 id="heading" style="width: 100%; pointer-events: none" class="uk-flex uk-flex-center uk-margin-remove uk-padding-small uk-padding-remove-vertical uk-position-center-left" style="font-family: 'Inter-ExtraLight', serif; color: black">
+          <a class="uk-text" style="color: yellow; font-weight: normal; font-size: 1em"></a>
+        </h2>
       </div>
     </nav>
 
     <!-- OFFCANVAS -->
-    <div id="off-canvas" class="bar-wrap uk-light" style="padding-top: 100px" uk-offcanvas>
-      <div class="uk-offcanvas-bar">
-        <button class="uk-offcanvas-close" type="button" uk-close></button>
-        <hr />
-        <h3>Table of Contents</h3>
-        <div><ul>
+    <div class="uk-align-center uk-margin-remove-top uk-width-1-2@l uk-width-2-3@m" id="contentArea">
+      <!-- TABLE OF CONTENTS -->
+      <div id="blog-toc" style="top: 80px" uk-offcanvas="mode: slide; container: #contentArea; bg-close: true;">
+        <div class="uk-offcanvas-bar">
+          <h3 style="color: white">Table of Contents</h3>
+          <div><ul>
 <li><a href="#sketch-summary" id="toc-sketch-summary">Sketch
 Summary</a></li>
 <li><a href="#the-sketch" id="toc-the-sketch">The Sketch</a>
@@ -210,32 +218,13 @@ Values</a></li>
 id="toc-connecting-a-red-led">Connecting a Red LED</a></li>
 </ul></li>
 </ul></div>
+        </div>
       </div>
-    </div>
 
-    <aside id="left-col" class="uk-light">
-      <div class="bar-wrap" style="padding-top: 100px">
-        <h3>Table of Contents</h3>
-        <div><ul>
-<li><a href="#sketch-summary" id="toc-sketch-summary">Sketch
-Summary</a></li>
-<li><a href="#the-sketch" id="toc-the-sketch">The Sketch</a>
-<ul>
-<li><a href="#code-walkthrough" id="toc-code-walkthrough">Code
-Walkthrough</a></li>
-<li><a href="#code-result" id="toc-code-result">Code Result</a></li>
-<li><a href="#changing-values" id="toc-changing-values">Changing
-Values</a></li>
-<li><a href="#connecting-a-red-led"
-id="toc-connecting-a-red-led">Connecting a Red LED</a></li>
-</ul></li>
-</ul></div>
-      </div>
-    </aside>
-
-    <div id="right-col">
-      <div class="uk-container uk-margin-medium-top"><h2
-id="sketch-summary">Sketch Summary</h2>
+      <!-- BODY -->
+      <div id="ArticleBody" class="uk-overflow-auto" style="overflow-y: scroll"><section
+id="sketch-summary" class="level2">
+<h2>Sketch Summary</h2>
 <p>This is considered the
 <a href="https://en.wikipedia.org/wiki/%22Hello,_World!%22_program">“hello
 world”</a> of Arduino programming. It is good to start with and to test
@@ -245,7 +234,9 @@ electronics.</p>
 program it right away. The LED has the letter <code>L</code> next to
 it.</p>
 <p><img style="height:300px" src="./images/built_in_LED.jpg"></img></p>
-<h2 id="the-sketch">The Sketch</h2>
+</section>
+<section id="the-sketch" class="level2">
+<h2>The Sketch</h2>
 <p>From Arduino “Examples”:</p>
 <p>Go to the menu bar:
 <code>File -&gt; Examples -&gt; 01.Basics -&gt; Blink</code></p>
@@ -268,7 +259,8 @@ it.</p>
 </div>
 </li>
 </ul>
-<h3 id="code-walkthrough">Code Walkthrough</h3>
+<section id="code-walkthrough" class="level3">
+<h3>Code Walkthrough</h3>
 <hr />
 <p><code>void setup() {};</code></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
@@ -311,11 +303,15 @@ ON, or 5 volts while LOW is logic level 0, OFF, or 0 volts.</p>
 where 1000 equals 1 second.</p>
 </blockquote>
 <hr />
-<h3 id="code-result">Code Result</h3>
+</section>
+<section id="code-result" class="level3">
+<h3>Code Result</h3>
 <p>If the code uploads to the Arduino successfully, the built-in LED
 should be turning on for one second, and turning off for one second
 repeatedly.</p>
-<h3 id="changing-values">Changing Values</h3>
+</section>
+<section id="changing-values" class="level3">
+<h3>Changing Values</h3>
 <p>Try changing these values to something smaller, like 100
 milliseconds:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
@@ -329,7 +325,9 @@ milliseconds:</p>
 <span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  delay<span class="op">(</span><span class="dv">100</span><span class="op">);</span>                      <span class="co">// wait for 100ms</span></span>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>Uploading the code should result in a faster blinking LED.</p>
-<h3 id="connecting-a-red-led">Connecting a Red LED</h3>
+</section>
+<section id="connecting-a-red-led" class="level3">
+<h3>Connecting a Red LED</h3>
 <p>You can connect a red LED directly to pin 13 and GND on the board
 like this:</p>
 <p><img style="height:300px" src="./images/LED.jpg"></img></p>
@@ -340,26 +338,36 @@ LED from burning out.</p>
 <p><img style="height:300px" src="./images/led_circuit.png"></img></p>
 <p>To answer why that is, check out this source:</p>
 <p><a href="https://eepower.com/resistor-guide/resistor-applications/resistor-for-led/#">Resistors
-in LED circuits</a></p></div>
+in LED circuits</a></p>
+</section>
+</section></div>
     </div>
 
     <!-- highlightjs badge -->
-    <script src="../../../js/highlightjs-badge.js"></script>
+    <script src="../../js/highlightjs-badge.js"></script>
 
     <script>
+      // apply HighlightJS
       var pres = document.querySelectorAll('pre>code');
       for (var i = 0; i < pres.length; i++) {
         hljs.highlightBlock(pres[i]);
       }
+
+      // add HighlightJS-badge (options are optional)
       var options = {
-        contentSelector: '#right-col',
+        // optional
+        contentSelector: '#ArticleBody',
+
         // CSS class(es) used to render the copy icon.
-        copyIconClass: 'fa fa-copy',
+        copyIconClass: 'fas fa-solid fa-clone',
         // CSS class(es) used to render the done icon.
-        checkIconClass: 'fa fa-check text-success',
+        checkIconClass: 'fas fa-check text-success',
       };
       window.highlightJsBadge(options);
     </script>
+
+    <script src="../../js/styling.js"></script>
+
     <br />
     <br />
     <br />

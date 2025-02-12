@@ -197,5 +197,3 @@ $44.99
 <img src="https://content.instructables.com/FBT/7T0J/KHDEZE17/FBT7T0JKHDEZE17.png?auto=webp&frame=1&width=1024&height=1024&fit=bounds&md=MjAyMC0xMS0xMiAwMjoxNDozMC4w"  style="width: 30vw"></img>
 </a>
 </div>
-
----

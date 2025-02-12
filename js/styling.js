@@ -15,7 +15,7 @@ function sections() {
     if (i % 2 == 0) {
       $(all[i]).css('background-color', 'white');
     } else {
-      $(all[i]).css('background-color', '#dddddd');
+      $(all[i]).css('background-color', 'rgb(210, 230, 250)');
     }
   }
 }
@@ -49,3 +49,10 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     });
   });
 });
+
+function resize_function() {
+  w = document.documentElement.clientWidth;
+  if (w > 900) {
+    UIkit.offcanvas('#offcanvas-usage').hide();
+  }
+}
