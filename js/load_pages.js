@@ -2,7 +2,7 @@ html = '';
 
 function load_syllabus() {
   var html = `
-  <object data="PML_Syllabus_2025.pdf" type="application/pdf" width="100%" height="1000" title="Embedded PDF Viewer">
+  <object data="PML_Syllabus_2025.pdf" class="pdf" width="100%" title="Embedded PDF Viewer">
     <p>
       Your browser does not support PDFs.
       <a href="PML_Syllabus_2025.pdf">Download the PDF</a>
@@ -17,11 +17,13 @@ function load_syllabus() {
     </iframe>
   `;
 
-  var html = `
-    <embed class="pdf" src="PML_Syllabus_2025.pdf" width="100%" height="100%">
-  `;
+  //var html = `
+  //  <embed class="pdf" src="PML_Syllabus_2025.pdf" width="100%" height="100%">
+  //`;
 
   $('#right-col').html(html);
+  $('.pdf').height(1000);
+  //$('#ArticleBody').html(html);
 }
 
 function load_materials() {
