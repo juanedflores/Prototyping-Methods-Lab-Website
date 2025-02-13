@@ -22,7 +22,8 @@ function load_syllabus() {
   `;
 
   $('#right-col').html(html);
-  $('.pdf').height(1000);
+  $('.pdf').height("100%");
+  $('.pdf').width("100%");
   $('#right-col').css({
     overflow: 'hidden';
   });
