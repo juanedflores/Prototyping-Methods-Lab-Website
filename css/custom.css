@@ -50,6 +50,11 @@ a {
   font-family: 'AlegreyaSans-Black';
 }
 
+hr {
+  height: 2px !important;
+  background-color: gray;
+}
+
 .uk-inactive > a {
   color: #363131 !important;
   pointer-events: none;
