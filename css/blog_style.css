@@ -73,7 +73,7 @@ html {
 #contentArea {
   background: white;
   padding-bottom: 1em;
-  border: black solid 1px;
+  /*border: black solid 1px;*/
 }
 
 div uk-container {

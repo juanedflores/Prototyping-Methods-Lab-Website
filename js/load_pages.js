@@ -29,7 +29,7 @@ function load_syllabus() {
   setTimeout(() => {
     console.log('Delayed for 1 second.');
     //$('.pdf').height('5000px');
-    //$('.pdf').width('100%');
+    $('.pdf').width('99%');
     $('#right-col').css({ overflow: 'auto' });
     //$('.pdf').contentWindow.location.reload(true);
   }, '1000');

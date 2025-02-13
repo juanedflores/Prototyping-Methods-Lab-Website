@@ -52,6 +52,6 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
 function resize_function() {
   w = document.documentElement.clientWidth;
   if (w > 900) {
-    UIkit.offcanvas('#offcanvas-canvas-bar').show();
+    UIkit.offcanvas('#offcanvas-usage').hide();
   }
 }

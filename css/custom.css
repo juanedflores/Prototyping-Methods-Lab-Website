@@ -7,12 +7,20 @@
   src: url('../fonts/Inter-Black.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'AlegreyaSansSC-Black';
+  src: url('../fonts/alegreya/AlegreyaSansSC-Black.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'AlegreyaSans-Black';
+  src: url('../fonts/alegreya/AlegreyaSans-Black.ttf') format('truetype');
+}
+
 .mobile {
   display: none;
 }
 
-h1,
-h2,
 h3,
 h4,
 h5 {
@@ -31,6 +39,11 @@ a {
   background: #222222;
   color: rgb(238, 221, 195);
   padding: 10px;
+  font-family: 'AlegreyaSansSC-Black';
+}
+
+.uk-card-title {
+  font-family: 'AlegreyaSans-Black';
 }
 
 .uk-inactive > a {
@@ -131,8 +144,17 @@ nav {
 
 .uk-logo {
   background: rgb(197, 75, 59) !important;
-  font-family: 'Inter-Black';
+  /*font-family: 'Inter-Black';*/
+  font-family: 'AlegreyaSansSC-Black';
   color: white;
+}
+
+h1 {
+  font-family: 'AlegreyaSansSC-Black';
+}
+
+.menu_header {
+  font-family: 'AlegreyaSansSC-Black';
 }
 
 .anonymous-pro-regular {
