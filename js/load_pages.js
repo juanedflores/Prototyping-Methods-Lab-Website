@@ -10,8 +10,9 @@ function load_syllabus() {
   </object>
   `;
 
+  // <iframe src="https://drive.google.com/file/d/1u4V9_REBTXOC-I3yt9WG8pIREeVYiro6/preview" width="100%" height="1000px" allow="autoplay"></iframe>
   var html = `
-    <iframe src="https://drive.google.com/file/d/1u4V9_REBTXOC-I3yt9WG8pIREeVYiro6/preview" width="100%" height="1000px" allow="autoplay"></iframe>
+    <iframe src="https://drive.google.com/file/d/1u4V9_REBTXOC-I3yt9WG8pIREeVYiro6/preview?embedded=true" width="100%" height="1000px" allow="autoplay"></iframe>
   `;
 
   //var html = `
