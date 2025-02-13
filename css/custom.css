@@ -256,6 +256,10 @@ nav {
   overflow: scroll;
 }
 
+.bar-wrap {
+  overflow: scroll;
+}
+
 #left-col {
   overflow: scroll;
 }
