@@ -5,9 +5,16 @@ function load_syllabus() {
   <object data="PML_Syllabus_2025.pdf" type="application/pdf" width="100%" height="1000" title="Embedded PDF Viewer">
     <p>
       Your browser does not support PDFs.
-      <a href="document.pdf">Download the PDF</a>
+      <a href="PML_Syllabus_2025.pdf">Download the PDF</a>
     </p>
   </object>
+  `;
+
+  var html = `
+    <iframe class="pdf"
+      src="PML_Syllabus_2025.pdf"
+      width="100%" height="1000">
+    </iframe>
   `;
 
   $('#right-col').html(html);

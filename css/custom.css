@@ -285,6 +285,12 @@ ul {
   padding: 0;
 }
 
+#agenda > ul > li {
+  /*list-style: '- ';*/
+  list-style-type: circle;
+  margin-left: 20px;
+}
+
 @media screen and (max-width: 915px) {
   .uk-navbar-nav {
     display: none;
