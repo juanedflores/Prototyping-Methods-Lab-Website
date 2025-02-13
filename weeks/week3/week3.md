@@ -40,22 +40,6 @@ style="border: solid black 1px" />
 
 <li class="week3 basic_equipment all">
 <div>
-<a href="/Electronics/breadboards/breadboards.html">
-<div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge" style="background: #faf0d3">
-<div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge">
-<h3 class="cardtitle">Breadboards</h3>
-<div style="display: inline">
-<img src="./Electronics/breadboards/images/cover.webp" alt="" style="padding-bottom: 10px" uk-image />
-<span class="uk-label" style="background-color: #fed72c">Materials</span>
-</div>
-</div>
-</a>
-</div>
-</div>
-</li>
-
-<li class="week3 basic_equipment all">
-<div>
 <a href="/Electronics/soldering_kits/soldering_kits.html">
 <div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge" style="background: #faf0d3">
 <div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge">

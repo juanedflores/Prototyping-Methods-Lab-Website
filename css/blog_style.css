@@ -90,6 +90,19 @@ ul > li > a {
   font-family: 'Inter-ExtraLight', sans-serif;
 }
 
+ul > li {
+  list-style-type: circle;
+  margin-left: 20px;
+}
+
+.uk-navbar-nav > li {
+  list-style-type: none;
+}
+
+.uk-offcanvas-bar li {
+  padding-left: 0 !important;
+}
+
 p {
   font-size: 1.1em;
   color: black;
@@ -140,6 +153,7 @@ p img {
   font-family: 'Inter-ExtraLight', sans-serif;
   list-style-type: none;
   padding-left: 0 !important;
+  margin-left: 0 !important;
 }
 
 .uk-offcanvas-bar > div ul {
@@ -337,9 +351,21 @@ hr {
 }
 
 .level2 {
-  padding: 30px;
-  margin-bottom: 20px;
-  scroll-margin-top: 60px;
+  padding: 20px;
+  margin-bottom: 15px;
+  scroll-margin-top: 80px;
+}
+
+.level3 {
+  padding: 15px;
+  margin-bottom: 10px;
+  scroll-margin-top: 80px;
+}
+
+.level4 {
+  padding: 10px;
+  margin-bottom: 10px;
+  scroll-margin-top: 90px;
 }
 
 .tooltip {
