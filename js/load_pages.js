@@ -10,23 +10,30 @@ function load_syllabus() {
   </object>
   `;
 
+  var html = `
+    <iframe src="https://drive.google.com/file/d/1u4V9_REBTXOC-I3yt9WG8pIREeVYiro6/preview" width="100%" height="1000px" allow="autoplay"></iframe>
+  `;
+
   //var html = `
   //  <iframe class="pdf"
   //    src="PML_Syllabus_2025.pdf"
-  //    width="100%" height="100%">
+  //    width="100%" height="1000px">
   //  </iframe>
   //`;
-
-  var html = `
-    <embed class="pdf" src="PML_Syllabus_2025.pdf" width="100%" height="100%">
-  `;
+  //
+  //var html = `
+  //  <embed class="pdf" src="PML_Syllabus_2025.pdf" width="100%" height="100%">
+  //`;
 
   $('#right-col').html(html);
-  $('.pdf').height("100%");
-  $('.pdf').width("100%");
-  $('#right-col').css({
-    overflow: 'hidden';
-  });
+  setTimeout(() => {
+    console.log('Delayed for 1 second.');
+    $('.pdf').height('5000px');
+    $('.pdf').width('100%');
+    $('#right-col').css({ overflow: 'auto' });
+  }, '1000');
+
+  //$('#right-col').css({ overflow: 'hidden' });
   //$('#ArticleBody').html(html);
 }
 
