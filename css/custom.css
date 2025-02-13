@@ -46,6 +46,10 @@ a {
   font-family: 'AlegreyaSans-Black';
 }
 
+.cardtitle {
+  font-family: 'AlegreyaSans-Black';
+}
+
 .uk-inactive > a {
   color: #363131 !important;
   pointer-events: none;

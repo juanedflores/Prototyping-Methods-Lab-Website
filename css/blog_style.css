@@ -101,7 +101,7 @@ h1 {
   text-align: center;
   padding-bottom: 10px;
   padding-top: 10px;
-  border-bottom: rgb(56, 79, 172) ridge 8px;
+  /*border-bottom: rgb(56, 79, 172) solid 2px;*/
   text-transform: uppercase;
   color: black;
   font-family: 'Inter-Black';
