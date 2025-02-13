@@ -28,9 +28,10 @@ function load_syllabus() {
   $('#right-col').html(html);
   setTimeout(() => {
     console.log('Delayed for 1 second.');
-    $('.pdf').height('5000px');
-    $('.pdf').width('100%');
+    //$('.pdf').height('5000px');
+    //$('.pdf').width('100%');
     $('#right-col').css({ overflow: 'auto' });
+    //$('.pdf').contentWindow.location.reload(true);
   }, '1000');
 
   //$('#right-col').css({ overflow: 'hidden' });
