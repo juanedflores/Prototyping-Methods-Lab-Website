@@ -12,3 +12,5 @@ title: Week 2
 - See and talk about real examples (Products, Art)
 - Example Arduino Projects
 - Intro to Electronics with TinkerCAD
+
+

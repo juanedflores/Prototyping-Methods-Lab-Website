@@ -22,37 +22,36 @@ function sections() {
 
 table_hl();
 sections();
-//toc_scroll();
 
-//var iframe = document.getElementById('circuitFrame');
-//
-//// Wait for the circuit simulator to load
-//iframe.contentWindow.oncircuitjsloaded = function () {
-//  // Simulator is loaded, initialize your code here
-//  sim = iframe.contentWindow.CircuitJS1;
-//
-//  // Set up callbacks for updates, analysis, and time steps (all optional)
-//  sim.onupdate = didUpdate;
-//  sim.ontimestep = didStep;
-//  sim.onanalyze = didAnalyze;
-//};
-//
-//document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-//  anchor.addEventListener('click', function (e) {
-//    e.preventDefault();
-//
-//    //var scrollToPosition = $(anchor).offset().top - headerHeight;
-//    document.querySelector(this.getAttribute('href')).scrollIntoView({
-//      behavior: 'smooth',
-//      block: 'start',
-//      inline: 'nearest',
-//    });
-//  });
-//});
+var iframe = document.getElementById('circuitFrame');
+
+// Wait for the circuit simulator to load
+iframe.contentWindow.oncircuitjsloaded = function () {
+  // Simulator is loaded, initialize your code here
+  sim = iframe.contentWindow.CircuitJS1;
+
+  // Set up callbacks for updates, analysis, and time steps (all optional)
+  sim.onupdate = didUpdate;
+  sim.ontimestep = didStep;
+  sim.onanalyze = didAnalyze;
+};
+
+document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+  anchor.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    //var scrollToPosition = $(anchor).offset().top - headerHeight;
+    document.querySelector(this.getAttribute('href')).scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+      inline: 'nearest',
+    });
+  });
+});
 
 function resize_function() {
   w = document.documentElement.clientWidth;
   if (w > 900) {
-    UIkit.offcanvas('#offcanvas-usage').hide();
+    UIkit.offcanvas('#offcanvas-canvas-bar').show();
   }
 }
