@@ -252,6 +252,10 @@ nav {
   margin-left: 260px;
 }
 
+#offcanvas-usage {
+  overflow: scroll;
+}
+
 .uk-navbar-container {
   z-index: 2;
 }
