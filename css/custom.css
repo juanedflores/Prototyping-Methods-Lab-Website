@@ -256,6 +256,10 @@ nav {
   overflow: scroll;
 }
 
+#left-col {
+  overflow: scroll;
+}
+
 .uk-navbar-container {
   z-index: 2;
 }
