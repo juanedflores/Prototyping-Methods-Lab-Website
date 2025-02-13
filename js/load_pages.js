@@ -13,8 +13,12 @@ function load_syllabus() {
   var html = `
     <iframe class="pdf"
       src="PML_Syllabus_2025.pdf"
-      width="100%" height="1000">
+      width="100%" height="100%">
     </iframe>
+  `;
+
+  var html = `
+    <embed class="pdf" src="PML_Syllabus_2025.pdf" width="100%" height="100%">
   `;
 
   $('#right-col').html(html);
