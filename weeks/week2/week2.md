@@ -22,7 +22,7 @@ title: Week 2
 
 <li class="week3 basic_equipment all">
 <div>
-<a href="/Blog/intro_to_electronics/intro_to_electronics.html">
+<a href="./Blog/intro_to_electronics/intro_to_electronics.html">
 <div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge" style="background: rgb(210, 230, 250)">
 <div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge" style="">
 <h3 class="cardtitle">TinkerCAD and Intro to Electronics</h3>
