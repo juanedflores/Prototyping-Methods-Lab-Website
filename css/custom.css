@@ -62,7 +62,7 @@ hr {
 }
 
 .uk-nav-default > li {
-  position: relative;
+  position: rel;
 }
 
 li {
@@ -133,8 +133,8 @@ body {
 }
 
 .slides_section {
-  padding: 10px;
-  background-color: #282a35;
+  padding: 10px !important;
+  background-color: rgb(243, 201, 91);
   margin-bottom: 30px;
 }
 
@@ -169,6 +169,10 @@ h1 {
   font-family: 'AlegreyaSansSC-Black';
 }
 
+.slides {
+  width: 90% !important;
+}
+
 .menu_header {
   font-family: 'AlegreyaSansSC-Black';
 }
@@ -195,6 +199,10 @@ h1 {
   font-family: 'Anonymous Pro', monospace;
   font-weight: 700;
   font-style: italic;
+}
+
+.card-electronics {
+  border: #faf0d3 solid 10px;
 }
 
 #left-col {
@@ -344,6 +352,10 @@ ul {
 
   #right-col {
     margin-left: 0px;
+  }
+
+  hr {
+    border: none;
   }
 }
 

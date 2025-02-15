@@ -3,8 +3,7 @@ title: Week 3
 ---
 
 <section class="slides_section">
-<embed type="text/html" src="slides/week3/index.html" width="100%" height="500px"
-style="border: solid black 1px" />
+<embed type="text/html" src="slides/week3/index.html" width="100%" height="500px" />
 </section>
 
 [Open Slides in New Tab](./slides/week3/index.html)
@@ -12,6 +11,7 @@ style="border: solid black 1px" />
 ---
 
 ### Agenda
+
 - Check In
 - Show the Circuit in TinkerCad
 - Talk about the Soldering Kits
@@ -20,17 +20,20 @@ style="border: solid black 1px" />
 
 ---
 
+### Topics
+
 <div class="uk-margin" style="padding: 30px; pointer-events: none">
 <ul class="uk-child-width-1-3@m uk-child-width-1-4@l uk-child-width-1-2@s uk-grid-small uk-grid-match" uk-grid="masonry: pack">
-<li class="week3 basic_equipment all">
+
+<li class="">
 <div>
-<a href="/Electronics/protoboards/protoboards.html">
+<a href="./Electronics/protoboards/protoboards.html">
 <div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge" style="background: #faf0d3">
 <div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge">
 <h3 class="cardtitle">Protoboards</h3>
 <div style="display: inline">
 <img src="./Electronics/protoboards/images/cover.png" alt="" style="padding-bottom: 10px" uk-image />
-<span class="uk-label" style="background-color: #fed72c">Materials</span>
+<span class="uk-label" style="background-color: #4c370c">Tools</span>
 </div>
 </div>
 </a>
@@ -38,20 +41,54 @@ style="border: solid black 1px" />
 </div>
 </li>
 
-<li class="week3 basic_equipment all">
+<li class="">
 <div>
-<a href="/Electronics/soldering_kits/soldering_kits.html">
+<a href="./Electronics/soldering_kits/soldering_kits.html">
 <div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge" style="background: #faf0d3">
 <div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge">
-<h3 class="cardtitle">Soldering Kits</h3>
+<h3 class="cardtitle">Soldering Kit Breakdown</h3>
 <div style="display: inline">
 <img src="./Electronics/soldering_kits/images/cover.png" alt="" style="padding-bottom: 10px" uk-image />
-<span class="uk-label" style="background-color: #fed72c">Materials</span>
+<span class="uk-label" style="background-color: #4c370c">Tools</span>
 </div>
 </div>
 </a>
 </div>
 </div>
 </li>
+
+<li>
+<div>
+<a href="./Electronics/vibration_motor/vibration_motor.html">
+<div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge" style="background: #faf0d3">
+<div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge">
+<h3 class="cardtitle">Vibration Motors</h3>
+<div style="display: inline">
+<img src="./Electronics/vibration_motor/images/cover.webp" alt="" style="padding-bottom: 10px" uk-image />
+<span class="uk-label" style="background-color: #fed72c">Electronics</span>
+<span class="uk-label" style="background-color: #e01451">Output</span>
+</div>
+</div>
+</a>
+</div>
+</div>
+</li>
+
+<li>
+<div>
+<a href="./Blog/hex_bug_workshop/hex_bug_workshop.html">
+<div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge" style="background: #bcd6ba">
+<div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge">
+<h3 class="cardtitle">Vibration Motor and Soldering Workshop</h3>
+<div style="display: inline">
+<img src="./Blog/hex_bug_workshop/images/cover.gif" alt="" style="padding-bottom: 10px" uk-image />
+<span class="uk-label" style="background-color: #bcd6ba">Workshop</span>
+</div>
+</div>
+</a>
+</div>
+</div>
+</li>
+
 </ul>
 </div>

@@ -76,13 +76,17 @@ The first thing to notice is that all the basic components are conveniently avai
 
 Clicking on any of them will place it on your cursor until you put it down on the "canvas". Grab an LED and place it down somewhere. Once you do, you might notice that a window pops up. Here you can change some of the properties of this component. For example, with an LED, you can change its color.
 
+<div>
+<img src="images/properties.png" width=300px style=""></img>
+</div>
+
 Next, try using the search bar and type battery. Doing so will give you three main options.
 
 <div>
 <img src="images/batteries.png" width=300px style=""></img>
 </div>
 
-Grab the 3V battery and set it near the LED. Try clicking on one of the <span class="tooltip" style="cursor: pointer;" uk-tooltip="Battery <strong>terminals</strong> are the electrical contacts that are used to connect to a load.">terminals</span> and attach the wire that just appeared to one of the legs of the LED.
+Grab the 3V battery and set it near the LED. Try clicking on one of the <span class="tooltip" style="cursor: pointer;" uk-tooltip="Battery <strong>terminals</strong> are the electrical contacts that are used to connect to a load. They are either positive (+) or negative (-).">terminals</span> and attach the wire that just appeared to one of the legs of the LED.
 
 If you see it attach successfully do the same with the other side.
 
@@ -107,14 +111,20 @@ If it is not on, it is because the terminals of the battery need to be connected
 
 ### LED Polarity
 
-LED stands for **<mark>Light-Emitting Diode</mark>**. A diode is another basic component. The short explanation is that it is a component that only allows electrical current to pass in **one direction**. It is like a one way street. So just like a battery, it has a **<span style="color: red">positive</span>** and a **negative** side.
+LED stands for **<mark>Light-Emitting Diode</mark>**. A diode is another basic component. 
+
+The short explanation is that it is a component that only allows electrical current to pass in **one direction**. It is like a one way street. So just like a battery, it has a **<span style="color: red">positive</span>** and a **negative** side.
+
+In other words, the LED, diode, and battery all have **polarity**. This means that positive goes to positive and negative goes to negative.
+
+LEDs and diodes both work in a similar way, with the only difference being that an LED is a diode that emits light when powered.
 
 <blockquote class="info">
 <span class="uk-label">Note</span>
 <p>There is a separate post that goes into more detail about diodes. Feel free to skip it for now. We just want to build a circuit.</p>
 
 <div style="width: 100%; display: flex; padding-top: 25px;">
-<div style="width: 50%; margin: auto;">
+<div style="width: 70%; margin: auto;">
 
 <li class="" style="list-style-type: none; margin: auto">
 <div>
@@ -137,7 +147,12 @@ LED stands for **<mark>Light-Emitting Diode</mark>**. A diode is another basic c
 
 </blockquote>
 
-As mentioned, an LED has a positive and a negative leg, meaning that it has **polarity**. Polarity just means that electricity can only flow in one direction.
+
+<ul uk-accordion style='pading-bottom: 5vh'> <li class='uk-open'>
+<a id='code-file' class='uk-accordion-title' href='#'>Ground</a>
+<div class='uk-accordion-content' style='padding-bottom:20px; margin-bottom:20px'>
+Engineers, by convention, also call the **NEGATIVE** side the Ground side of the connection. Ground is a term used by engineers to indicate a lower voltage terminal with 0 (zero) relative volts.
+</div>
 
 #### Leg Length
 
@@ -150,6 +165,7 @@ The most common way to determine which leg is which, is by seeing the length of 
 #### Flat Side / Notch
 
 Another way to tell is by seeing which side of the LED has a flat side. This side would be the negative.
+
 <div>
 <img src="images/notch.webp" width="400px" style=""></img>
 </div>
@@ -172,7 +188,13 @@ With this information let's go back to TinkerCAD. Hovering over one of the LED l
 
 I know **<span style="color: red">anode</span>** means positive, so I will connect it to the positive terminal of the coin cell battery.
 
-I will change the wire colors to match the red and black to match the positive and negative. This does not affect the circuit in any way but it is good practice to keep this convention consistent so that you can visually digest better what is going on.
+<blockquote class="success">
+<span class="uk-label uk-label-success">Tip</span>
+<p>
+I will change the wire colors to match the **<span style="color: red">red</span>** and **black** to match the **<span style="color: red">positive</span>** and **negative**. This does not affect the circuit in any way but it is good practice to keep this convention consistent so that you can visually digest better what is going on.
+</p>
+</blockquote>
+
 
 <div>
 <img src="images/colors.png" width="400px" style=""></img>
@@ -198,9 +220,33 @@ It is telling us that something called current is more than the recommended maxi
 <img src="images/resistor.png" width="400px" style=""></img>
 </div>
 
-Now the LED is on and the warning is gone, which is what we want, but in order to understand why this thing called a resistor is needed we need to understand a little bit how electricity works.
+Now the LED is on and the warning is gone, which is what we want, but in order to understand why this thing called a resistor is needed we need to understand a little bit about how electricity works.
 
-## Ohm's Law
+## Voltage, Current, and Resistance
+
+<blockquote class="warning">
+<span class="uk-label uk-label-warning">Warning</span>
+<p>
+Before I attempt to note down some of the basics of electronics, know that this takes time to learn. Knowing the how and why of things is definitely useful, satisfying, and recommended, unfortunately (or fortunately) with our time limitation it is impossible to go into it in depth. It can also be a little dull, tedious, and overwhelming. Because this is a design course and we are artists and designers, I am guessing we mostly want to start making things happen, and ponder about what our creations are doing. I also think it's important to minimize the stress as much as possible and create an environment where you feel comfortable working in this area.
+</p>
+
+<p>
+Trying to speed teach this material has been attempted many times in different classrooms around the world. Thankfully we can compare notes and get a sense of the different philosophies.
+</p>
+
+<p>If you find yourself feeling hungry or curious for more information, I can provide some external resources that can possibly point you in the right direction.</p>
+
+<ul>
+<li>
+<a href="https://makeabilitylab.github.io/physcomp/electronics/">
+Makeability Lab
+</a> - A website made by Jon E. Froehlich, a computer science professor at the University of Washington.</li>
+<li>
+<a href="https://itp.nyu.edu/physcomp/lessons/electronics/electricity-the-basics/">ITP Physical Computing</a> - The course website made for NYU's ITP Physical Computing class.</li>
+</li>
+</ul>
+</blockquote>
+
 
 ## Terminology
 

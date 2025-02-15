@@ -5,6 +5,11 @@ pre {
 bold {
 }
 
+.uk-accordion > li {
+  list-style-type: none !important;
+  margin-left: 0;
+}
+
 mark {
   color: rgb(56, 79, 172);
   background: rgb(243, 201, 91);
@@ -37,6 +42,16 @@ p  {
 @font-face {
   font-family: 'Inter-Black';
   src: url('../fonts/Inter-Black.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Alegreya-Bold';
+  src: url('../fonts/Alegreya-Bold.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'AlegreyaSans-Bold';
+  src: url('../fonts/AlegreyaSans-Bold.ttf') format('truetype');
 }
 
 strong {
@@ -271,7 +286,7 @@ h3 {
   font-size: 1.2em;
   color: black;
   font-family: 'Inter-Black';
-  border-bottom: 0.5px solid #ffffff;
+  border-bottom: 2px solid #222222;
   padding-bottom: 0.5em;
   font-weight: bold;
 }
@@ -304,7 +319,8 @@ blockquote {
   font-size: 18px;
   padding-left: 20px;
   font-style: normal;
-  line-height: normal;
+  font-weight: bold;
+  line-height: 1.7em;
   font-size: 1em;
   padding-bottom: 30px;
 }
@@ -314,7 +330,8 @@ blockquote {
 .error > p,
 .success > p {
   font-family: 'Inter-ExtraLight';
-  color: #54544d;
+  /*font-family: 'AlegreyaSans-Bold';*/
+  /*color: #54544d;*/
 }
 
 .info {
@@ -346,24 +363,29 @@ blockquote {
 }
 
 hr {
-  border: 2px solid rgb(56, 79, 172);
+  /*border: 2px solid rgb(56, 79, 172);*/
+  border: none !important;
   margin-bottom: 30px;
+  background: rgb(56, 79, 172) !important;
 }
 
 .level2 {
   padding: 20px;
+  padding-top: 35px;
   margin-bottom: 15px;
   scroll-margin-top: 80px;
 }
 
 .level3 {
   padding: 15px;
+  padding-top: 35px;
   margin-bottom: 10px;
   scroll-margin-top: 80px;
 }
 
 .level4 {
   padding: 10px;
+  padding-top: 35px;
   margin-bottom: 10px;
   scroll-margin-top: 90px;
 }
@@ -399,6 +421,10 @@ canvas {
   z-index: -1;
 }
 
+.uk-accordion {
+  padding-bottom: 20px;
+}
+
 .uk-accordion-title {
   background: rgb(243, 201, 91);
   padding: 10px;
@@ -416,6 +442,10 @@ canvas {
   border-radius: 15px / 50px;
   background: rgb(197, 75, 59);
   padding: 20px;
+}
+
+.uk-accordion-content > p {
+  font-family: 'Alegreya-Bold';
 }
 
 .uk-card-title {
@@ -497,7 +527,7 @@ input {
   }
 
   img {
-    min-width: 250px;
+    min-width: 100px;
   }
 
   #heading {

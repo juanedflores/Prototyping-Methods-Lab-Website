@@ -16,7 +16,7 @@
 
 ::::: {.uk-table .uk-table-striped .uk-table-hover .uk-table-middle}
 
-| Design |
+| Interaction Design |
 | ------------- |
 | [The Glossary of Key Terms in Human-Computer Interaction](https://www.interaction-design.org/literature/book/the-glossary-of-human-computer-interaction) |
 

@@ -1,107 +1,85 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Prototyping Methods Lab</title>
 
-    <!-- UIKit files -->
-    <link rel="stylesheet" href="css/uikit.min.css" />
-    <script src="js/uikit.min.js"></script>
-    <script src="js/uikit-icons.min.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Prototyping Methods Lab</title>
 
-    <!--Custom CSS-->
-    <link rel="stylesheet" href="css/custom.css" />
+  <!-- UIKit files -->
+  <link rel="stylesheet" href="css/uikit.min.css" />
+  <script src="js/uikit.min.js"></script>
+  <script src="js/uikit-icons.min.js"></script>
 
-    <!--Google Fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+  <!--Custom CSS-->
+  <link rel="stylesheet" href="css/custom.css" />
 
-    <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+  <!--Google Fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet" />
 
-    <!--Font Awesome-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+  <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+  <!--Font Awesome-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 
-    <script src="js/load_pages.js"></script>
-    <script src="js/styling.js"></script>
-    <style>
-      body,
-      html {
-        background: rgb(210, 230, 250);
-      }
-    </style>
-  </head>
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 
-  <body onresize="resize_function()">
-    <div uk-filter="target: .js-filter">
-      <nav class="uk-navbar-container uk-margin" uk-navbar uk-sticky>
-        <button id="menu_button" class="uk-button uk-button-default desktop" type="button" style="border: none; background: rgb(243, 201, 91)" uk-toggle="target: #small-menu">
-          <span class="fas fa-bars fa-2xl" style="color: #4444dd; background: rgb(243, 201, 91)"></span>
-        </button>
-        <button id="menu_button" class="uk-button uk-button-default mobile" type="button" style="border: none; background: rgb(243, 201, 91)" uk-toggle="target: #offcanvas-usage">
-          <span class="fas fa-bars fa-2xl" style="color: #4444dd; background: rgb(243, 201, 91)"></span>
-        </button>
-        <div class="nav-overlay uk-navbar-left">
-          <a class="uk-navbar-item uk-logo" href="index.html">PROTOTYPING METHODS LAB</a>
-          <ul class="uk-navbar-nav" style="">
-            <li class=""><a href="index.html">Home / Week Overview</a></li>
-            <li class=""><a href="electronic_component_database.html">Electronics</a></li>
-            <li class="uk-active"><a href="arduino_sketches.html">Arduino</a></li>
-          </ul>
-        </div>
-        <div style="background: #222222; width: 270px" id="offcanvas-usage" uk-offcanvas="mode: push">
-          <button style="padding: 20px" class="uk-offcanvas-close" type="button" uk-close></button>
+  <script src="js/load_pages.js"></script>
+  <script src="js/styling.js"></script>
+  <style>
+    body,
+    html {
+      background: rgb(210, 230, 250);
+    }
+  </style>
+</head>
 
-          <div class="bar-wrap" style="padding-top: 50px">
-            <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
-              <li class="uk-active" style="list-style-type: none"><a style="padding: 0" class="uk-button" href="index.html">Home / Week Overview</a></li>
-              <li class="" style="list-style-type: none"><a style="padding: 0" class="uk-button" href="electronic_component_database.html">Electronics</a></li>
-              <li class="" style="list-style-type: none"><a style="padding: 0" class="uk-button" href="arduino_sketches.html">Arduino</a></li>
-              <div id="small-menu" style="padding-top: 20px">
-                <hr />
-                <a target="_blank" style="color: #1e87f0" href="https://docs.arduino.cc/resources/pinouts/ABX00027-full-pinout.pdf">ARDUINO PINOUT</a>
-              </div>
-              <hr />
-              <h5 style="color: rgb(243, 201, 91)">FILTER</h5>
-              <li uk-filter-control="filter: .all">
-                <a href="#">All</a>
-                <hr />
-              </li>
-              <li uk-filter-control="filter: .basics" class="uk-parent">
-                <h6 style="color: rgb(243, 201, 91)">BY CATEGORY:</h6>
-                <a href="#">Basics<span class="uk-nav-parent-icon"></span></a>
-                <ul class="uk-nav-sub">
-                  <li uk-filter-control="filter: .getting_setup"><a href="#">Getting Set Up</a></li>
-                  <li uk-filter-control="filter: .basic_familiarity"><a href="#">Basic Familiarity</a></li>
-                </ul>
-                <hr />
-              </li>
-              <h6 style="color: rgb(243, 201, 91)">BY WEEK:</h6>
-              <li uk-filter-control="filter: .week4"><a href="#">Week 4</a></li>
-            </ul>
-            <hr />
-          </div>
-        </div>
-      </nav>
+<body onresize="resize_function()">
+  <div uk-filter="target: .js-filter">
+    <nav class="uk-navbar-container uk-margin" uk-navbar uk-sticky>
+      <button id="menu_button" class="uk-button uk-button-default desktop" type="button"
+        style="border: none; background: rgb(243, 201, 91)" uk-toggle="target: #small-menu">
+        <span class="fas fa-bars fa-2xl" style="color: #4444dd; background: rgb(243, 201, 91)"></span>
+      </button>
+      <button id="menu_button" class="uk-button uk-button-default mobile" type="button"
+        style="border: none; background: rgb(243, 201, 91)" uk-toggle="target: #offcanvas-usage">
+        <span class="fas fa-bars fa-2xl" style="color: #4444dd; background: rgb(243, 201, 91)"></span>
+      </button>
+      <div class="nav-overlay uk-navbar-left">
+        <a class="uk-navbar-item uk-logo" href="index.html">PROTOTYPING METHODS LAB</a>
+        <ul class="uk-navbar-nav" style="">
+          <li class=""><a href="index.html">Home / Week Overview</a></li>
+          <li class=""><a href="electronic_component_database.html">Electronics</a></li>
+          <li class="uk-active"><a href="arduino_sketches.html">Arduino</a></li>
+        </ul>
+      </div>
+      <div style="background: #222222; width: 270px" id="offcanvas-usage" uk-offcanvas="mode: push">
+        <button style="padding: 20px" class="uk-offcanvas-close" type="button" uk-close></button>
 
-      <!-- TOC -->
-      <aside id="left-col" class="uk-light">
-        <div class="bar-wrap" style="padding-top: 100px">
+        <div class="bar-wrap" style="padding-top: 50px">
           <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
-            <div id="small-menu">
+            <li class="uk-active" style="list-style-type: none"><a style="padding: 0" class="uk-button"
+                href="index.html">Home / Week Overview</a></li>
+            <li class="" style="list-style-type: none"><a style="padding: 0" class="uk-button"
+                href="electronic_component_database.html">Electronics</a></li>
+            <li class="" style="list-style-type: none"><a style="padding: 0" class="uk-button"
+                href="arduino_sketches.html">Arduino</a></li>
+            <div id="small-menu" style="padding-top: 20px">
               <hr />
-              <a target="_blank" style="color: #1e87f0" href="https://docs.arduino.cc/resources/pinouts/ABX00027-full-pinout.pdf">ARDUINO PINOUT</a>
+              <a target="_blank" style="color: #1e87f0"
+                href="https://docs.arduino.cc/resources/pinouts/ABX00027-full-pinout.pdf">ARDUINO PINOUT</a>
             </div>
             <hr />
             <h5 style="color: rgb(243, 201, 91)">FILTER</h5>
             <li uk-filter-control="filter: .all">
               <a href="#">All</a>
-              <hr />
+              <hr style="background: #292926" />
             </li>
             <li uk-filter-control="filter: .basics" class="uk-parent">
               <h6 style="color: rgb(243, 201, 91)">BY CATEGORY:</h6>
@@ -110,54 +88,103 @@
                 <li uk-filter-control="filter: .getting_setup"><a href="#">Getting Set Up</a></li>
                 <li uk-filter-control="filter: .basic_familiarity"><a href="#">Basic Familiarity</a></li>
               </ul>
-              <hr />
+              <hr style="background: #292926" />
             </li>
             <h6 style="color: rgb(243, 201, 91)">BY WEEK:</h6>
             <li uk-filter-control="filter: .week4"><a href="#">Week 4</a></li>
           </ul>
-          <hr />
-        </div>
-      </aside>
-
-      <!-- ENTRIES -->
-      <div id="right-col" style="pointer-events: none">
-        <div class="uk-container uk-margin-medium-top">
-          <ul class="uk-margin week-content js-filter">
-            <li class="basics week4 getting_setup all">
-              <div class="entry uk-card uk-card-default uk-grid-collapse uk-transition-toggle uk-child-width-1-2@s uk-margin" onclick="location.href='Arduino/getting_setup/getting_setup.html'" uk-grid>
-                <div class="uk-flex-last@s uk-card-media-right uk-transition-opaque uk-transition-scale-up uk-cover-container">
-                  <img class="uk-cover" style="width: 100%; height: 100%; object-fit: cover" src="Arduino/getting_setup/getting_setup.svg" alt="" />
-                  <canvas width="600" height="400"></canvas>
-                </div>
-                <div>
-                  <div class="uk-card-body">
-                    <h3 class="uk-card-title">Getting Set Up: Arduino Nano 33 IoT</h3>
-                    <span>Week 4</span>
-                    <p style="color: black">Getting set up to work with the Arduino Nano 33 IoT.</p>
-                    <span class="uk-label" style="background-color: #630b7f">Basics</span>
-                  </div>
-                </div>
-              </div>
-            </li>
-            <li class="basics week4 basic_familiarity all">
-              <div class="entry uk-card uk-card-default uk-grid-collapse uk-transition-toggle uk-child-width-1-2@s uk-margin" onclick="location.href='Arduino/basic_familiarity/basic_familiarity.html'" uk-grid>
-                <div class="uk-flex-last@s uk-card-media-right uk-transition-opaque uk-transition-scale-up uk-cover-container">
-                  <img class="uk-cover" style="width: 100%; height: 100%; object-fit: cover" src="Arduino/basic_familiarity/basic_familiarity.png" alt="" />
-                  <canvas width="600" height="400"></canvas>
-                </div>
-                <div>
-                  <div class="uk-card-body">
-                    <h3 class="uk-card-title">Basic Familiarity</h3>
-                    <span>Week 4</span>
-                    <p style="color: black">Get familiar with the Arduino board and the Integrated Development Environment (IDE).</p>
-                    <span class="uk-label" style="background-color: #630b7f">Basics</span>
-                  </div>
-                </div>
-              </div>
-            </li>
-          </ul>
+          <hr style="background: #292926" />
         </div>
       </div>
+    </nav>
+
+    <!-- TOC -->
+    <aside id="left-col" class="uk-light">
+      <div id="" class="bar-wrap" style="padding-top: 100px">
+        <ul class="uk-nav-default uk-nav-parent-icon" uk-nav>
+          <div id="small-menu">
+            <hr />
+            <a target="_blank" style="color: #1e87f0"
+              href="https://docs.arduino.cc/resources/pinouts/ABX00027-full-pinout.pdf">ARDUINO PINOUT</a>
+          </div>
+          <hr />
+          <h5 style="color: rgb(243, 201, 91)">FILTER</h5>
+          <li uk-filter-control="filter: .all">
+            <a href="#">All</a>
+            <hr style="background: #292926" />
+          </li>
+          <li uk-filter-control="filter: .basics" class="uk-parent">
+            <h6 style="color: rgb(243, 201, 91)">BY CATEGORY:</h6>
+            <a href="#">Basics<span class="uk-nav-parent-icon"></span></a>
+            <ul class="uk-nav-sub">
+              <li uk-filter-control="filter: .getting_setup"><a href="#">Getting Set Up</a></li>
+              <li uk-filter-control="filter: .basic_familiarity"><a href="#">Basic Familiarity</a></li>
+            </ul>
+            <hr style="background: #292926" />
+          </li>
+          <h6 style="color: rgb(243, 201, 91)">BY WEEK:</h6>
+          <li uk-filter-control="filter: .week4"><a href="#">Week 4</a></li>
+        </ul>
+        <!--<hr />-->
+      </div>
+    </aside>
+
+    <!-- ENTRIES -->
+    <div id="right-col">
+      <div id="ArticleBody" class="uk-container uk-margin-medium-top">
+        <ul id="ListBody" class="uk-margin week-content js-filter">
+          <li class="basics week4 getting_setup all">
+            <div
+              class="entry uk-card uk-card-default uk-grid-collapse uk-transition-toggle uk-child-width-1-2@s uk-margin"
+              onclick="location.href='#'" uk-grid>
+              <!--<div-->
+              <!--  class="entry uk-card uk-card-default uk-grid-collapse uk-transition-toggle uk-child-width-1-2@s uk-margin"-->
+              <!--  onclick="location.href='Arduino/getting_setup/getting_setup.html'" uk-grid>-->
+              <div
+                class="uk-flex-last@s uk-card-media-right uk-transition-opaque uk-transition-scale-up uk-cover-container">
+                <img class="uk-cover" style="width: 100%; height: 100%; object-fit: cover"
+                  src="Arduino/getting_setup/getting_setup.svg" alt="" />
+                <canvas width="600" height="400"></canvas>
+              </div>
+              <div style="border: #7fcbcd solid 16px">
+                <div class="uk-card-body">
+                  <h3 class="uk-card-title">Getting Set Up: Arduino Nano 33 IoT</h3>
+                  <span>Week 4</span>
+                  <p style="color: black">Getting set up to work with the Arduino Nano 33 IoT.</p>
+                  <span class="uk-label" style="background-color: #630b7f">Basics</span>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="basics week4 basic_familiarity all">
+            <div
+              class="entry uk-card uk-card-default uk-grid-collapse uk-transition-toggle uk-child-width-1-2@s uk-margin"
+              onclick="location.href='#'" uk-grid>
+              <!--<div-->
+              <!--  class="entry uk-card uk-card-default uk-grid-collapse uk-transition-toggle uk-child-width-1-2@s uk-margin"-->
+              <!--  onclick="location.href='Arduino/basic_familiarity/basic_familiarity.html'" uk-grid>-->
+              <div
+                class="uk-flex-last@s uk-card-media-right uk-transition-opaque uk-transition-scale-up uk-cover-container"
+                style="height: 100%">
+                <img class="uk-cover" style="width: 100%; height: 100%; object-fit: cover"
+                  src="Arduino/basic_familiarity/basic_familiarity.png" alt="" />
+                <canvas width="600" height="400"></canvas>
+              </div>
+              <div style="border: #7fcbcd solid 16px">
+                <div class="uk-card-body">
+                  <h3 class="uk-card-title">Basic Familiarity</h3>
+                  <span>Week 4</span>
+                  <p style="color: black">Get familiar with the Arduino board and the Integrated Development Environment
+                  </p>
+                  <span class="uk-label" style="background-color: #630b7f">Basics</span>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
     </div>
-  </body>
+  </div>
+</body>
+
 </html>

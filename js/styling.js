@@ -15,7 +15,8 @@ function sections() {
     if (i % 2 == 0) {
       $(all[i]).css('background-color', 'white');
     } else {
-      $(all[i]).css('background-color', 'rgb(238, 221, 195)');
+      //$(all[i]).css('background-color', 'rgb(238, 221, 195)');
+      $(all[i]).css('background-color', '#faf0d3');
     }
   }
 }
@@ -60,3 +61,11 @@ function resize_function() {
     UIkit.offcanvas('#offcanvas-usage').hide();
   }
 }
+
+$(function () {
+  $('body').click(function (e) {
+    if (e.target.id == 'ArticleBody' || e.target.id == 'ListBody') {
+      UIkit.offcanvas('#offcanvas-usage').hide();
+    }
+  });
+});

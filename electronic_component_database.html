@@ -1,135 +1,154 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <title>Prototyping Methods Lab</title>
 
-    <!-- UIKit files -->
-    <link rel="stylesheet" href="css/uikit.min.css" />
-    <script src="js/uikit.min.js"></script>
-    <script src="js/uikit-icons.min.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>Prototyping Methods Lab</title>
 
-    <!--Google Fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+  <!-- UIKit files -->
+  <link rel="stylesheet" href="css/uikit.min.css" />
+  <script src="js/uikit.min.js"></script>
+  <script src="js/uikit-icons.min.js"></script>
 
-    <!-- JQuery -->
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+  <!--Google Fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet" />
 
-    <!--Font Awesome-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+  <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 
-    <!--Custom CSS-->
-    <!--<link rel="stylesheet" href="css/blog_style.css" />-->
-    <link rel="stylesheet" href="css/custom.css" />
+  <!--Font Awesome-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+  <!--Custom CSS-->
+  <!--<link rel="stylesheet" href="css/blog_style.css" />-->
+  <link rel="stylesheet" href="css/custom.css" />
 
-    <style>
-      body,
-      html {
-        background: rgb(210, 230, 250);
-      }
-    </style>
-  </head>
+  <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
 
-  <body>
-    <div uk-filter="target: .js-filter">
-      <nav class="uk-navbar-container uk-margin" uk-navbar uk-sticky>
-        <button class="uk-button uk-button-default" type="button" style="border: none; background: rgb(243, 201, 91)" uk-toggle="target: #blog-toc">
-          <span class="fas fa-bars fa-2xl" style="color: #4444dd; background: rgb(243, 201, 91)"></span>
-        </button>
-        <div class="nav-overlay uk-navbar-left">
-          <a class="uk-navbar-item uk-logo" href="index.html">PROTOTYPING METHODS LAB</a>
-          <ul class="uk-navbar-nav" style="">
-            <li class="" style=""><a href="index.html">Home / Week Overview</a></li>
-            <li class="uk-active"><a href="electronic_component_database.html">Electronics</a></li>
-            <li class=""><a href="arduino_sketches.html">Arduino</a></li>
-          </ul>
-        </div>
-      </nav>
+  <style>
+    body,
+    html {
+      background: rgb(210, 230, 250);
+    }
+  </style>
+</head>
 
-      <div id="blog-toc" style="" uk-offcanvas="mode: push; container: #contentArea; bg-close: true;">
-        <div class="uk-offcanvas-bar">
-          <div class="mobile">
-            <button style="padding: 20px" class="uk-offcanvas-close" type="button" uk-close></button>
-
-            <li class="uk-active" style="list-style-type: none; padding-top: 30px"><a style="padding: 0" class="uk-button" href="index.html">Home / Week Overview</a></li>
-            <li class="" style="list-style-type: none"><a style="padding: 0" class="uk-button" href="electronic_component_database.html">Electronics</a></li>
-            <li class="" style="list-style-type: none"><a style="padding: 0" class="uk-button" href="arduino_sketches.html">Arduino</a></li>
-            <hr />
-          </div>
-
-          <h5 style="color: rgb(243, 201, 91)">FILTER</h5>
-          <hr />
-
-          <ul class="uk-nav-default uk-nav" style="list-style: none">
-            <li class="uk-active" uk-filter-control="filter: .all"><a href="#">All</a></li>
-            <hr />
-            <h6 style="font-family: 'Inter-ExtraLight', sans-serif; color: rgb(243, 201, 91)">BY CATEGORY:</h6>
-            <li uk-filter-control="filter: .dc-motor"><a href="#">DC Motor</a></li>
-            <li uk-filter-control="filter: .driver"><a href="#">Drivers</a></li>
-            <li uk-filter-control="filter: .movement"><a href="#">Movement</a></li>
-            <li uk-filter-control="filter: .arduino-shield"><a href="#">Shield</a></li>
-            <li uk-filter-control="filter: .terms"><a href="#">Terms</a></li>
-          </ul>
-          <hr />
-          <ul class="uk-nav-default uk-nav" style="list-style: none">
-            <h6 style="font-family: 'Inter-ExtraLight', sans-serif; color: rgb(243, 201, 91)">BY WEEK:</h6>
-            <li uk-filter-control="filter: .week3"><a href="#">Week 3</a></li>
-          </ul>
-        </div>
+<body>
+  <div uk-filter="target: .js-filter">
+    <nav class="uk-navbar-container uk-margin" uk-navbar uk-sticky>
+      <button class="uk-button uk-button-default" type="button" style="border: none; background: rgb(243, 201, 91)"
+        uk-toggle="target: #blog-toc">
+        <span class="fas fa-bars fa-2xl" style="color: #4444dd; background: rgb(243, 201, 91)"></span>
+      </button>
+      <div class="nav-overlay uk-navbar-left">
+        <a class="uk-navbar-item uk-logo" href="index.html">PROTOTYPING METHODS LAB</a>
+        <ul class="uk-navbar-nav" style="">
+          <li class="" style=""><a href="index.html">Home / Week Overview</a></li>
+          <li class="uk-active"><a href="electronic_component_database.html">Electronics</a></li>
+          <li class=""><a href="arduino_sketches.html">Arduino</a></li>
+        </ul>
       </div>
+    </nav>
 
-      <!-- ENTRIES -->
-      <div class="uk-margin" style="padding: 30px; pointer-events: none">
-        <ul class="uk-child-width-1-3@m uk-child-width-1-4@l uk-child-width-1-2@s uk-grid-small uk-grid-match js-filter" uk-grid="masonry: pack">
-          <li class="week3 basic_equipment all">
-            <div>
-              <a href="/Electronics/protoboards/protoboards.html">
-                <div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge">
-                  <h3 class="cardtitle">Protoboards</h3>
-                  <div style="display: inline">
-                    <img src="./Electronics/protoboards/images/cover.png" alt="" style="padding-bottom: 10px" uk-image />
-                    <span class="uk-label" style="background-color: #fed72c">Prototyping Methods</span>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </li>
+    <div id="blog-toc" style="" uk-offcanvas="mode: push; container: #contentArea; bg-close: true;">
+      <div class="uk-offcanvas-bar">
+        <div class="mobile">
+          <button style="padding: 20px" class="uk-offcanvas-close" type="button" uk-close></button>
 
-          <li class="week3 basic_equipment all">
-            <div>
-              <a href="/Electronics/breadboards/breadboards.html">
-                <div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge">
-                  <h3 class="cardtitle">Breadboards</h3>
-                  <div style="display: inline">
-                    <img src="./Electronics/breadboards/images/cover.webp" alt="" style="padding-bottom: 10px" uk-image />
-                    <span class="uk-label" style="background-color: #fed72c">Prototyping Methods</span>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </li>
+          <li class="uk-active" style="list-style-type: none; padding-top: 30px"><a style="padding: 0" class="uk-button"
+              href="index.html">Home / Week Overview</a></li>
+          <li class="" style="list-style-type: none"><a style="padding: 0" class="uk-button"
+              href="electronic_component_database.html">Electronics</a></li>
+          <li class="" style="list-style-type: none"><a style="padding: 0" class="uk-button"
+              href="arduino_sketches.html">Arduino</a></li>
+          <hr />
+        </div>
 
-          <li class="week3 basic_equipment all">
-            <div>
-              <a href="/Electronics/soldering_kits/soldering_kits.html">
-                <div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge">
-                  <h3 class="cardtitle">Soldering Kits</h3>
-                  <div style="display: inline">
-                    <img src="./Electronics/soldering_kits/images/cover.png" alt="" style="padding-bottom: 10px" uk-image />
-                    <span class="uk-label" style="background-color: #fed72c">Prototyping Methods</span>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </li>
+        <h5 style="color: rgb(243, 201, 91)">FILTER</h5>
+        <hr />
+
+        <ul class="uk-nav-default uk-nav" style="list-style: none">
+          <li class="uk-active" uk-filter-control="filter: .all"><a href="#">All</a></li>
+          <hr style="background: #292926" />
+          <h6 style="font-family: 'Inter-ExtraLight', sans-serif; color: rgb(243, 201, 91)">BY CATEGORY:</h6>
+          <li uk-filter-control="filter: .dc-motor"><a href="#">DC Motor</a></li>
+          <li uk-filter-control="filter: .driver"><a href="#">Drivers</a></li>
+          <li uk-filter-control="filter: .movement"><a href="#">Movement</a></li>
+          <li uk-filter-control="filter: .arduino-shield"><a href="#">Shield</a></li>
+          <li uk-filter-control="filter: .terms"><a href="#">Terms</a></li>
+        </ul>
+        <hr style="background: #292926" />
+        <ul class="uk-nav-default uk-nav" style="list-style: none">
+          <h6 style="font-family: 'Inter-ExtraLight', sans-serif; color: rgb(243, 201, 91)">BY WEEK:</h6>
+          <li uk-filter-control="filter: .week3"><a href="#">Week 3</a></li>
         </ul>
       </div>
     </div>
-  </body>
+
+    <!-- ENTRIES -->
+    <div class="uk-margin" style="padding: 30px">
+      <ul class="uk-child-width-1-3@m uk-child-width-1-4@l uk-child-width-1-2@s uk-grid-small uk-grid-match js-filter"
+        uk-grid="masonry: pack">
+        <li class="week3 basic_equipment all">
+          <div class="card-electronics uk-transition-toggle">
+            <!--<a class="" href="/Electronics/protoboards/protoboards.html">-->
+            <a class="" href="#">
+              <div
+                class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge uk-transition-scale-up uk-transition-opaque">
+                <h3 class="cardtitle">Protoboards</h3>
+                <div class="" style="display: inline">
+                  <img src="./Electronics/protoboards/images/cover.png" alt="" style="padding-bottom: 10px" uk-image />
+                  <span class="uk-label" style="background-color: #fed72c">Prototyping Methods</span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </li>
+
+        <li class="week3 basic_equipment all">
+          <div class="card-electronics">
+            <!--<a href="/Electronics/breadboards/breadboards.html">-->
+            <div class="card-electronics uk-transition-toggle">
+              <a href="#">
+                <div
+                  class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge uk-transition-scale-up uk-transition-opaque">
+                  <h3 class="cardtitle">Breadboards</h3>
+                  <div style="display: inline">
+                    <img src="./Electronics/breadboards/images/cover.webp" alt="" style="padding-bottom: 10px"
+                      uk-image />
+                    <span class="uk-label" style="background-color: #fed72c">Prototyping Methods</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+        </li>
+
+        <li class="week3 basic_equipment all">
+          <div class="card-electronics">
+            <!--<a href="/Electronics/soldering_kits/soldering_kits.html">-->
+            <div class="card-electronics uk-transition-toggle">
+              <a href="#">
+                <div
+                  class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge uk-transition-scale-up uk-transition-opaque">
+                  <h3 class="cardtitle">Soldering Kits</h3>
+                  <div style="display: inline">
+                    <img src="./Electronics/soldering_kits/images/cover.png" alt="" style="padding-bottom: 10px"
+                      uk-image />
+                    <span class="uk-label" style="background-color: #fed72c">Prototyping Methods</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</body>
+
 </html>

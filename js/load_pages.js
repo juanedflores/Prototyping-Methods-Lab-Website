@@ -65,6 +65,17 @@ function load_resources() {
   $('table').addClass('uk-table-middle');
 }
 
+function load_inspiration() {
+  $.get(
+    'menu/inspiration/inspiration.html',
+    function (data) {
+      html = $.parseHTML(data);
+      $('#right-col').html(html[31].innerHTML);
+    },
+    'text'
+  );
+}
+
 function week1() {
   $.get(
     'weeks/week1/week1.html',
