@@ -22,3 +22,6 @@ The last thing to learn is something called an `if statement`.
 
 Look at Arduino documentation: [https://docs.arduino.cc/built-in-examples/control-structures/ifStatementConditional/](https://docs.arduino.cc/built-in-examples/control-structures/ifStatementConditional/).
 
+## The Challenge
+
+See if you can figure out how to write this code yourself. I'll be helping along and giving hints.
