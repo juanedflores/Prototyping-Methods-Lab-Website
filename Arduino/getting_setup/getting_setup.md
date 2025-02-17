@@ -69,6 +69,8 @@ These details might not be so interesting to a beginner, but this board is:
 - Has more memory. (32KB SRAM/256KB flash vs 2KB/3dKB)
 
 The nano uses an <a href="https://www.mouser.com/new/microchip/microchip-technology-sam-d21-mcus/?srsltid=AfmBOooLuzYW-O9P4MNH5tzGV1_M3A7YrtO_CGZK6REXWpHsHzIb4Z--">ARM Cortex-M0 32-bit SAMD21 processor.</a>
+
+Check out ITP's explanation of what microproceessors are: [https://itp.nyu.edu/physcomp/lessons/microcontrollers-the-basics/](https://itp.nyu.edu/physcomp/lessons/microcontrollers-the-basics/).
 </div>
 
 ### What is Arduino?

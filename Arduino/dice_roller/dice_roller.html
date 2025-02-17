@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="generator" content="pandoc" />
 
-    <title>Button</title>
+    <title></title>
 
     <!-- UIKit files -->
     <link rel="stylesheet" href="../../css/uikit.min.css" />
@@ -202,11 +202,12 @@
       <div class="nav-overlay uk-navbar-left">
         <a class="uk-navbar-item uk-logo" href="../../index.html">PROTOTYPING METHODS LAB</a>
         <ul class="uk-navbar-nav" style="">
-          <li class="uk-active" style="pointer-events: none"><a href="index.html"></a></li>
+          <li class="uk-active" style="pointer-events: none"><a href="index.html">Week
+4</a></li>
         </ul>
       </div>
       <!--<h2 id="heading" style="pointer-events: none" class="uk-margin-remove uk-padding-small uk-padding-remove-vertical uk-position-center-left" style="font-family: 'Inter-ExtraLight', serif; color: black">-->
-      <!--  <a class="uk-text"></a>-->
+      <!--  <a class="uk-text">Week 4</a>-->
       <!--</h2>-->
     </nav>
 
@@ -217,15 +218,11 @@
         <div class="uk-offcanvas-bar">
           <h3 style="color: white">Table of Contents</h3>
           <div><ul>
-<li><a href="#button" id="toc-button">Button</a>
+<li><a href="#dice-roller" id="toc-dice-roller">Dice Roller</a>
 <ul>
-<li><a href="#how-does-a-button-work"
-id="toc-how-does-a-button-work">How does a button work?</a></li>
-<li><a href="#circuit-demonstration"
-id="toc-circuit-demonstration">Circuit Demonstration</a></li>
-<li><a href="#the-button-sketch" id="toc-the-button-sketch">The Button
-Sketch</a></li>
-<li><a href="#in-tinkercad" id="toc-in-tinkercad">In TinkerCAD</a></li>
+<li><a href="#background" id="toc-background">Background</a></li>
+<li><a href="#if-statements" id="toc-if-statements">If
+statements</a></li>
 </ul></li>
 </ul></div>
         </div>
@@ -233,152 +230,30 @@ Sketch</a></li>
 
       <!-- BODY -->
       <div id="ArticleBody" class="uk-overflow-auto" style="overflow-y: scroll"><section
-id="button" class="level1">
-<h1>Button</h1>
-<section id="how-does-a-button-work" class="level2">
-<h2>How does a button work?</h2>
-<p>The button is just a simple way of completing or breaking a circuit
-with the simple act of “pushing” or “pressing” a button.</p>
-<p>You could just manually join or unjoin two bare wires together to do
-this, but a button makes this convenient.</p>
-<p>Often electronics kits come with a cheap button that looks like
-this:</p>
-<div>
-<p><img src="./images/button.png" width=400 style=""></img></p>
-</div>
-<p>But it can take many forms and sizes.</p>
-<div>
-<p><img src="./images/buttons.jpg" width=400 style=""></img></p>
-</div>
-<p>Generally, the pinout looks something like this:</p>
-<div>
-<p><img src="./images/pinout.gif" width=300 style=""></img></p>
-</div>
-<p>Here is a screenshot in Fritzing to show that the pins in red are
-connected whether the button is pressed or not. Same with the blue
-pins.</p>
-<div>
-<p><img src="./images/fritzing.png" width=400 style=""></img></p>
-</div>
-<hr />
+id="dice-roller" class="level1">
+<h1>Dice Roller</h1>
+<section id="background" class="level2">
+<h2>Background</h2>
+<iframe style="background: black; margin-top:25px; padding-bottom:25px;" src="https://www.youtube-nocookie.com/embed/Q2bSSRIU0WQ?autoplay=0&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;playsinline=1" width="1920" height="1080" allowfullscreen uk-responsive uk-video="automute: true; autoplay: false">
+</iframe>
+<p>One of the classic analog electronics projects was to make a dice
+roller using <strong>Integrated Circuits</strong> (ICs) like the 555
+timer.</p>
+<p>We technically know everything (almost everything) to get a very
+basic version of a dice roller by:</p>
+<ul>
+<li>Hooking up 9 LED outputs.</li>
+<li>Hooking up a button input.</li>
+<li>Using the random() function to get a random number between 1 and
+9.</li>
+</ul>
+<p>The last thing to learn is something called an
+<code>if statement</code>.</p>
 </section>
-<section id="circuit-demonstration" class="level2">
-<h2>Circuit Demonstration</h2>
-<p>Let’s do a circuit that turns an LED on when we press the button
-without any programming.</p>
-<div>
-<p><img src="./images/button_analog.png" width=400 style=""></img></p>
-</div>
-<p>First I connect the button so that it crosses over the middle of the
-breadboard. It might be easier to think of this middle line as a river,
-and the button as a bridge. Also notice that if you were to squish the
-button like a bug, the legs spread out to resemble more like a
-bridge.</p>
-<p>Next I placed an LED on one side of the button, with one leg (the
-cathode) connected to the right side of the bridge.</p>
-<p>On the left side of the bridge I placed the current limiting resistor
-for the LED. This is connected to ground.</p>
-<div>
-<p><img src="./images/button_analog2.png" width=400 style=""></img></p>
-</div>
-<p>The last step would be to connect the positive rail to the <span
-style="color:red"><strong>anode</strong></span>.</p>
-<p>Pressing the button should now light up the LED. This is because when
-you press the button, you are <strong>completing the circuit</strong>.
-When you release, you are <strong>breaking</strong> the circuit.</p>
-<div>
-<p><img src="./images/tinkercad1.png" width=600 style=""></img></p>
-</div>
-<p>By the way, because we have power going through each side of the
-power rails, an alternative way of wiring this is like this:</p>
-<div>
-<p><img src="./images/tinkercad2.png" width=600 style=""></img></p>
-</div>
-<p>Do you see why this completes the circuit?</p>
-<hr />
-</section>
-<section id="the-button-sketch" class="level2">
-<h2>The Button Sketch</h2>
-<p>Go to:</p>
-<p><strong>File</strong> &gt; <strong>Examples</strong> &gt;
-<strong>02.Digital</strong> &gt; <strong>Digital</strong></p>
-<p>This is <code>Button.ino</code>.</p>
-<p>Of course we should always look at the link provided in the block
-comment:</p>
-<p><a
-href="https://www.arduino.cc/en/Tutorial/BuiltInExamples/Button">https://www.arduino.cc/en/Tutorial/BuiltInExamples/Button</a></p>
-<div>
-<p><img src="https://docs.arduino.cc/static/fb8449b4834dfbbf3c03223c8bc3e5b5/29114/schematic.png" width=100% style=""></img></p>
-</div>
-<p>It is using the UNO, but the wiring is pretty much the same.</p>
-<p>We are connecting one side of the switch to (+) (In our case,
-3.3V).</p>
-<div>
-<p><img src="./images/button_sketch1.png" width=400 style=""></img></p>
-</div>
-<p>And the other side to a 10k Ohm Resistor.</p>
-<blockquote class="warning">
-<span class="uk-label uk-label-warning">Warning</span>
-<p>
-The images show a resistor with color bands of a 220 ohm resistor, but
-it should be 10k.
-</p>
-</blockquote>
-<div>
-<p><img src="./images/10k.png" width=100% style=""></img></p>
-</div>
-<div>
-<p><img src="./images/button_sketch2.png" width=400 style=""></img></p>
-</div>
-<p>This other side of the button is ALSO connected to digital pin 2.</p>
-<div>
-<p><img src="./images/button_sketch3.png" width=400 style=""></img></p>
-</div>
-<p>Lastly, the other side of the resistor is connected to
-<strong>Ground</strong>.</p>
-<div>
-<p><img src="./images/button_sketch4.png" width=400 style=""></img></p>
-</div>
-<p>Pressing the button should turn on the built-in LED. You can confirm
-this by connecting an LED to pin 13 like how we did in the Blink
-example.</p>
-<hr />
-</section>
-<section id="in-tinkercad" class="level2">
-<h2>In TinkerCAD</h2>
-<p>In TinkerCAD, it comes with some premade circuits with the Arduino
-Code.</p>
-<p>You can find it in the dropbar menu on the right hand side:</p>
-<div>
-<p><img src="./images/tinkercad_categories.png" width=400 style=""></img></p>
-</div>
-<p>This is the Button example:</p>
-<div>
-<p><img src="./images/tinker_cad_button2.png" width=100% style=""></img></p>
-</div>
-<p>Redrawn to fit in a breadboard like we did with the Nano:</p>
-<div>
-<p><img src="./images/tinker_cad_button.png" width=100% style=""></img></p>
-</div>
-<p>To find the code editor:</p>
-<div>
-<p><img src="./images/tinkercad_code.png" width=400 style=""></img></p>
-</div>
-<p>The first thing you will see is a block code editor similar to the <a
-href="https://scratch.mit.edu/">Scratch Programming Language</a>.</p>
-<div>
-<p><img src="./images/scratch.png" width=500 style=""></img></p>
-</div>
-<p>To go to the text version of the code, like what we would see in the
-Arduino IDE. Select “Text” from this dropbar menu:</p>
-<div>
-<p><img src="./images/text.png" width=500 style=""></img></p>
-</div>
-<p>You can enter the <strong>Button</strong> example here:</p>
-<div>
-<p><img src="./images/text2.png" width=500 style=""></img> &lt;/div</p>
-<p>And click “Start Simulation” to see if it works.</p>
-</div>
+<section id="if-statements" class="level2">
+<h2>If statements</h2>
+<p>Look at Arduino documentation: <a
+href="https://docs.arduino.cc/built-in-examples/control-structures/ifStatementConditional/">https://docs.arduino.cc/built-in-examples/control-structures/ifStatementConditional/</a>.</p>
 </section>
 </section></div>
     </div>

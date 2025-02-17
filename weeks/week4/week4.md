@@ -56,5 +56,36 @@ title: Week 4
 </div>
 </li>
 
+<li>
+<div>
+<a href="./Arduino/button/button.html">
+<div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge" style="background: #7fcbcd">
+<div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge">
+<h3 class="cardtitle">Button</h3>
+<div style="display: inline">
+<img src="./Arduino/button/images/button.png" alt="" style="padding-bottom: 10px" uk-image />
+<span class="uk-label" style="background-color: #1e87f0">Arduino</span>
+</div>
+</div>
+</a>
+</div>
+</div>
+</li>
+
+<li>
+<div>
+<a href="./Arduino/dice_roller/dice_roller.html">
+<div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge" style="background: #5A684E">
+<div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge">
+<h3 class="cardtitle">Dice Roller Challenge</h3>
+<div style="display: inline">
+<img src="./Arduino/dice_roller/images/cover.jpg" alt="" style="padding-bottom: 10px" uk-image />
+<span class="uk-label" style="background-color: #1e87f0">Arduino</span>
+</div>
+</div>
+</a>
+</div>
+</div>
+
 </ul>
 </div>
