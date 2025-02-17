@@ -2,7 +2,7 @@
 title: week 4
 ---
 
-# Getting Setup
+# Getting Set Up
 
 ## The Arduino Nano 33 IoT
 
@@ -236,6 +236,7 @@ Unfortunately it can be finicky to work with these boards depending on the opera
 - Restarting the Arduino program
 - Unplugging and replugging your arduino
 - Trying a different USB port
+- Pressing the <a href="https://support.arduino.cc/hc/en-us/articles/5779192727068-Reset-your-board">Reset button</a>
 
 It might feel like these methods shouldn't be the solution, but sometimes it often is.
 
