@@ -40,22 +40,6 @@ title: Week 4
 </div>
 </li>
 
-<li class="">
-<div>
-<a href="./Arduino/basic_familiarity/basic_familiarity.html">
-<div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge" style="background: #7fcbcd">
-<div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge">
-<h3 class="cardtitle">IDE Familiarity</h3>
-<div style="display: inline">
-<img src="./Arduino/basic_familiarity/basic_familiarity.png" alt="" style="padding-bottom: 10px" uk-image />
-<span class="uk-label" style="background-color: #1e87f0">Arduino</span>
-</div>
-</div>
-</a>
-</div>
-</div>
-</li>
-
 <li>
 <div>
 <a href="./Arduino/blink/blink.html">
