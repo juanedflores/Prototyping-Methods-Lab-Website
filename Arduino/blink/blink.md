@@ -463,5 +463,9 @@ delay(ms);
 - Data Types (int)
 - HIGH / LOW
 - INPUT / OUTPUT
+- setup() and loop()
+- pinMode()
+- digitalWrite()
+- random()
 
 
