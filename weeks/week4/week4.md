@@ -21,7 +21,7 @@ title: Week 4
 
 ### Topics
 
-<div class="uk-margin" style="padding: 30px; pointer-events: none">
+<div class="uk-margin" style="padding: 30px;">
 <ul class="uk-child-width-1-3@m uk-child-width-1-4@l uk-child-width-1-2@s uk-grid-small uk-grid-match" uk-grid="masonry: pack">
 
 <li class="">
