@@ -221,8 +221,15 @@
 <li><a href="#dice-roller" id="toc-dice-roller">Dice Roller</a>
 <ul>
 <li><a href="#background" id="toc-background">Background</a></li>
+<li><a href="#wiring-the-leds" id="toc-wiring-the-leds">Wiring the
+LEDs</a></li>
+<li><a href="#adding-randomness-and-using-the-serial-monitor"
+id="toc-adding-randomness-and-using-the-serial-monitor">Adding
+randomness and using the Serial Monitor</a></li>
 <li><a href="#if-statements" id="toc-if-statements">If
-statements</a></li>
+Statements</a></li>
+<li><a href="#randomly-light-up-one-led"
+id="toc-randomly-light-up-one-led">Randomly Light up One LED</a></li>
 <li><a href="#the-challenge" id="toc-the-challenge">The
 Challenge</a></li>
 <li><a href="#the-starting-code" id="toc-the-starting-code">The Starting
@@ -243,24 +250,400 @@ id="dice-roller" class="level1">
 <h2>Background</h2>
 <iframe style="background: black; margin-top:25px; padding-bottom:25px;" src="https://www.youtube-nocookie.com/embed/Q2bSSRIU0WQ?autoplay=0&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;playsinline=1" width="1920" height="1080" allowfullscreen uk-responsive uk-video="automute: true; autoplay: false">
 </iframe>
-<p>One of the classic analog electronics projects was to make a dice
-roller using <strong>Integrated Circuits</strong> (ICs) like the 555
-timer.</p>
-<p>We technically know everything (almost everything) to get a very
-basic version of a dice roller by:</p>
+<p>One of the popular analog electronics projects is to make an electric
+LED dice roller using <strong>Integrated Circuits</strong> (ICs) like a
+<strong>555 timer</strong> to “roll the dice”, and a
+<strong>counter</strong> to count through a range of numbers. Both of
+these together act somewhat like a <code>random()</code> function.</p>
+<p>Seen for some as a rite of passage for electronics tinkerers, we can
+create a simple version of a dice roller with the Arduino using what we
+already know.</p>
+<p>So far we know how to:</p>
 <ul>
-<li>Hooking up 9 LED outputs.</li>
-<li>Hooking up a button input.</li>
+<li>Hook up any number of LED outputs (We have a max number of 22 I/O
+pins). A dice has 6 possibilities. So we can use 6 LED digital outputs
+using <code>digitalWrite()</code>.</li>
+<li>Hooking up and reading from a button input using
+<code>digitalRead()</code>.</li>
 <li>Using the random() function to get a random number between 1 and
-9.</li>
+6.</li>
 </ul>
-<p>The last thing to learn is something called an
-<code>if statement</code>.</p>
+</section>
+<section id="wiring-the-leds" class="level2">
+<h2>Wiring the LEDs</h2>
+<p>Let’s start with wiring the 6 LEDs.</p>
+<div>
+<p><img src="./images/dice_roller1.png" width=500 style=""></img></p>
+</div>
+<span>
+<p style="text-align:center; color: #aeaeae">
+<i>6 LED outputs with Uno in TinkerCAD</i>
+</p>
+<p></span></p>
+<div>
+<p><img src="./images/dice_roller2.png" width=500 style=""></img></p>
+</div>
+<span>
+<p style="text-align:center; color: #aeaeae">
+<i>6 LED outputs with Nano in Fritzing</i>
+</p>
+<p></span></p>
+<p>In these images I hooked up LEDs to pins 7 to 12.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin1 <span class="op">=</span> <span class="dv">12</span><span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin2 <span class="op">=</span> <span class="dv">11</span><span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin3 <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin4 <span class="op">=</span> <span class="dv">9</span><span class="op">;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin5 <span class="op">=</span> <span class="dv">8</span><span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin6 <span class="op">=</span> <span class="dv">7</span><span class="op">;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>led_pin1<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>led_pin2<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>led_pin3<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>led_pin4<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>led_pin5<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>led_pin6<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>led_pin1<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>led_pin2<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>led_pin3<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>led_pin4<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>led_pin5<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>led_pin6<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>To test that all LEDs work we can manually make the state of all the
+used pins <code>HIGH</code> to light them all up.</p>
+<div>
+<p><img src="./images/dice_roller3.png" width=500 style=""></img></p>
+</div>
+<p>Again we can alternate the states to make sure that they do what we
+expect them to do.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>led_pin1<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>led_pin2<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>led_pin3<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>led_pin4<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>led_pin5<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>led_pin6<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div>
+<p><img src="./images/dice_roller4.png" width=500 style=""></img></p>
+</div>
+</section>
+<section id="adding-randomness-and-using-the-serial-monitor"
+class="level2">
+<h2>Adding randomness and using the Serial Monitor</h2>
+<p>Now that we have LEDs. Let’s try to randomly light up only one of the
+LEDs on every loop cycle.</p>
+<p>First I will set aside the previous code with the LEDs for now to
+isolate just the randomness part.</p>
+<p>We can create a variable called <code>dice_roll</code> that will hold
+the value of our generated random number. We can initialize it with a
+value of 0.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> dice_roll <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span></code></pre></div>
+<p>Next, within the <code>loop()</code> function, we can assign this
+variable a new random number each time the loop function runs.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    dice_roll <span class="op">=</span> random<span class="op">(</span><span class="dv">6</span><span class="op">);</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>It would be nice to see each new random number. We can use the Serial
+Monitor for that. To start the use of the Serial Monitor we use
+<code>Serial.begin(9600)</code> in the <code>setup()</code>
+function.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>To print the value of <code>dice_roll</code>, we use
+<code>Serial.println()</code>.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> dice_roll <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    dice_roll <span class="op">=</span> random<span class="op">(</span><span class="dv">6</span><span class="op">);</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">// print the value of dice_roll to Serial Monitor</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span>dice_roll<span class="op">);</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>The last thing would be to add a <code>delay()</code> so that it
+prints and generates a new number after a certain amount of time. Let’s
+say it should print a random number every second.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span></code></pre></div>
+<ul uk-accordion style='pading-bottom: 5vh'>
+<li class='uk-close'>
+<a id='code-file' class='uk-accordion-title' href='#'>Print Random Value
+to Serial Monitor</a>
+<div class="uk-accordion-content"
+style="padding-bottom:20px; margin-bottom:20px">
+<div class="sourceCode" id="cb8"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> dice_roll <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    dice_roll <span class="op">=</span> random<span class="op">(</span><span class="dv">6</span><span class="op">);</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>    <span class="co">// print the value of dice_roll to Serial Monitor</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span>dice_roll<span class="op">);</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>    <span class="co">// add a delay so that it prints only after every second</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>What we should be seeing in the Serial Monitor is something like
+this:</p>
+<div>
+<p><img src="./images/dice_roller5.png" width=400 style=""></img></p>
+</div>
+<span>
+<p style="text-align:center; color: #aeaeae">
+<i>Printing Values 0-5</i>
+</p>
+<p></span></p>
+</div>
+<hr />
 </section>
 <section id="if-statements" class="level2">
-<h2>If statements</h2>
-<p>Look at Arduino documentation: <a
-href="https://docs.arduino.cc/built-in-examples/control-structures/ifStatementConditional/">https://docs.arduino.cc/built-in-examples/control-structures/ifStatementConditional/</a>.</p>
+<h2>If Statements</h2>
+<p>Before we can combine both ideas together, we need to introduce
+something called <strong>if statements</strong>, or <strong>conditional
+statements</strong>.</p>
+<p>If statements look a little similar to functions:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>condition<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// code in here is executed if condition is TRUE</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Anything in the curly brackets is considered to be in that
+<code>if statement</code>, and only executes if the condition is
+<code>TRUE</code>.</p>
+<p>For example:</p>
+<ul>
+<li>if the dice_roll value is equal to 1 -&gt; light up led_pin1</li>
+<li>if the dice_roll value is equal to 2 -&gt; light up led_pin2</li>
+<li>and so on</li>
+</ul>
+<p>We can start with testing in the Serial Monitor:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>print<span class="op">(</span><span class="st">&quot;Dice Roll is 0&quot;</span><span class="op">);</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>This conditon <code>if (dice_roll == 0)</code> translates to english
+as: “If dice_roll value is 0, then … {print ‘Dice Roll is 0’}”.</p>
+<p>Let’s test.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> dice_roll <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    dice_roll <span class="op">=</span> random<span class="op">(</span><span class="dv">6</span><span class="op">);</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;Dice Roll is 0&quot;</span><span class="op">);</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="co">// print the value of dice_roll to Serial Monitor</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span>dice_roll<span class="op">);</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">// add a delay so that it prints only after every second</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div>
+<p><img src="./images/dice_roller6.png" width=300 style=""></img></p>
+</div>
+<p>We can also add an <code>else{}</code> after the <code>if(){}</code>
+in the case that we want it to do something if the condition is NOT true
+or FALSE:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> dice_roll <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>    dice_roll <span class="op">=</span> random<span class="op">(</span><span class="dv">6</span><span class="op">);</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>print<span class="op">(</span><span class="st">&quot;Dice Roll is 0&quot;</span><span class="op">);</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>        <span class="co">// print the value of dice_roll to Serial Monitor</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span>dice_roll<span class="op">);</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>    <span class="co">// add a delay so that it prints only after every second</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div>
+<p><img src="./images/dice_roller7.png" width=300 style=""></img></p>
+</div>
+<p>The last part of possible thing we can add is an <code>else if</code>
+to more conditions after the initial condition is checked:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    dice_roll <span class="op">=</span> random<span class="op">(</span><span class="dv">6</span><span class="op">);</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;Dice Roll is 0&quot;</span><span class="op">);</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;Dice Roll is 1&quot;</span><span class="op">);</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;Not 2 or 0&quot;</span><span class="op">);</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>We can do this for each of the 6 (or 7) possibilities.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    dice_roll <span class="op">=</span> random<span class="op">(</span><span class="dv">6</span><span class="op">);</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;Dice Roll is 0&quot;</span><span class="op">);</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;Dice Roll is 1&quot;</span><span class="op">);</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">2</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;Dice Roll is 2&quot;</span><span class="op">);</span></span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">3</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;Dice Roll is 3&quot;</span><span class="op">);</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">4</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;Dice Roll is 4&quot;</span><span class="op">);</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">5</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;Dice Roll is 5&quot;</span><span class="op">);</span></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;Not in range&quot;</span><span class="op">);</span></span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>This block translates to english as: “if dice_roll value is 0, print
+‘Dice Roll is 0’, else if dice_roll value is 1, print ’Dice Roll is 1. …
+and so on”.</p>
+<div>
+<p><img src="./images/dice_roller8.png" width=300 style=""></img></p>
+</div>
+</section>
+<section id="randomly-light-up-one-led" class="level2">
+<h2>Randomly Light up One LED</h2>
+<p>Now we can combine all ideas together.</p>
+<p>We can simply replace all the <code>Serial.println()</code> lines
+with <code>digitalWrite()</code> lines:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> dice_roll <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin1 <span class="op">=</span> <span class="dv">12</span><span class="op">;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin2 <span class="op">=</span> <span class="dv">11</span><span class="op">;</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin3 <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin4 <span class="op">=</span> <span class="dv">9</span><span class="op">;</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin5 <span class="op">=</span> <span class="dv">8</span><span class="op">;</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin6 <span class="op">=</span> <span class="dv">7</span><span class="op">;</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    dice_roll <span class="op">=</span> random<span class="op">(</span><span class="dv">6</span><span class="op">);</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>led_pin1<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>led_pin2<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>led_pin3<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>led_pin4<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>led_pin5<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>led_pin6<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin1<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin2<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">2</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin3<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">3</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin4<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">4</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin5<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">5</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin6<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;Not in range&quot;</span><span class="op">);</span></span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>    <span class="co">// add a delay so that it prints only after every second</span></span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Uploading this code reveals a problem. LEDs start to light up one by
+one but they never turn off. We need to turn off all the remaining
+lights off each loop. The tedious, hard-coded way is to do this:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> dice_roll <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin1 <span class="op">=</span> <span class="dv">12</span><span class="op">;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin2 <span class="op">=</span> <span class="dv">11</span><span class="op">;</span></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin3 <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin4 <span class="op">=</span> <span class="dv">9</span><span class="op">;</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin5 <span class="op">=</span> <span class="dv">8</span><span class="op">;</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin6 <span class="op">=</span> <span class="dv">7</span><span class="op">;</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>    dice_roll <span class="op">=</span> random<span class="op">(</span><span class="dv">6</span><span class="op">);</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>led_pin1<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>led_pin2<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>led_pin3<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>led_pin4<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>led_pin5<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>led_pin6<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin1<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin2<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin3<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin4<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin5<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin6<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin2<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin1<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin3<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin4<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin5<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin6<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">2</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin3<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin1<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin2<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin4<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin5<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin6<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">3</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin4<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin1<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin2<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin3<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin5<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin6<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">4</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin5<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin1<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin2<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin3<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin4<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin6<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">5</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin6<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin1<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin2<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin3<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin4<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin5<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;Not in range&quot;</span><span class="op">);</span></span>
+<span id="cb16-68"><a href="#cb16-68" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-70"><a href="#cb16-70" aria-hidden="true" tabindex="-1"></a>    <span class="co">// add a delay so that it prints only after every second</span></span>
+<span id="cb16-71"><a href="#cb16-71" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span>
+<span id="cb16-72"><a href="#cb16-72" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<p>Uploading this code shows that it works as we wanted, but the amount
+of lines of code quickly grew and became overwhelming.</p>
 </section>
 <section id="the-challenge" class="level2">
 <h2>The Challenge</h2>
@@ -269,176 +652,176 @@ helping along and giving hints.</p>
 </section>
 <section id="the-starting-code" class="level2">
 <h2>The Starting Code</h2>
-<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> dice_roll <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// put your main code here, to run repeatedly:</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    dice_roll <span class="op">=</span> random<span class="op">(</span><span class="dv">9</span><span class="op">)</span> <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 1&quot;</span><span class="op">);</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">13</span><span class="op">,</span> HIGH<span class="op">);</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">2</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 2&quot;</span><span class="op">);</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">12</span><span class="op">,</span> HIGH<span class="op">);</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">3</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 3&quot;</span><span class="op">);</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">11</span><span class="op">,</span> HIGH<span class="op">);</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">4</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 4&quot;</span><span class="op">);</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">10</span><span class="op">,</span> HIGH<span class="op">);</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">5</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 5&quot;</span><span class="op">);</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">9</span><span class="op">,</span> HIGH<span class="op">);</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">6</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 6&quot;</span><span class="op">);</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">8</span><span class="op">,</span> HIGH<span class="op">);</span></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">7</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 7&quot;</span><span class="op">);</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">7</span><span class="op">,</span> HIGH<span class="op">);</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">8</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 8&quot;</span><span class="op">);</span></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">6</span><span class="op">,</span> HIGH<span class="op">);</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">9</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 9&quot;</span><span class="op">);</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">5</span><span class="op">,</span> HIGH<span class="op">);</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span>dice_roll<span class="op">);</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">13</span><span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">12</span><span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">11</span><span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">10</span><span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">9</span><span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">8</span><span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">7</span><span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">6</span><span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">5</span><span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> dice_roll <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">// put your main code here, to run repeatedly:</span></span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    dice_roll <span class="op">=</span> random<span class="op">(</span><span class="dv">9</span><span class="op">)</span> <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 1&quot;</span><span class="op">);</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">13</span><span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">2</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 2&quot;</span><span class="op">);</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">12</span><span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">3</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 3&quot;</span><span class="op">);</span></span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">11</span><span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb17-23"><a href="#cb17-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">4</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 4&quot;</span><span class="op">);</span></span>
+<span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">10</span><span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb17-27"><a href="#cb17-27" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">5</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb17-28"><a href="#cb17-28" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 5&quot;</span><span class="op">);</span></span>
+<span id="cb17-29"><a href="#cb17-29" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">9</span><span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb17-30"><a href="#cb17-30" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb17-31"><a href="#cb17-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">6</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb17-32"><a href="#cb17-32" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 6&quot;</span><span class="op">);</span></span>
+<span id="cb17-33"><a href="#cb17-33" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">8</span><span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb17-34"><a href="#cb17-34" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb17-35"><a href="#cb17-35" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">7</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb17-36"><a href="#cb17-36" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 7&quot;</span><span class="op">);</span></span>
+<span id="cb17-37"><a href="#cb17-37" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">7</span><span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb17-38"><a href="#cb17-38" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb17-39"><a href="#cb17-39" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">8</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb17-40"><a href="#cb17-40" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 8&quot;</span><span class="op">);</span></span>
+<span id="cb17-41"><a href="#cb17-41" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">6</span><span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb17-42"><a href="#cb17-42" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb17-43"><a href="#cb17-43" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">9</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb17-44"><a href="#cb17-44" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 9&quot;</span><span class="op">);</span></span>
+<span id="cb17-45"><a href="#cb17-45" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">5</span><span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb17-46"><a href="#cb17-46" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb17-47"><a href="#cb17-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-48"><a href="#cb17-48" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>println<span class="op">(</span>dice_roll<span class="op">);</span></span>
+<span id="cb17-49"><a href="#cb17-49" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span>
+<span id="cb17-50"><a href="#cb17-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-51"><a href="#cb17-51" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">13</span><span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb17-52"><a href="#cb17-52" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">12</span><span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb17-53"><a href="#cb17-53" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">11</span><span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb17-54"><a href="#cb17-54" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">10</span><span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb17-55"><a href="#cb17-55" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">9</span><span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb17-56"><a href="#cb17-56" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">8</span><span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb17-57"><a href="#cb17-57" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">7</span><span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb17-58"><a href="#cb17-58" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">6</span><span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb17-59"><a href="#cb17-59" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">5</span><span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb17-60"><a href="#cb17-60" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 </section>
 <section id="adding-state-change-detection" class="level2">
 <h2>Adding State Change Detection</h2>
 <p>Check out the <code>StateChangeDetection</code> example.</p>
 <p><strong>File</strong> &gt; <strong>Examples</strong> &gt;
 <strong>Digital</strong> &gt; <strong>StateChangeDetection</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> dice_roll <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> buttonState <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lastButtonState <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">// input</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> button_pin <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co">// output</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin1<span class="op">;</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin2<span class="op">;</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin3<span class="op">;</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin4<span class="op">;</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin5<span class="op">;</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin6<span class="op">;</span></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin7<span class="op">;</span></span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin8<span class="op">;</span></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin9<span class="op">;</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>button_pin<span class="op">,</span> INPUT<span class="op">);</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span><span class="dv">13</span><span class="op">,</span> OUTPUT<span class="op">);</span></span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span><span class="dv">12</span><span class="op">,</span> OUTPUT<span class="op">);</span></span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span><span class="dv">11</span><span class="op">,</span> OUTPUT<span class="op">);</span></span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span><span class="dv">10</span><span class="op">,</span> OUTPUT<span class="op">);</span></span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span><span class="dv">9</span><span class="op">,</span> OUTPUT<span class="op">);</span></span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span><span class="dv">8</span><span class="op">,</span> OUTPUT<span class="op">);</span></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span><span class="dv">7</span><span class="op">,</span> OUTPUT<span class="op">);</span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span><span class="dv">6</span><span class="op">,</span> OUTPUT<span class="op">);</span></span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span><span class="dv">5</span><span class="op">,</span> OUTPUT<span class="op">);</span></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    buttonState <span class="op">=</span> digitalRead<span class="op">(</span>button_pin<span class="op">);</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>    <span class="co">// This block of code from StateChangeDetection example</span></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>buttonState <span class="op">!=</span> lastButtonState<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>        <span class="co">// if the state has changed, increment the counter</span></span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>buttonState <span class="op">==</span> HIGH<span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>            Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;on&quot;</span><span class="op">);</span></span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>            dice_roll <span class="op">=</span> random<span class="op">(</span><span class="dv">9</span><span class="op">)</span> <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>            Serial<span class="op">.</span>println<span class="op">(</span>dice_roll<span class="op">);</span></span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
-<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>            <span class="co">// if the current state is LOW then the button went from on to off:</span></span>
-<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>            Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;off&quot;</span><span class="op">);</span></span>
-<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>            dice_roll <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
-<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Delay a little bit to avoid bouncing</span></span>
-<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>        delay<span class="op">(</span><span class="dv">50</span><span class="op">);</span></span>
-<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    lastButtonState <span class="op">=</span> buttonState<span class="op">;</span></span>
-<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 1&quot;</span><span class="op">);</span></span>
-<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">13</span><span class="op">,</span> HIGH<span class="op">);</span></span>
-<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">2</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 2&quot;</span><span class="op">);</span></span>
-<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">12</span><span class="op">,</span> HIGH<span class="op">);</span></span>
-<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">3</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 3&quot;</span><span class="op">);</span></span>
-<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">11</span><span class="op">,</span> HIGH<span class="op">);</span></span>
-<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">4</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 4&quot;</span><span class="op">);</span></span>
-<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">10</span><span class="op">,</span> HIGH<span class="op">);</span></span>
-<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">5</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 5&quot;</span><span class="op">);</span></span>
-<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">9</span><span class="op">,</span> HIGH<span class="op">);</span></span>
-<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">6</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 6&quot;</span><span class="op">);</span></span>
-<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">8</span><span class="op">,</span> HIGH<span class="op">);</span></span>
-<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">7</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-80"><a href="#cb2-80" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 7&quot;</span><span class="op">);</span></span>
-<span id="cb2-81"><a href="#cb2-81" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">7</span><span class="op">,</span> HIGH<span class="op">);</span></span>
-<span id="cb2-82"><a href="#cb2-82" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-83"><a href="#cb2-83" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">8</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-84"><a href="#cb2-84" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 8&quot;</span><span class="op">);</span></span>
-<span id="cb2-85"><a href="#cb2-85" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">6</span><span class="op">,</span> HIGH<span class="op">);</span></span>
-<span id="cb2-86"><a href="#cb2-86" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-87"><a href="#cb2-87" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">9</span><span class="op">)</span> <span class="op">{</span></span>
-<span id="cb2-88"><a href="#cb2-88" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 9&quot;</span><span class="op">);</span></span>
-<span id="cb2-89"><a href="#cb2-89" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">5</span><span class="op">,</span> HIGH<span class="op">);</span></span>
-<span id="cb2-90"><a href="#cb2-90" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
-<span id="cb2-91"><a href="#cb2-91" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-92"><a href="#cb2-92" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span>
-<span id="cb2-93"><a href="#cb2-93" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-94"><a href="#cb2-94" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">13</span><span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb2-95"><a href="#cb2-95" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">12</span><span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb2-96"><a href="#cb2-96" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">11</span><span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb2-97"><a href="#cb2-97" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">10</span><span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb2-98"><a href="#cb2-98" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">9</span><span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb2-99"><a href="#cb2-99" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">8</span><span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb2-100"><a href="#cb2-100" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">7</span><span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb2-101"><a href="#cb2-101" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">6</span><span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb2-102"><a href="#cb2-102" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">5</span><span class="op">,</span> LOW<span class="op">);</span></span>
-<span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> dice_roll <span class="op">=</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> buttonState <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> lastButtonState <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">// input</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> button_pin <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co">// output</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin1<span class="op">;</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin2<span class="op">;</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin3<span class="op">;</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin4<span class="op">;</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin5<span class="op">;</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin6<span class="op">;</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin7<span class="op">;</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin8<span class="op">;</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> led_pin9<span class="op">;</span></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>    Serial<span class="op">.</span>begin<span class="op">(</span><span class="dv">9600</span><span class="op">);</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>button_pin<span class="op">,</span> INPUT<span class="op">);</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span><span class="dv">13</span><span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span><span class="dv">12</span><span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span><span class="dv">11</span><span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span><span class="dv">10</span><span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span><span class="dv">9</span><span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span><span class="dv">8</span><span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span><span class="dv">7</span><span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span><span class="dv">6</span><span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span><span class="dv">5</span><span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>    buttonState <span class="op">=</span> digitalRead<span class="op">(</span>button_pin<span class="op">);</span></span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>    <span class="co">// This block of code from StateChangeDetection example</span></span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>buttonState <span class="op">!=</span> lastButtonState<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>        <span class="co">// if the state has changed, increment the counter</span></span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>buttonState <span class="op">==</span> HIGH<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a>            Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;on&quot;</span><span class="op">);</span></span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a>            dice_roll <span class="op">=</span> random<span class="op">(</span><span class="dv">9</span><span class="op">)</span> <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a>            Serial<span class="op">.</span>println<span class="op">(</span>dice_roll<span class="op">);</span></span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a>            <span class="co">// if the current state is LOW then the button went from on to off:</span></span>
+<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a>            Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;off&quot;</span><span class="op">);</span></span>
+<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a>            dice_roll <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Delay a little bit to avoid bouncing</span></span>
+<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a>        delay<span class="op">(</span><span class="dv">50</span><span class="op">);</span></span>
+<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a>    lastButtonState <span class="op">=</span> buttonState<span class="op">;</span></span>
+<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">1</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 1&quot;</span><span class="op">);</span></span>
+<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">13</span><span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">2</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 2&quot;</span><span class="op">);</span></span>
+<span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">12</span><span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">3</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-64"><a href="#cb18-64" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 3&quot;</span><span class="op">);</span></span>
+<span id="cb18-65"><a href="#cb18-65" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">11</span><span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb18-66"><a href="#cb18-66" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb18-67"><a href="#cb18-67" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">4</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-68"><a href="#cb18-68" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 4&quot;</span><span class="op">);</span></span>
+<span id="cb18-69"><a href="#cb18-69" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">10</span><span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb18-70"><a href="#cb18-70" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb18-71"><a href="#cb18-71" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">5</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-72"><a href="#cb18-72" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 5&quot;</span><span class="op">);</span></span>
+<span id="cb18-73"><a href="#cb18-73" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">9</span><span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb18-74"><a href="#cb18-74" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb18-75"><a href="#cb18-75" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">6</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-76"><a href="#cb18-76" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 6&quot;</span><span class="op">);</span></span>
+<span id="cb18-77"><a href="#cb18-77" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">8</span><span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb18-78"><a href="#cb18-78" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb18-79"><a href="#cb18-79" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">7</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-80"><a href="#cb18-80" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 7&quot;</span><span class="op">);</span></span>
+<span id="cb18-81"><a href="#cb18-81" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">7</span><span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb18-82"><a href="#cb18-82" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb18-83"><a href="#cb18-83" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">8</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-84"><a href="#cb18-84" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 8&quot;</span><span class="op">);</span></span>
+<span id="cb18-85"><a href="#cb18-85" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">6</span><span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb18-86"><a href="#cb18-86" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb18-87"><a href="#cb18-87" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>dice_roll <span class="op">==</span> <span class="dv">9</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb18-88"><a href="#cb18-88" aria-hidden="true" tabindex="-1"></a>        Serial<span class="op">.</span>println<span class="op">(</span><span class="st">&quot;You rolled a 9&quot;</span><span class="op">);</span></span>
+<span id="cb18-89"><a href="#cb18-89" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span><span class="dv">5</span><span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb18-90"><a href="#cb18-90" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb18-91"><a href="#cb18-91" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-92"><a href="#cb18-92" aria-hidden="true" tabindex="-1"></a>    delay<span class="op">(</span><span class="dv">1000</span><span class="op">);</span></span>
+<span id="cb18-93"><a href="#cb18-93" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-94"><a href="#cb18-94" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">13</span><span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb18-95"><a href="#cb18-95" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">12</span><span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb18-96"><a href="#cb18-96" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">11</span><span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb18-97"><a href="#cb18-97" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">10</span><span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb18-98"><a href="#cb18-98" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">9</span><span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb18-99"><a href="#cb18-99" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">8</span><span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb18-100"><a href="#cb18-100" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">7</span><span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb18-101"><a href="#cb18-101" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">6</span><span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb18-102"><a href="#cb18-102" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span><span class="dv">5</span><span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb18-103"><a href="#cb18-103" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-104"><a href="#cb18-104" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 </section>
 </section></div>
     </div>

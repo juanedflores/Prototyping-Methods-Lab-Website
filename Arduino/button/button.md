@@ -171,7 +171,7 @@ You can enter the **Button** example here:
 
 <div>
 <img src="./images/text2.png" width=500 style=""></img>
-</div
+</div>
 
 And click "Start Simulation" to see if it works.
 
