@@ -25,3 +25,69 @@ Look at Arduino documentation: [https://docs.arduino.cc/built-in-examples/contro
 ## The Challenge
 
 See if you can figure out how to write this code yourself. I'll be helping along and giving hints.
+
+## The Starting Codee
+
+```c
+int dice_roll = 1;
+
+void setup() {
+    Serial.begin(9600);
+}
+
+void loop() {
+    // put your main code here, to run repeatedly:
+    dice_roll = random(9) + 1;
+
+    if (dice_roll == 1) {
+        Serial.println("You rolled a 1");
+        digitalWrite(13, HIGH);
+    }
+    if (dice_roll == 2) {
+        Serial.println("You rolled a 2");
+        digitalWrite(12, HIGH);
+    }
+    if (dice_roll == 3) {
+        Serial.println("You rolled a 3");
+        digitalWrite(11, HIGH);
+    }
+    if (dice_roll == 4) {
+        Serial.println("You rolled a 4");
+        digitalWrite(10, HIGH);
+    }
+    if (dice_roll == 5) {
+        Serial.println("You rolled a 5");
+        digitalWrite(9, HIGH);
+    }
+    if (dice_roll == 6) {
+        Serial.println("You rolled a 6");
+        digitalWrite(8, HIGH);
+    }
+    if (dice_roll == 7) {
+        Serial.println("You rolled a 7");
+        digitalWrite(7, HIGH);
+    }
+    if (dice_roll == 8) {
+        Serial.println("You rolled a 8");
+        digitalWrite(6, HIGH);
+    }
+    if (dice_roll == 9) {
+        Serial.println("You rolled a 9");
+        digitalWrite(5, HIGH);
+    }
+
+    Serial.println(dice_roll);
+    delay(1000);
+
+    digitalWrite(13, LOW);
+    digitalWrite(12, LOW);
+    digitalWrite(11, LOW);
+    digitalWrite(10, LOW);
+    digitalWrite(9, LOW);
+    digitalWrite(8, LOW);
+    digitalWrite(7, LOW);
+    digitalWrite(6, LOW);
+    digitalWrite(5, LOW);
+}
+
+```
