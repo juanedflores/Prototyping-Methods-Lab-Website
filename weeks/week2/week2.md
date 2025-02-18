@@ -16,6 +16,8 @@ title: Week 2
 - Example Arduino Projects
 - Intro to Electronics with TinkerCAD
 
+TinkerCAD Link: [https://www.tinkercad.com/joinclass/M7FHRCKW5](https://www.tinkercad.com/joinclass/M7FHRCKW5)
+
 ---
 
 ### Topics
