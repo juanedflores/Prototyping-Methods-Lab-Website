@@ -323,10 +323,6 @@ int led_pin6 = 7;
 
 void setup() {
     Serial.begin(9600);
-}
-
-void loop() {
-    dice_roll = random(6);
 
     pinMode(led_pin1, OUTPUT);
     pinMode(led_pin2, OUTPUT);
@@ -334,6 +330,10 @@ void loop() {
     pinMode(led_pin4, OUTPUT);
     pinMode(led_pin5, OUTPUT);
     pinMode(led_pin6, OUTPUT);
+}
+
+void loop() {
+    dice_roll = random(6);
 
     if (dice_roll == 0) {
         digitalWrite(led_pin1, HIGH);

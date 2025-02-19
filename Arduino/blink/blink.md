@@ -55,7 +55,7 @@ In which case your breadboard would look something like this:
 <ul uk-accordion style='pading-bottom: 5vh'> <li class='uk-close'>
 <a id='code-file' class='uk-accordion-title' href='#'>The 5V Pin</a>
 <div class='uk-accordion-content' style='padding-bottom:20px; margin-bottom:20px'>
-You might have noticed that in the pinout sheet there is a pin labeled +5V. You can only get 5V from here if you short two pins in the back of the board with a bridge of solder.
+You might have noticed that on the pinout sheet there is a pin labeled +5V. You can only get 5V from here if you short two pins in the back of the board with a bridge of solder.
 
 <div>
 <img src="./images/short.png" width=400 style=""></img>

@@ -71,7 +71,7 @@ The next simulation is using a push switch instead (push button). Notice the dif
 
 As you can see, the circuit is complete ONLY so long as the button is pressed.
 
-The schematic symbol for a push button looks a little bit different but makes sense when you think about it.
+The schematic symbol for a push button looks a bit different but makes sense when you think about it.
 
 <div>
 <img src="./images/button_schematic.png" width=500 style=""></img>
@@ -87,7 +87,7 @@ The button has 4 pins which makes this a bit confusing.
 <img src="./images/pinout.gif" width=300 style=""></img>
 </div>
 
-Here is a screenshot in Fritzing to show that the pins in red are connected whether the button is pressed or not. They are **internally connected**. Same with the blue pins.
+Here is a screenshot in Fritzing to show that the pins in red are connected whether the button is pressed or not. Same with the blue pins. They are **internally connected**.
 
 <div>
 <img src="./images/fritzing.jpg" width=400 style=""></img>
@@ -105,7 +105,7 @@ Let's do a circuit that turns an LED on when we press the button without any pro
 <img src="./images/button_analog.png" width=400 style=""></img>
 </div>
 
-First I connect the button so that it crosses over the middle of the breadboard. It might be easier to think of this middle line as a river, and the button as a bridge. Also notice that if you were to squish the button like a bug, the legs spread out to resemble more like a bridge.
+First I connect the button so that it crosses over the middle of the breadboard. It might be easier to think of this middle line as a river, and the button as a bridge. Also notice that with the legs extended they resemble more like a bridge.
 
 Next I placed an LED on one side of the button, with one leg (the cathode) connected to the right side of the bridge.
 
@@ -234,5 +234,5 @@ You can enter the **Button** example here:
 <img src="./images/text2.png" width=500 style=""></img>
 </div>
 
-And click "Start Simulation" to see if it works.
+And click "Start Simulation" to see if it works by pushing the button.
 
