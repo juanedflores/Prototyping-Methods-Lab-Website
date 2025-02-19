@@ -465,11 +465,11 @@ if (buttonState == HIGH) {
 
 As we get closer and closer to actual code, we notice that `picked_led` runs us into a problem. How do we get the corresponding LED output pins that go from 7-12 when the random numbers go from 0-5?
 
-There are actually many ways to solve this. We could potentially just use digital pins 0 - 5, but that is impractical. We could instead change the random numbers to not be of range 0 - 5, but to 7 - 12.
+There are actually many ways to solve this. We could potentially just use digital pins 0 - 5, but that is impractical. We could instead change the random numbers to not be of range 0 - 5, but of 7 - 12.
 
-### 1. use random() min and max value
+### Use random() min and max value
 
-`random()` can take two parameters. If you provide two parameters, the first one will be the `min` and the second will be the `max`. So instead of starting from 0, it can start from the `min` and up to but not including the `max`.
+`random()` can take two parameters. If you provide two parameters, the first one will be the `min` and the second will be the `max`. So instead of starting from 0, it can start from the `min` and up to but not including the `max` number.
 
 `random(7, 13)`: will give us the range 7 - 12.
 
@@ -483,7 +483,7 @@ if (buttonState == HIGH) {
 }
 ```
 
-`dice_roll` can just hold the output pin number instead of having a separate `picked_led` variable. Though you can rename `dice_roll` to `picked_led` if that is easier for you to understand.
+It might be easier to understand if we rename `dice_roll` to `picked_led`.
 
 ```c
 if (buttonState == HIGH) {
@@ -567,7 +567,7 @@ void loop() {
 
 It is not very noticeable, but you might notice that some LEDs vary in brightness. Some are dimmer than others. This is because even the `picked_led` is being turned off at the end of every loop. Ideally, the `picked_led` should just have a `digitalWrite(picked_led, HIGH);` every loop.
 
-We can do that by just moving the `// reset LEDs` section up within he `(buttonState == HIGH)` condition.
+We can do that by just moving the `// reset LEDs` section up within the `(buttonState == HIGH)` condition.
 
 ```c
 void loop() {

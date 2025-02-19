@@ -233,7 +233,7 @@ id="toc-randomly-light-up-one-led">Randomly Light up One LED</a></li>
 <li><a href="#the-challenge" id="toc-the-challenge">The Challenge</a>
 <ul>
 <li><a href="#use-random-min-and-max-value"
-id="toc-use-random-min-and-max-value">1. use random() min and max
+id="toc-use-random-min-and-max-value">Use random() min and max
 value</a></li>
 </ul></li>
 </ul></li>
@@ -679,14 +679,14 @@ corresponding LED output pins that go from 7-12 when the random numbers
 go from 0-5?</p>
 <p>There are actually many ways to solve this. We could potentially just
 use digital pins 0 - 5, but that is impractical. We could instead change
-the random numbers to not be of range 0 - 5, but to 7 - 12.</p>
+the random numbers to not be of range 0 - 5, but of 7 - 12.</p>
 <section id="use-random-min-and-max-value" class="level3">
-<h3>1. use random() min and max value</h3>
+<h3>Use random() min and max value</h3>
 <p><code>random()</code> can take two parameters. If you provide two
 parameters, the first one will be the <code>min</code> and the second
 will be the <code>max</code>. So instead of starting from 0, it can
 start from the <code>min</code> and up to but not including the
-<code>max</code>.</p>
+<code>max</code> number.</p>
 <p><code>random(7, 13)</code>: will give us the range 7 - 12.</p>
 <p>So the solution to our earlier pseudo code would be this:</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>buttonState <span class="op">==</span> HIGH<span class="op">)</span> <span class="op">{</span></span>
@@ -694,10 +694,8 @@ start from the <code>min</code> and up to but not including the
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    digitalWrite<span class="op">(</span>dice_roll<span class="op">,</span> HIGH<span class="op">);</span></span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<p><code>dice_roll</code> can just hold the output pin number instead of
-having a separate <code>picked_led</code> variable. Though you can
-rename <code>dice_roll</code> to <code>picked_led</code> if that is
-easier for you to understand.</p>
+<p>It might be easier to understand if we rename <code>dice_roll</code>
+to <code>picked_led</code>.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>buttonState <span class="op">==</span> HIGH<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    picked_led <span class="op">=</span> random<span class="op">(</span><span class="dv">7</span><span class="op">,</span> <span class="dv">13</span><span class="op">);</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
@@ -775,7 +773,7 @@ in brightness. Some are dimmer than others. This is because even the
 Ideally, the <code>picked_led</code> should just have a
 <code>digitalWrite(picked_led, HIGH);</code> every loop.</p>
 <p>We can do that by just moving the <code>// reset LEDs</code> section
-up within he <code>(buttonState == HIGH)</code> condition.</p>
+up within the <code>(buttonState == HIGH)</code> condition.</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>    buttonState <span class="op">=</span> digitalRead<span class="op">(</span>button_pin<span class="op">);</span></span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
