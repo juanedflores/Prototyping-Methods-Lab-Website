@@ -92,11 +92,16 @@ Now that we have LEDs. Let's try to randomly light up only one of the LEDs on ev
 
 First I will set aside the previous code with the LEDs for now to isolate just the randomness part.
 
-We can create a variable called `dice_roll` that will hold the value of our generated random number. We can initialize it with a value of 0.
+We can create a variable called `dice_roll` that will hold the value of our 'generated' random number. We can simply declare it without giving it an initial value.
 
 ```c
-int dice_roll = 0;
+int dice_roll;
 ```
+
+<blockquote class="info">
+<span class="uk-label">Note</span>
+<p>A variable of type **int** when not given an initial value is by default the value of 0.</p>
+</blockquote>
 
 Next, within the `loop()` function, we can assign this variable a new random number each time the loop function runs.
 
@@ -173,9 +178,11 @@ What we should be seeing in the Serial Monitor is something like this:
 
 ## If Statements
 
-Before we can combine both ideas together, we need to introduce something called **if statements**, or **conditional statements**.
+Before we can combine both ideas together, we need to figure out the logic needed to make 6 different things happen depending on the result of `random()`.
 
-If statements look a little similar to functions:
+We need to use **if statements**, or **conditional statements**, which were introduced in the `button` example.
+
+**If statements** look a little similar to functions:
 
 ```c
 if (condition) {
@@ -184,15 +191,16 @@ if (condition) {
 }
 ```
 
-Anything in the curly brackets is considered to be in that `if statement`, and only executes if the condition is `TRUE`.
+Anything in the curly brackets is considered to be in that `if statement`, and only happens if the condition is `TRUE`.
 
 For example:
 
-- if the dice_roll value is equal to 1 -> light up led_pin1
-- if the dice_roll value is equal to 2 -> light up led_pin2
-- and so on
+- `if` **(** the dice_roll value is equal to 1 **)** `then` **{** light up led_pin1 **}**
+- `if` **(** the dice_roll value is equal to 2 **)** `then` **{**light up led_pin2 **}**
 
-We can start with testing in the Serial Monitor:
+and so on.
+
+We can start testing this by adding this statement and seeing the result in the Serial Monitor:
 
 ```c
 if (dice_roll == 0) {
@@ -200,8 +208,6 @@ if (dice_roll == 0) {
 }
 
 ```
-
-This conditon `if (dice_roll == 0)` translates to english as: "If dice_roll value is 0, then ... {print 'Dice Roll is 0'}".
 
 Let's test.
 
@@ -244,11 +250,13 @@ void loop() {
     dice_roll = random(6);
 
     if (dice_roll == 0) {
-        Serial.print("Dice Roll is 0");
+        Serial.println("Dice Roll is 0");
     } else {
-        // print the value of dice_roll to Serial Monitor
-        Serial.println(dice_roll);
+      Serial.println("Dice Roll is NOT 0");
     }
+
+    // print the value of dice_roll to Serial Monitor
+    Serial.println(dice_roll);
 
     // add a delay so that it prints only after every second
     delay(1000);
@@ -270,12 +278,12 @@ void loop() {
     } else if (dice_roll == 1) {
         Serial.println("Dice Roll is 1");
     } else {
-        Serial.println("Not 2 or 0");
+        Serial.println("Not 0 or 1");
     }
 }
 ```
 
-We  can do this for each of the 6 (or 7) possibilities.
+We can do this for each of the 6 possibilities. I will also take out the `else{}` because we know that dice_roll can only be 6 possibilities.
 
 ```c
 void loop() {
@@ -293,13 +301,14 @@ void loop() {
         Serial.println("Dice Roll is 4");
     } else if (dice_roll == 5) {
         Serial.println("Dice Roll is 5");
-    } else {
-        Serial.println("Not in range");
     }
+
+    // pause for 1 second
+    delay(1000)
 }
 ```
 
-This block translates to english as: "if dice_roll value is 0, print 'Dice Roll is 0', else if dice_roll value is 1, print 'Dice Roll is 1. ... and so on".
+Results:
 
 <div>
 <img src="./images/dice_roller8.png" width=300 style=""></img>
@@ -347,8 +356,6 @@ void loop() {
         digitalWrite(led_pin5, HIGH);
     } else if (dice_roll == 5) {
         digitalWrite(led_pin6, HIGH);
-    } else {
-        Serial.println("Not in range");
     }
 
     // add a delay so that it prints only after every second
@@ -356,23 +363,9 @@ void loop() {
 }
 ```
 
-Uploading this code reveals a problem. LEDs start to light up one by one but they never turn off. When one light gets selected, we need to turn off all the remaining lights. 
+Uploading this code reveals a problem. LEDs start to light up one by one but they never turn off. 
 
-For example, if `led_pin1` gets selected (`dice_roll == 0`), then what should happen is this:
-
-```c
-if (dice_roll == 0) {
-    digitalWrite(led_pin1, HIGH);
-    digitalWrite(led_pin2, LOW);
-    digitalWrite(led_pin3, LOW);
-    digitalWrite(led_pin4, LOW);
-    digitalWrite(led_pin5, LOW);
-    digitalWrite(led_pin6, LOW);
-}
-
-```
-
-You would have to do that for every one of the 6 cases, which immediately looks tedious:
+This is because when one light gets selected, we need to reset all the LEDs back to `LOW` state each time.
 
 ```c
 int dice_roll = 0;
@@ -385,71 +378,47 @@ int led_pin5 = 8;
 int led_pin6 = 7;
 
 void setup() {
-    Serial.begin(9600);
+  Serial.begin(9600);
+
+  pinMode(led_pin1, OUTPUT);
+  pinMode(led_pin2, OUTPUT);
+  pinMode(led_pin3, OUTPUT);
+  pinMode(led_pin4, OUTPUT);
+  pinMode(led_pin5, OUTPUT);
+  pinMode(led_pin6, OUTPUT);
 }
 
 void loop() {
-    dice_roll = random(6);
+  dice_roll = random(6);
 
-    pinMode(led_pin1, OUTPUT);
-    pinMode(led_pin2, OUTPUT);
-    pinMode(led_pin3, OUTPUT);
-    pinMode(led_pin4, OUTPUT);
-    pinMode(led_pin5, OUTPUT);
-    pinMode(led_pin6, OUTPUT);
+  if (dice_roll == 0) {
+    digitalWrite(led_pin1, HIGH);
+  } else if (dice_roll == 1) {
+    digitalWrite(led_pin2, HIGH);
+  } else if (dice_roll == 2) {
+    digitalWrite(led_pin3, HIGH);
+  } else if (dice_roll == 3) {
+    digitalWrite(led_pin4, HIGH);
+  } else if (dice_roll == 4) {
+    digitalWrite(led_pin5, HIGH);
+  } else if (dice_roll == 5) {
+    digitalWrite(led_pin6, HIGH);
+  }
 
-    if (dice_roll == 0) {
-        digitalWrite(led_pin1, HIGH);
-        digitalWrite(led_pin2, LOW);
-        digitalWrite(led_pin3, LOW);
-        digitalWrite(led_pin4, LOW);
-        digitalWrite(led_pin5, LOW);
-        digitalWrite(led_pin6, LOW);
-    } else if (dice_roll == 1) {
-        digitalWrite(led_pin2, HIGH);
-        digitalWrite(led_pin1, LOW);
-        digitalWrite(led_pin3, LOW);
-        digitalWrite(led_pin4, LOW);
-        digitalWrite(led_pin5, LOW);
-        digitalWrite(led_pin6, LOW);
-    } else if (dice_roll == 2) {
-        digitalWrite(led_pin3, HIGH);
-        digitalWrite(led_pin1, LOW);
-        digitalWrite(led_pin2, LOW);
-        digitalWrite(led_pin4, LOW);
-        digitalWrite(led_pin5, LOW);
-        digitalWrite(led_pin6, LOW);
-    } else if (dice_roll == 3) {
-        digitalWrite(led_pin4, HIGH);
-        digitalWrite(led_pin1, LOW);
-        digitalWrite(led_pin2, LOW);
-        digitalWrite(led_pin3, LOW);
-        digitalWrite(led_pin5, LOW);
-        digitalWrite(led_pin6, LOW);
-    } else if (dice_roll == 4) {
-        digitalWrite(led_pin5, HIGH);
-        digitalWrite(led_pin1, LOW);
-        digitalWrite(led_pin2, LOW);
-        digitalWrite(led_pin3, LOW);
-        digitalWrite(led_pin4, LOW);
-        digitalWrite(led_pin6, LOW);
-    } else if (dice_roll == 5) {
-        digitalWrite(led_pin6, HIGH);
-        digitalWrite(led_pin1, LOW);
-        digitalWrite(led_pin2, LOW);
-        digitalWrite(led_pin3, LOW);
-        digitalWrite(led_pin4, LOW);
-        digitalWrite(led_pin5, LOW);
-    } else {
-        Serial.println("Not in range");
-    }
+  // turn on for one second
+  delay(1000);
 
-    // add a delay so that it prints only after every second
-    delay(1000);
+  // reset LEDs
+  digitalWrite(led_pin1, LOW);
+  digitalWrite(led_pin2, LOW);
+  digitalWrite(led_pin3, LOW);
+  digitalWrite(led_pin4, LOW);
+  digitalWrite(led_pin5, LOW);
+  digitalWrite(led_pin6, LOW);
 }
 ```
 
-Uploading this code shows that it works just how we wanted. Every second a random LED lights up, but the amount of lines of code quickly grew and became overwhelming.
+Uploading this code shows that it works just how we wanted. Every second a random LED lights up.
 
 ## The Challenge
 
