@@ -517,16 +517,16 @@ change in the duration of the program running. It is a
 <p>The advantage of doing this is for readability and the way the board
 handles it is different. The IDE will also throw out an error if you try
 to change <code>buttonPin</code>, for example.</p>
-<p>Next, we have an actual variable that will hold the value of the
-button state (Is it pressed or not? <code>HIGH</code> or
-<code>LOW</code>?).</p>
+<p>Next, we have an actual variable called <code>buttonState</code> that
+will hold the value of the button state (Is it pressed or not?
+<code>HIGH</code> or <code>LOW</code>?).</p>
 </section>
 <section id="setup" class="level4">
 <h4>setup()</h4>
 <p>In the <code>setup()</code> function, everything should be
-straightforward. <code>ledPin</code> (13) is configured as an
-<code>OUTPUT</code>, and <code>buttonPin</code> (2) is configured as an
-<code>INPUT</code>.</p>
+straightforward. <code>ledPin</code> (<em>13</em>) is configured as an
+<code>OUTPUT</code>, and <code>buttonPin</code> (<em>2</em>) is
+configured as an <code>INPUT</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">// initialize the LED pin as an output:</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>ledPin<span class="op">,</span> OUTPUT<span class="op">);</span></span>
@@ -574,7 +574,7 @@ must be FALSE, and everything in the last curly brackets is done.</p>
 <pre><code>buttonState == HIGH</code></pre>
 <p>The double equals sign (<code>==</code>) means
 <code>equals to</code>. If buttonState <code>equals to</code> HIGH,
-then…</p>
+then… do this -&gt; { }</p>
 <p>This is different from the single equal sign (<code>=</code>) that is
 used to assign a variable a value. A single <code>=</code> does not mean
 <code>equals to</code>, it means

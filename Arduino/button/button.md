@@ -267,11 +267,11 @@ const int ledPin = 13;    // the number of the LED pin
 
 The advantage of doing this is for readability and the way the board handles it is different. The IDE will also throw out an error if you try to change `buttonPin`, for example.
 
-Next, we have an actual variable that will hold the value of the button state (Is it pressed or not? `HIGH` or `LOW`?).
+Next, we have an actual variable called `buttonState` that will hold the value of the button state (Is it pressed or not? `HIGH` or `LOW`?).
 
 #### setup()
 
-In the `setup()` function, everything should be straightforward. `ledPin` (13) is configured as an `OUTPUT`, and `buttonPin` (2) is configured as an `INPUT`.
+In the `setup()` function, everything should be straightforward. `ledPin` (_13_) is configured as an `OUTPUT`, and `buttonPin` (_2_) is configured as an `INPUT`.
 
 ```c
 void setup() {
@@ -322,7 +322,7 @@ This is the condition that is checked:
 buttonState == HIGH
 ```
 
-The double equals sign (`==`) means `equals to`. If buttonState `equals to` HIGH, then...
+The double equals sign (`==`) means `equals to`. If buttonState `equals to` HIGH, then... do this -> { }
 
 This is different from the single equal sign (`=`) that is used to assign a variable a value. A single `=` does not mean `equals to`, it means `is assigned the value of..`.
 

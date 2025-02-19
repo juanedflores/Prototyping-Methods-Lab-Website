@@ -6,7 +6,7 @@ title: Week 4
 
 ## Background
 
-<iframe style="background: black; margin-top:25px; padding-bottom:25px;" src="https://www.youtube-nocookie.com/embed/Q2bSSRIU0WQ?autoplay=0&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;playsinline=1" width="1920" height="1080" allowfullscreen uk-responsive uk-video="automute: true; autoplay: false"></iframe>
+<iframe style="background: black; margin-top:25px; margin-bottom:25px;" src="https://www.youtube-nocookie.com/embed/Q2bSSRIU0WQ?autoplay=0&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;playsinline=1" width="1920" height="1080" allowfullscreen uk-responsive uk-video="automute: true; autoplay: false"></iframe>
 
 A popular analog electronics challenge is to make an electronic LED dice roller using **Integrated Circuits** (ICs) like a **555 timer** and a **CD4017 counter** to "roll the dice" by counting quickly through a range of numbers. Both of these together act somewhat like a `random()` function. The timer acts as an oscillator that cycles through each number possibility so fast that it is impossible to know what it will land on.
 
@@ -430,7 +430,7 @@ To start planning how to tackle the problem, it is good to start thinking in **p
 
 **if** the button is PRESSED, get a new random number.
 
-**if** the button is RELEASED or NOT PRESSED, the corresponding LED should stay on.
+**if** the button is NOT PRESSED, the corresponding LED should be on.
 
 Lets write the last two sentences in another way.
 
@@ -483,7 +483,7 @@ if (buttonState == HIGH) {
 }
 ```
 
-`dice_roll` can just hold the output pin number instead of having a separate `picked_led` variable. Though you can rename `dice_roll` if that is easier for you to understand.
+`dice_roll` can just hold the output pin number instead of having a separate `picked_led` variable. Though you can rename `dice_roll` to `picked_led` if that is easier for you to understand.
 
 ```c
 if (buttonState == HIGH) {

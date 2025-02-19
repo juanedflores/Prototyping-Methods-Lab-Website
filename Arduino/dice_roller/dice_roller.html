@@ -247,7 +247,7 @@ id="dice-roller" class="level1">
 <h1>Dice Roller</h1>
 <section id="background" class="level2">
 <h2>Background</h2>
-<iframe style="background: black; margin-top:25px; padding-bottom:25px;" src="https://www.youtube-nocookie.com/embed/Q2bSSRIU0WQ?autoplay=0&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;playsinline=1" width="1920" height="1080" allowfullscreen uk-responsive uk-video="automute: true; autoplay: false">
+<iframe style="background: black; margin-top:25px; margin-bottom:25px;" src="https://www.youtube-nocookie.com/embed/Q2bSSRIU0WQ?autoplay=0&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;playsinline=1" width="1920" height="1080" allowfullscreen uk-responsive uk-video="automute: true; autoplay: false">
 </iframe>
 <p>A popular analog electronics challenge is to make an electronic LED
 dice roller using <strong>Integrated Circuits</strong> (ICs) like a
@@ -652,8 +652,8 @@ LED should remain ON.</p>
 thinking in <strong>pseudo code</strong>.</p>
 <p><strong>if</strong> the button is PRESSED, get a new random
 number.</p>
-<p><strong>if</strong> the button is RELEASED or NOT PRESSED, the
-corresponding LED should stay on.</p>
+<p><strong>if</strong> the button is NOT PRESSED, the corresponding LED
+should be on.</p>
 <p>Lets write the last two sentences in another way.</p>
 <p><strong>if</strong> the button is HIGH, <em>then</em> get a new
 random number,</p>
@@ -696,8 +696,8 @@ start from the <code>min</code> and up to but not including the
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p><code>dice_roll</code> can just hold the output pin number instead of
 having a separate <code>picked_led</code> variable. Though you can
-rename <code>dice_roll</code> if that is easier for you to
-understand.</p>
+rename <code>dice_roll</code> to <code>picked_led</code> if that is
+easier for you to understand.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="op">(</span>buttonState <span class="op">==</span> HIGH<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    picked_led <span class="op">=</span> random<span class="op">(</span><span class="dv">7</span><span class="op">,</span> <span class="dv">13</span><span class="op">);</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
