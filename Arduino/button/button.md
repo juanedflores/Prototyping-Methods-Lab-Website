@@ -8,9 +8,9 @@ heading: Button
 
 The button is just a simple way of completing or breaking a circuit with the simple act of "pushing" or "pressing" a button.
 
-You could just manually join or unjoin two bare wires together to do this, but a button makes this convenient.
+You could just manually join or unjoin two bare wires together to do this, but a button makes this a convenient way to interface (interact) with a circuit.
 
-Often electronics kits come with a cheap button that looks like this:
+Often electronics kits come with a cheap tactile button that looks like this:
 
 <div>
 <img src="./images/button.png" width=400 style=""></img>
@@ -21,6 +21,19 @@ But it can take many forms and sizes.
 <div>
 <img src="./images/buttons.jpg" width=400 style=""></img>
 </div>
+
+Take a look at <a href="https://teenage.engineering/">Teenage Engineering</a>'s pocket operator products that use a similar looking tactile button.
+
+<iframe style="background: black; margin-top:25px; padding-bottom:25px;" src="https://player.vimeo.com/video/935417234?h=6ec9ce8838?autoplay=1&loop=1" width="1920" height="1080" allowfullscreen uk-responsive uk-video="automute: true; autoplay: true; loop: true"></iframe>
+And a case that would cover the look of those buttons:
+
+<div>
+<img src="https://images.prismic.io/teenageengineering/83dc95b0-467b-4637-a60c-df6f4833505f_ca-x_yellow.png?auto=compress,format&w=2000" width=600 style=""></img>
+</div>
+
+---
+
+## Pinout
 
 Generally, the pinout looks something like this:
 
@@ -76,7 +89,7 @@ Do you see why this completes the circuit?
 
 Go to:
 
-**File** > **Examples** > **02.Digital** > **Digital**
+**File** > **Examples** > **02.Digital** > **Button**
 
 This is `Button.ino`.
 

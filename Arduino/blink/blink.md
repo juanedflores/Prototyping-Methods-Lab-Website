@@ -52,9 +52,18 @@ In which case your breadboard would look something like this:
 <img src="./images/vin2.png" width=300 style=""></img>
 </div>
 
+<ul uk-accordion style='pading-bottom: 5vh'> <li class='uk-close'>
+<a id='code-file' class='uk-accordion-title' href='#'>The 5V Pin</a>
+<div class='uk-accordion-content' style='padding-bottom:20px; margin-bottom:20px'>
 You might have noticed that in the pinout sheet there is a pin labeled +5V. You can only get 5V from here if you short two pins in the back of the board with a bridge of solder.
 
+<div>
+<img src="./images/short.png" width=400 style=""></img>
+</div>
+
 Take a look at this <a href="https://support.arduino.cc/hc/en-us/articles/360014779679-Enable-5-V-power-on-the-VUSB-or-VBUS-pin-on-Nano-boards">article</a> for more info.
+</div>
+
 
 ## LED Circuit
 
@@ -156,16 +165,31 @@ First it's important to note what it says on the sketch description:
 It says that there is a built-in LED on the board connected to pin 13. This is the same in the Arduino Nano.
 
 <div>
-<img src="https://docs.arduino.cc/static/c8dbeff786e52681c3d0e9ee9525e140/29114/schematic.png" width=400 style=""></img>
+<img src="https://docs.arduino.cc/static/c8dbeff786e52681c3d0e9ee9525e140/29114/schematic.png" width=100% style=""></img>
 </div>
 
-The schematic given also makes it easier to see that the LED-resistor circuit is connected to pin13 instead of the 3.3V pin that we connected to earlier. Pin 13, or D13, happens to be the pin above the 3.3V pin.
-
+The schematic given also makes it easier to see that the LED-resistor circuit is connected to pin 13 instead of the 3.3V pin that we connected to earlier. Pin 13, or D13, happens to be the pin above the 3.3V pin (with the orientation in the image below).
+ 
 <div>
 <img src="./images/blink1.png" width=400 style=""></img>
 </div>
 
 If you uploaded the sketch to your board and your wiring is the same as the above image, then your LED should be turning on for one second, and turning off for one second.
+
+
+### TinkerCAD
+
+TinkerCAD happens to have some of the basic examples already assembled and wired in the drop bar menu on the right side. These are Under "Starters: Arduino".
+
+<div>
+<img src="./images/tinkercad.png" width=500 style=""></img>
+</div>
+
+This is what the wiring looks without a breadboard and with the UNO.
+
+<div>
+<img src="./images/tinkercad2.png" width=400 style=""></img>
+</div>
 
 ### Blink sketch breakdown
 
@@ -184,7 +208,7 @@ void loop() {
 }
 ```
 
-In each arduino sketch, it is required to have a `setup()` and `loop()` **function**. We will talk about functions later on, for now just notice that a function has a format similar to this.
+In each arduino sketch, it is required to have a `setup()` and `loop()` **function**. We will talk about functions later on, for now just notice that a function has this sort of structure:
 
 ```c
 // a function called myfunction
@@ -206,7 +230,11 @@ The `loop()` function is like the animation loop. It runs over and over until th
 
 `pinMode()` is also a function. Notice it has the parantheses, similar to `setup()` and `loop()`.
 
-According to the Arduino documentation: [https://docs.arduino.cc/language-reference/en/functions/digital-io/pinMode/](https://docs.arduino.cc/language-reference/en/functions/digital-io/pinMode/).
+It is a good idea to look at the Arduino documentation for more info:
+
+[https://docs.arduino.cc/language-reference/en/functions/digital-io/pinMode/](https://docs.arduino.cc/language-reference/en/functions/digital-io/pinMode/).
+
+According to the website, `pinMode()`:
 
 > Configures the specified pin to behave either as an input or an output.
 
@@ -311,13 +339,15 @@ The last thing to explain is that `LED_BUILTIN` is known as a **constant**. It i
 
 `LED_BUILTIN` is really just a name that is in place of the integer `13`.
 
+In other words, `LED_BUILTIN` has the value of `13`.
+
 #### Variables
 
 To introduce the idea of variables. Let's define our own variable.
 
 ##### Data Type
 
-To **define** or **declare** a variable, first you need to know of what **type** it is. Type as in data type. There are several different types, but for now let's just introduce the `int` data type. `int` stands for integer.
+To **define** or **declare** a variable, first you need to know what **type** it is. Type as in data type. There are several different types, but for now let's just introduce the `int` data type. `int` stands for integer.
 
 ##### Variable names
 
@@ -331,8 +361,8 @@ int red_led = 13;
 
 This is our full statement for declaring and initializing a variable. Things to note:
 
-- It is of data type `int`. `int` is used for whole numbers like `13`, as opposed to decimals.
-- we named our variable `red_led`.
+- It is of data type `int`. `int` is one of the most common variable types. It is a **round** number that can be positive or negative. `13` is a round number, as opposed to a decimal.
+- we named our variable `red_led`, because I know a red LED is connected to pin 13.
 - we initialized the variable with a value of 13. In other words we assigned it the value of 13 with the equals sign (=). This does not mean "equals to" in programming. It means "red_led is assigned the value of 13".
 - The semicolon is part of the programming language syntax. All statements must end with a semicolon. Just like our written english ends with a period to note the end of a sentence, a semicolon is for the **compiler** to know the end of a statement.
 
@@ -405,13 +435,22 @@ From the Arduino documentation: [https://docs.arduino.cc/language-reference/en/f
 
 > The random function generates pseudo-random numbers.
 
-To make things interesting, what if everything the loop function runs, the ms value in the delay function is different each time? In other words, we want it to be a random value each time the loop function starts.
+<blockquote class="info">
+<span class="uk-label">Note</span>
+<p>
+Don't worry about what pseudo-random means here. It feels random to us, and that is all that matters for now.
+</p>
+</blockquote>
+
+To make things interesting, what if every time the loop function runs, the ms value in the delay function is different each time? In other words, we want it to be a random value each time the loop function starts.
+
+Let's look at what parameter the `random()` function needs.
 
 ```c
 random(max)
 ```
 
-The `max` parameter is the max value from the range (0 - max) we want the random number to be generated from. For example, if `max = 2000`, then each time the random() function is **called** or **executed**, it will pick a number between 0 and 2000.
+The `max` parameter is the max value from the range (0 - max). In other words, it will pick a number between 0 and that max value (not including the max value). For example, if `max = 4`, then each time the random() function is **called** or **executed**, it will spit out either a 0, 1, 2, or 3, giving us 4 different possibilities.
 
 Consider this sketch:
 
@@ -438,9 +477,9 @@ Notice that I declared and initialized a new variable:
 int ms = 1000;
 ```
 
-The variable is called `ms`, it is of type `int`, and it has a starting value of 1000.
+The variable is called `ms`, it is of type `int`, and it has a starting value of 1000. It actually doesn't matter too much what this value is, because when the `loop()` starts, it will get overwritten with a random value.
 
-At the start of the `loop()`, I assign it a new random value between 0 - 400 each time.
+At the start of the `loop()`, I assign it a new random value in the range of 0 - 399 each time.
 
 ```c
 ms = random(400);
@@ -460,6 +499,7 @@ delay(ms);
 - Function
 - Constants
 - Variables
+- Parameters
 - Data Types (int)
 - HIGH / LOW
 - INPUT / OUTPUT
@@ -467,5 +507,6 @@ delay(ms);
 - pinMode()
 - digitalWrite()
 - random()
+- compiler
 
 

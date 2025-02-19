@@ -8,15 +8,15 @@ title: Week 4
 
 <iframe style="background: black; margin-top:25px; padding-bottom:25px;" src="https://www.youtube-nocookie.com/embed/Q2bSSRIU0WQ?autoplay=0&amp;showinfo=0&amp;rel=0&amp;modestbranding=1&amp;playsinline=1" width="1920" height="1080" allowfullscreen uk-responsive uk-video="automute: true; autoplay: false"></iframe>
 
-One of the popular analog electronics projects is to make an electric LED dice roller using **Integrated Circuits** (ICs) like a **555 timer** to "roll the dice", and a **counter** to count through a range of numbers. Both of these together act somewhat like a `random()` function.
+A popular analog electronics challenge is to make an electronic LED dice roller using **Integrated Circuits** (ICs) like a **555 timer** and a **CD4017 counter** to "roll the dice" by counting quickly through a range of numbers. Both of these together act somewhat like a `random()` function. The timer acts as an oscillator that cycles through each number possibility so fast that it is impossible to know what it will land on.
 
 Seen for some as a rite of passage for electronics tinkerers, we can create a simple version of a dice roller with the Arduino using what we already know.
 
 So far we know how to:
 
-- Hook up any number of LED outputs (We have a max number of 22 I/O pins). A dice has 6 possibilities. So we can use 6 LED digital outputs using `digitalWrite()`.
+- Hook up any number of LED outputs (We have a max number of 22 I/O pins). A dice has 6 possibilities. So we can use 6 LED digital outputs using `digitalWrite()` to represent each possibility.
 - Hooking up and reading from a button input using `digitalRead()`.
-- Using the random() function to get a random number between 1 and 6.
+- Using the `random()` function to get a random number to select from 6 possible outcomes.
 
 ## Wiring the LEDs
 
@@ -63,7 +63,7 @@ void loop() {
 }
 ```
 
-To test that all LEDs work we can manually make the state of all the used pins `HIGH` to light them all up.
+To test that all LEDs work we can manually set the state of all the used pins to `HIGH` to light them all up.
 
 <div>
 <img src="./images/dice_roller3.png" width=500 style=""></img>
@@ -259,7 +259,7 @@ void loop() {
 <img src="./images/dice_roller7.png" width=300 style=""></img>
 </div>
 
-The last part of possible thing we can add is an `else if` to more conditions after the initial condition is checked:
+Another thing we can do is add more conditions to check with `else if`:
 
 ```c
 void loop() {
@@ -356,7 +356,23 @@ void loop() {
 }
 ```
 
-Uploading this code reveals a problem. LEDs start to light up one by one but they never turn off. We need to turn off all the remaining lights off each loop. The tedious, hard-coded way is to do this:
+Uploading this code reveals a problem. LEDs start to light up one by one but they never turn off. When one light gets selected, we need to turn off all the remaining lights. 
+
+For example, if `led_pin1` gets selected (`dice_roll == 0`), then what should happen is this:
+
+```c
+if (dice_roll == 0) {
+    digitalWrite(led_pin1, HIGH);
+    digitalWrite(led_pin2, LOW);
+    digitalWrite(led_pin3, LOW);
+    digitalWrite(led_pin4, LOW);
+    digitalWrite(led_pin5, LOW);
+    digitalWrite(led_pin6, LOW);
+}
+
+```
+
+You would have to do that for every one of the 6 cases, which immediately looks tedious:
 
 ```c
 int dice_roll = 0;
@@ -433,188 +449,92 @@ void loop() {
 }
 ```
 
-Uploading this code shows that it works as we wanted, but the amount of lines of code quickly grew and became overwhelming.
+Uploading this code shows that it works just how we wanted. Every second a random LED lights up, but the amount of lines of code quickly grew and became overwhelming.
 
 ## The Challenge
 
-See if you can figure out how to write this code yourself. I'll be helping along and giving hints.
+See if you can combine the previous LED sketch with the button sketch. The goal is to get one random LED to light up every time you press the button. To get started, you should look at the `StateChangeDetection` example sketch:
 
-## The Starting Code
+This is found under **File** -> **Examples** -> **02.Digital** -> **StateChangeDetection**
 
 ```c
-int dice_roll = 1;
+/*
+   State change detection (edge detection)
+
+   Often, you don't need to know the state of a digital input all the time, but
+   you just need to know when the input changes from one state to another.
+   For example, you want to know when a button goes from OFF to ON. This is called
+   state change detection, or edge detection.
+
+   This example shows how to detect when a button or button changes from off to on
+   and on to off.
+
+   The circuit:
+   - pushbutton attached to pin 2 from +5V
+   - 10 kilohm resistor attached to pin 2 from ground
+   - LED attached from pin 13 to ground through 220 ohm resistor (or use the
+   built-in LED on most Arduino boards)
+
+   created  27 Sep 2005
+   modified 30 Aug 2011
+   by Tom Igoe
+
+   This example code is in the public domain.
+
+   https://www.arduino.cc/en/Tutorial/BuiltInExamples/StateChangeDetection
+ */
+
+// this constant won't change:
+const int buttonPin = 2;  // the pin that the pushbutton is attached to
+const int ledPin = 13;    // the pin that the LED is attached to
+
+// Variables will change:
+int buttonPushCounter = 0;  // counter for the number of button presses
+int buttonState = 0;        // current state of the button
+int lastButtonState = 0;    // previous state of the button
 
 void setup() {
+    // initialize the button pin as a input:
+    pinMode(buttonPin, INPUT);
+    // initialize the LED as an output:
+    pinMode(ledPin, OUTPUT);
+    // initialize serial communication:
     Serial.begin(9600);
 }
 
-void loop() {
-    // put your main code here, to run repeatedly:
-    dice_roll = random(9) + 1;
-
-    if (dice_roll == 1) {
-        Serial.println("You rolled a 1");
-        digitalWrite(13, HIGH);
-    }
-    if (dice_roll == 2) {
-        Serial.println("You rolled a 2");
-        digitalWrite(12, HIGH);
-    }
-    if (dice_roll == 3) {
-        Serial.println("You rolled a 3");
-        digitalWrite(11, HIGH);
-    }
-    if (dice_roll == 4) {
-        Serial.println("You rolled a 4");
-        digitalWrite(10, HIGH);
-    }
-    if (dice_roll == 5) {
-        Serial.println("You rolled a 5");
-        digitalWrite(9, HIGH);
-    }
-    if (dice_roll == 6) {
-        Serial.println("You rolled a 6");
-        digitalWrite(8, HIGH);
-    }
-    if (dice_roll == 7) {
-        Serial.println("You rolled a 7");
-        digitalWrite(7, HIGH);
-    }
-    if (dice_roll == 8) {
-        Serial.println("You rolled a 8");
-        digitalWrite(6, HIGH);
-    }
-    if (dice_roll == 9) {
-        Serial.println("You rolled a 9");
-        digitalWrite(5, HIGH);
-    }
-
-    Serial.println(dice_roll);
-    delay(1000);
-
-    digitalWrite(13, LOW);
-    digitalWrite(12, LOW);
-    digitalWrite(11, LOW);
-    digitalWrite(10, LOW);
-    digitalWrite(9, LOW);
-    digitalWrite(8, LOW);
-    digitalWrite(7, LOW);
-    digitalWrite(6, LOW);
-    digitalWrite(5, LOW);
-}
-
-```
-
-## Adding State Change Detection
-
-Check out the `StateChangeDetection` example.
-
-**File** > **Examples** > **Digital** > **StateChangeDetection**
-
-```c
-int dice_roll = 1;
-int buttonState = 0;
-int lastButtonState = 0;
-
-// input
-int button_pin = 2;
-
-// output
-int led_pin1;
-int led_pin2;
-int led_pin3;
-int led_pin4;
-int led_pin5;
-int led_pin6;
-int led_pin7;
-int led_pin8;
-int led_pin9;
-
-void setup() {
-    Serial.begin(9600);
-    pinMode(button_pin, INPUT);
-    pinMode(13, OUTPUT);
-    pinMode(12, OUTPUT);
-    pinMode(11, OUTPUT);
-    pinMode(10, OUTPUT);
-    pinMode(9, OUTPUT);
-    pinMode(8, OUTPUT);
-    pinMode(7, OUTPUT);
-    pinMode(6, OUTPUT);
-    pinMode(5, OUTPUT);
-}
 
 void loop() {
+    // read the pushbutton input pin:
+    buttonState = digitalRead(buttonPin);
 
-    buttonState = digitalRead(button_pin);
-
-    // This block of code from StateChangeDetection example
+    // compare the buttonState to its previous state
     if (buttonState != lastButtonState) {
         // if the state has changed, increment the counter
         if (buttonState == HIGH) {
+            // if the current state is HIGH then the button went from off to on:
+            buttonPushCounter++;
             Serial.println("on");
-            dice_roll = random(9) + 1;
-            Serial.println(dice_roll);
+            Serial.print("number of button pushes: ");
+            Serial.println(buttonPushCounter);
         } else {
             // if the current state is LOW then the button went from on to off:
             Serial.println("off");
-            dice_roll = 0;
         }
         // Delay a little bit to avoid bouncing
         delay(50);
     }
+    // save the current state as the last state, for next time through the loop
     lastButtonState = buttonState;
 
 
-    if (dice_roll == 1) {
-        Serial.println("You rolled a 1");
-        digitalWrite(13, HIGH);
+    // turns on the LED every four button pushes by checking the modulo of the
+    // button push counter. the modulo function gives you the remainder of the
+    // division of two numbers:
+    if (buttonPushCounter % 4 == 0) {
+        digitalWrite(ledPin, HIGH);
+    } else {
+        digitalWrite(ledPin, LOW);
     }
-    if (dice_roll == 2) {
-        Serial.println("You rolled a 2");
-        digitalWrite(12, HIGH);
-    }
-    if (dice_roll == 3) {
-        Serial.println("You rolled a 3");
-        digitalWrite(11, HIGH);
-    }
-    if (dice_roll == 4) {
-        Serial.println("You rolled a 4");
-        digitalWrite(10, HIGH);
-    }
-    if (dice_roll == 5) {
-        Serial.println("You rolled a 5");
-        digitalWrite(9, HIGH);
-    }
-    if (dice_roll == 6) {
-        Serial.println("You rolled a 6");
-        digitalWrite(8, HIGH);
-    }
-    if (dice_roll == 7) {
-        Serial.println("You rolled a 7");
-        digitalWrite(7, HIGH);
-    }
-    if (dice_roll == 8) {
-        Serial.println("You rolled a 8");
-        digitalWrite(6, HIGH);
-    }
-    if (dice_roll == 9) {
-        Serial.println("You rolled a 9");
-        digitalWrite(5, HIGH);
-    }
-
-    delay(1000);
-
-    digitalWrite(13, LOW);
-    digitalWrite(12, LOW);
-    digitalWrite(11, LOW);
-    digitalWrite(10, LOW);
-    digitalWrite(9, LOW);
-    digitalWrite(8, LOW);
-    digitalWrite(7, LOW);
-    digitalWrite(6, LOW);
-    digitalWrite(5, LOW);
-
 }
-
 ```
+

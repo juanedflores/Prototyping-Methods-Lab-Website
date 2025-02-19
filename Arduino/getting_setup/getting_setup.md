@@ -22,7 +22,7 @@ There are many getting started tutorials with the Arduino online. Usually these 
 
 <span><p style="text-align:center; color: #aeaeae"><i>Arduino Nano 33 IoT</i></p></span>
 
-And this is the Arduino Nano 33 IoT. The reason I chose to work with this board is because thinking of IoT devices is becoming increasingly important. NYU's ITP physical computing class also uses this <a href="https://itp.nyu.edu/physcomp/introduction-to-the-nano-33-iot/">board</a>.
+And this is the Arduino Nano 33 IoT. The reason I chose to work with this board is because thinking of IoT devices is becoming increasingly important. NYU's ITP physical computing class also uses this <a href="https://itp.nyu.edu/physcomp/introduction-to-the-nano-33-iot/">board</a>, and list their own <a href="https://itp.nyu.edu/physcomp/resources/picking-a-microcontroller/">reasons</a>.
 
 The Nano is also nice because of what its name implies. It's smaller and more compact. Making it easier to embed into an early prototype, making projects less bulky. It also comes with a few built-in features.
 
@@ -62,15 +62,15 @@ Another difference that is worth saying is that this board uses a **micro USB ca
 
 <ul uk-accordion style='pading-bottom: 5vh'> <li class='uk-close'>
 <a id='code-file' class='uk-accordion-title' href='#'>Specs</a>
-<div class='uk-accordion-content' style='padding-bottom:20px; margin-bottom:20px'>
+<div class='uk-accordion-content' style='padding-bottom:20px; margin-bottom:20px; background: rgb(243, 201, 91);'>
 These details might not be so interesting to a beginner, but this board is:
 
 - Considerably faster. (48MHz clock vs 16MHz clock speed) (32-bit vs 8-bit processor)
-- Has more memory. (32KB SRAM/256KB flash vs 2KB/3dKB)
+- Has more memory. (32KB SRAM/256KB flash vs 2KB/32KB)
 
 The nano uses an <a href="https://www.mouser.com/new/microchip/microchip-technology-sam-d21-mcus/?srsltid=AfmBOooLuzYW-O9P4MNH5tzGV1_M3A7YrtO_CGZK6REXWpHsHzIb4Z--">ARM Cortex-M0 32-bit SAMD21 processor.</a>
 
-Check out ITP's explanation of what microproceessors are: [https://itp.nyu.edu/physcomp/lessons/microcontrollers-the-basics/](https://itp.nyu.edu/physcomp/lessons/microcontrollers-the-basics/).
+Check out ITP's explanation of what microprocessors and microcontrollers are: [https://itp.nyu.edu/physcomp/lessons/microcontrollers-the-basics/](https://itp.nyu.edu/physcomp/lessons/microcontrollers-the-basics/).
 </div>
 
 ### What is Arduino?
@@ -85,7 +85,9 @@ Arduino comes with its own programming language and is considered to be in the w
 
 This is why Arduino code files are called **sketches**. And the same is true for other creative coding languages like <a href="https://processingfoundation.org/">Processing</a>. Think of making things in this environment similarly to sketching things in a sketchbook.
 
-Before Arduino, making things like this often required more time and being a little bit more savvy with technology.
+The Arduino boards are considered to be **microcontrollers**. They are like computers for the physical world.
+
+Before Arduino, microcontrollers existed, but making things like this often required more time and being a bit more savvy with technology.
 
 <div>
 <img src="./images/eduardo.jpg" width=300px style=""></img>
@@ -97,7 +99,7 @@ I am in agreement with Jon E. Froehlich highlighting this philosophy:
 
 > **<mark>Learn by Doing</mark>**
 > 
-> A key pedagogical philosophy underlying our teaching is learn by doing. From years of experience, we’ve found that the best way to teach physical computing is via hands-on exercises. So, we we expect that you will build along with our guides and lessons.
+> A key pedagogical philosophy underlying our teaching is learn by doing. From years of experience, we’ve found that the best way to teach physical computing is via hands-on exercises. So, we expect that you will build along with our guides and lessons.
 
 How much you get out of this class is completely up to you! Learning Arduino is like learning a new language and it is usually not enough to just watch me code things. The best way to learn is by putting in the time to explore and do things in class and on your own time.
 
@@ -119,7 +121,7 @@ Get familiar with this <a href="https://docs.arduino.cc/resources/pinouts/ABX000
 
 This image shows how you would place your Arduino on the breadboard and how you would access the pins. By now you should have an idea of how a breadboard works.
 
-It is more convenient to place your nano with the Micro-USB port facing away from the breadboard and on the side starting with row 1. This way we can be on the same when talking about a pin on the board. If I say pin D2, I can also say row 11 on the F-J side (or right side).
+It is more convenient to place your nano with the Micro-USB port facing away from the breadboard and on the side starting with row 1. This way you can easily connect to it and so that we can be on the same page when talking about a pin on the board. If I say pin D2, I can also say row 11 on the F-J side (or right side).
 
 <blockquote class="info">
 <span class="uk-label">Note</span>
@@ -148,7 +150,7 @@ Once you have it downloaded, try opening it and it should look something like th
 
 First things first, we want to confirm that we can successfully upload something to the board. Before we can do that, we need to download something so that the Arduino program knows what board we are working with.
 
-### Download Arduino SAMD Boards
+### Install Arduino SAMD Boards
 
 <blockquote class="info">
 <span class="uk-label">Note</span>
@@ -199,7 +201,7 @@ The port name could look something like this:
 - `/dev/cu.usbmodem14101 (Arduino Uno)`
 - `/dev/ttyACM0 (Arduino Uno)`
 
-Usually the name of the board shows up in the name, so it should say Arduino NANO 33 IoT instead of Uno.
+Usually the name of the board shows up in the name, so it should say Arduino NANO 33 IoT instead of Uno in parentheses.
 
 The last step is to make sure that the board name shows up at the top.
 
@@ -209,44 +211,57 @@ The last step is to make sure that the board name shows up at the top.
 
 ## Upload
 
-The last things we will familiarize ourselves with in this program for now is the "Upload" and "Verify" buttons, and how to get to the example sketches.
+The last things we will familiarize ourselves with in this program for now are the "Upload" and "Verify" buttons, and how to get to the example sketches.
 
 ### Example Sketches and Uploading
 
+You should know how to navigate to the example sketches. Let's start with the _Blink_ example.
+
 On the top menu bar go to **File** > **Examples** > **01.Basics** > **Blink**
 
-This is the <a href="https://en.wikipedia.org/wiki/%22Hello,_World!%22_program">"Hello World"</a> program for the Arduino. We will use it to confirm that our computers can successfully upload code to our boards.
+This is the <a href="https://en.wikipedia.org/wiki/%22Hello,_World!%22_program">"Hello World"</a> program for the Arduino. We will use it to confirm that our computers can successfully upload programs to our boards.
 
 Don't worry about what it is doing for now. Locate the upload button on the top, represented by an arrow.
 
 <div>
-<img src="./images/upload.png" width=300 style=""></img>
+<img src="./images/upload.png" width=200 style=""></img>
 </div>
 
 Try clicking on it and notice what happens on the bottom of the window.
 
 ### Output Window
 
-On the bottom there should be text appearing upon clicking upload. Either it will feel like a success, or it will print red text to inform you about an ERROR. If there was no errors, then you should be ready to go.
+On the bottom there should be text appearing after clicking upload. Either it will feel like a success, or it will print red text to inform you about an ERROR. If there were no errors, then you should be ready to go.
+
+### Verify
+
+Verify is not super important right now, but know that this button is to check that the code in the sketch is free of **syntax errors**. It is represented by a checkmark icon:
+
+<div>
+<img src="./images/verify.png" width=200 style=""></img>
+</div>
+
+The Upload Button also does this initially before uploading to the board. Clicking "Verify" is faster if you just want to confirm that the code is upload-ready.
 
 ## Code not Uploading?
 
 It is good to know of the thngs you can try if your board is not being detected or if your code is not uploading.
 
-Unfortunately it can be finicky to work with these boards depending on the operating system. If you are having problems with your board not being detected try this:
+Unfortunately it can be finicky to work with these boards and its different depending on your computer. If you are having problems with your board not being detected try this:
 
 - Restarting the Arduino program
 - Unplugging and replugging your arduino
 - Trying a different USB port
 - Pressing the <a href="https://support.arduino.cc/hc/en-us/articles/5779192727068-Reset-your-board">Reset button</a>
 
-It might feel like these methods shouldn't be the solution, but sometimes it often is.
+It might feel like these methods shouldn't be the solution, but it often is.
 
 When you start getting into building circuits with the board. Another reason your board might not be detected is because there is a **short** somewhere.
 
 ## Glossary
 
 - Sketches
+- Microcontroller
 - Pinout
 - IoT
 - IDE (Integrated Development Environment)

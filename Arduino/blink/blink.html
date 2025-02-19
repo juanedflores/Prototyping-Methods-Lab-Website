@@ -240,6 +240,7 @@ comment)</a></li>
 <li><a href="#single-line-comment" id="toc-single-line-comment">Single
 Line Comment</a></li>
 </ul></li>
+<li><a href="#tinkercad" id="toc-tinkercad">TinkerCAD</a></li>
 <li><a href="#blink-sketch-breakdown"
 id="toc-blink-sketch-breakdown">Blink sketch breakdown</a>
 <ul>
@@ -323,12 +324,21 @@ style="color:red"><strong>Vin</strong></span> pin.</p>
 <div>
 <p><img src="./images/vin2.png" width=300 style=""></img></p>
 </div>
+<ul uk-accordion style='pading-bottom: 5vh'>
+<li class='uk-close'>
+<a id='code-file' class='uk-accordion-title' href='#'>The 5V Pin</a>
+<div class="uk-accordion-content"
+style="padding-bottom:20px; margin-bottom:20px">
 <p>You might have noticed that in the pinout sheet there is a pin
 labeled +5V. You can only get 5V from here if you short two pins in the
 back of the board with a bridge of solder.</p>
+<div>
+<p><img src="./images/short.png" width=400 style=""></img></p>
+</div>
 <p>Take a look at this
 <a href="https://support.arduino.cc/hc/en-us/articles/360014779679-Enable-5-V-power-on-the-VUSB-or-VBUS-pin-on-Nano-boards">article</a>
 for more info.</p>
+</div>
 </section>
 <section id="led-circuit" class="level2">
 <h2>LED Circuit</h2>
@@ -423,12 +433,12 @@ and ZERO it is attached to digital pin 13.</p>
 <p>It says that there is a built-in LED on the board connected to pin
 13. This is the same in the Arduino Nano.</p>
 <div>
-<p><img src="https://docs.arduino.cc/static/c8dbeff786e52681c3d0e9ee9525e140/29114/schematic.png" width=400 style=""></img></p>
+<p><img src="https://docs.arduino.cc/static/c8dbeff786e52681c3d0e9ee9525e140/29114/schematic.png" width=100% style=""></img></p>
 </div>
 <p>The schematic given also makes it easier to see that the LED-resistor
-circuit is connected to pin13 instead of the 3.3V pin that we connected
-to earlier. Pin 13, or D13, happens to be the pin above the 3.3V
-pin.</p>
+circuit is connected to pin 13 instead of the 3.3V pin that we connected
+to earlier. Pin 13, or D13, happens to be the pin above the 3.3V pin
+(with the orientation in the image below).</p>
 <div>
 <p><img src="./images/blink1.png" width=400 style=""></img></p>
 </div>
@@ -436,6 +446,20 @@ pin.</p>
 as the above image, then your LED should be turning on for one second,
 and turning off for one second.</p>
 </section>
+</section>
+<section id="tinkercad" class="level3">
+<h3>TinkerCAD</h3>
+<p>TinkerCAD happens to have some of the basic examples already
+assembled and wired in the drop bar menu on the right side. These are
+Under “Starters: Arduino”.</p>
+<div>
+<p><img src="./images/tinkercad.png" width=500 style=""></img></p>
+</div>
+<p>This is what the wiring looks without a breadboard and with the
+UNO.</p>
+<div>
+<p><img src="./images/tinkercad2.png" width=400 style=""></img></p>
+</div>
 </section>
 <section id="blink-sketch-breakdown" class="level3">
 <h3>Blink sketch breakdown</h3>
@@ -453,8 +477,8 @@ the bare code.</p>
 <span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>In each arduino sketch, it is required to have a <code>setup()</code>
 and <code>loop()</code> <strong>function</strong>. We will talk about
-functions later on, for now just notice that a function has a format
-similar to this.</p>
+functions later on, for now just notice that a function has this sort of
+structure:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">// a function called myfunction</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> myfunction<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">// everything inside the curly brackets is inside the function.</span></span>
@@ -477,8 +501,11 @@ where usually all the action happens.</p>
 <p><code>pinMode()</code> is also a function. Notice it has the
 parantheses, similar to <code>setup()</code> and
 <code>loop()</code>.</p>
-<p>According to the Arduino documentation: <a
+<p>It is a good idea to look at the Arduino documentation for more
+info:</p>
+<p><a
 href="https://docs.arduino.cc/language-reference/en/functions/digital-io/pinMode/">https://docs.arduino.cc/language-reference/en/functions/digital-io/pinMode/</a>.</p>
+<p>According to the website, <code>pinMode()</code>:</p>
 <blockquote>
 <p>Configures the specified pin to behave either as an input or an
 output.</p>
@@ -566,6 +593,8 @@ as a <strong>constant</strong>. It is a built-in
 <strong>variable</strong>.</p>
 <p><code>LED_BUILTIN</code> is really just a name that is in place of
 the integer <code>13</code>.</p>
+<p>In other words, <code>LED_BUILTIN</code> has the value of
+<code>13</code>.</p>
 </section>
 <section id="variables" class="level4">
 <h4>Variables</h4>
@@ -574,8 +603,8 @@ variable.</p>
 <section id="data-type" class="level5">
 <h5>Data Type</h5>
 <p>To <strong>define</strong> or <strong>declare</strong> a variable,
-first you need to know of what <strong>type</strong> it is. Type as in
-data type. There are several different types, but for now let’s just
+first you need to know what <strong>type</strong> it is. Type as in data
+type. There are several different types, but for now let’s just
 introduce the <code>int</code> data type. <code>int</code> stands for
 integer.</p>
 </section>
@@ -595,9 +624,12 @@ represents. For example:</p>
 <p>This is our full statement for declaring and initializing a variable.
 Things to note:</p>
 <ul>
-<li>It is of data type <code>int</code>. <code>int</code> is used for
-whole numbers like <code>13</code>, as opposed to decimals.</li>
-<li>we named our variable <code>red_led</code>.</li>
+<li>It is of data type <code>int</code>. <code>int</code> is one of the
+most common variable types. It is a <strong>round</strong> number that
+can be positive or negative. <code>13</code> is a round number, as
+opposed to a decimal.</li>
+<li>we named our variable <code>red_led</code>, because I know a red LED
+is connected to pin 13.</li>
 <li>we initialized the variable with a value of 13. In other words we
 assigned it the value of 13 with the equals sign (=). This does not mean
 “equals to” in programming. It means “red_led is assigned the value of
@@ -673,16 +705,26 @@ href="https://docs.arduino.cc/language-reference/en/functions/random-numbers/ran
 <blockquote>
 <p>The random function generates pseudo-random numbers.</p>
 </blockquote>
-<p>To make things interesting, what if everything the loop function
+<blockquote class="info">
+<span class="uk-label">Note</span>
+<p>
+Don’t worry about what pseudo-random means here. It feels random to us,
+and that is all that matters for now.
+</p>
+</blockquote>
+<p>To make things interesting, what if every time the loop function
 runs, the ms value in the delay function is different each time? In
 other words, we want it to be a random value each time the loop function
 starts.</p>
+<p>Let’s look at what parameter the <code>random()</code> function
+needs.</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>random<span class="op">(</span>max<span class="op">)</span></span></code></pre></div>
 <p>The <code>max</code> parameter is the max value from the range (0 -
-max) we want the random number to be generated from. For example, if
-<code>max = 2000</code>, then each time the random() function is
-<strong>called</strong> or <strong>executed</strong>, it will pick a
-number between 0 and 2000.</p>
+max). In other words, it will pick a number between 0 and that max value
+(not including the max value). For example, if <code>max = 4</code>,
+then each time the random() function is <strong>called</strong> or
+<strong>executed</strong>, it will spit out either a 0, 1, 2, or 3,
+giving us 4 different possibilities.</p>
 <p>Consider this sketch:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> red_led <span class="op">=</span> <span class="dv">13</span><span class="op">;</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> ms <span class="op">=</span> <span class="dv">1000</span><span class="op">;</span></span>
@@ -701,9 +743,12 @@ number between 0 and 2000.</p>
 <p>Notice that I declared and initialized a new variable:</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> ms <span class="op">=</span> <span class="dv">1000</span><span class="op">;</span></span></code></pre></div>
 <p>The variable is called <code>ms</code>, it is of type
-<code>int</code>, and it has a starting value of 1000.</p>
+<code>int</code>, and it has a starting value of 1000. It actually
+doesn’t matter too much what this value is, because when the
+<code>loop()</code> starts, it will get overwritten with a random
+value.</p>
 <p>At the start of the <code>loop()</code>, I assign it a new random
-value between 0 - 400 each time.</p>
+value in the range of 0 - 399 each time.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ms <span class="op">=</span> random<span class="op">(</span><span class="dv">400</span><span class="op">);</span></span></code></pre></div>
 <p>Then I just put this variable in the <code>delay()</code>
 function.</p>
@@ -717,6 +762,7 @@ function.</p>
 <li>Function</li>
 <li>Constants</li>
 <li>Variables</li>
+<li>Parameters</li>
 <li>Data Types (int)</li>
 <li>HIGH / LOW</li>
 <li>INPUT / OUTPUT</li>
@@ -724,6 +770,7 @@ function.</p>
 <li>pinMode()</li>
 <li>digitalWrite()</li>
 <li>random()</li>
+<li>compiler</li>
 </ul>
 </section>
 </section></div>
