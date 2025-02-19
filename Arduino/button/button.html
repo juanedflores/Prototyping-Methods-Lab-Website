@@ -221,7 +221,14 @@
 <ul>
 <li><a href="#how-does-a-button-work"
 id="toc-how-does-a-button-work">How does a button work?</a></li>
-<li><a href="#pinout" id="toc-pinout">Pinout</a></li>
+<li><a href="#pinout" id="toc-pinout">Pinout</a>
+<ul>
+<li><a href="#switches" id="toc-switches">Switches</a></li>
+<li><a href="#toggle-vs.-push" id="toc-toggle-vs.-push">Toggle
+vs. Push</a></li>
+<li><a href="#the-button-pins" id="toc-the-button-pins">The button
+pins</a></li>
+</ul></li>
 <li><a href="#circuit-demonstration"
 id="toc-circuit-demonstration">Circuit Demonstration</a></li>
 <li><a href="#the-button-sketch" id="toc-the-button-sketch">The Button
@@ -265,23 +272,68 @@ tactile button.</p>
 </section>
 <section id="pinout" class="level2">
 <h2>Pinout</h2>
+<section id="switches" class="level3">
+<h3>Switches</h3>
 <p>First it might help to explain that a button is essentially a push
 <strong>switch</strong>.</p>
+<p>The schematic symbol of a generic switch is intuitive. This shows a
+switch that is open, meaning that the circuit is broken. Current
+<em>CANNOT</em> pass through the wire.</p>
+<div>
+<p><img src="./images/switch_open.svg" width=400 style="border: none;"></img></p>
+</div>
+<p>This symbol shows the switch closed, meaning that the circuit is
+complete. Current <em>CAN</em> pass through the wire.</p>
+<div>
+<p><img src="./images/switch_closed.svg" width=400 style="border: none; padding-top:20px; padding-bottom:20px"></img></p>
+</div>
+<p>This is how an On-Off switch works. It is a <strong>toggle</strong>
+switch.</p>
+<div>
+<p><img src="./images/switch.jpeg" width=400 style=""></img></p>
+</div>
+</section>
+<section id="toggle-vs.-push" class="level3">
+<h3>Toggle vs. Push</h3>
+<p>Try interacting with the switch in this simulation showing a simple
+led-resistor circuit with a generic switch. (You may need to click the
+“RUN / Stop” button)</p>
 <iframe style="padding-top:25px;" id="circuitFrame" src="../../CircuitJS/circuitjs.html?ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgoqoQFMBaMMAKADcRsEUQAWOTtxBo8UMf2pUp0BCwDOgniIoZCw-GKoAzAIYAbOXRZhCPBKvWjza-lR4ATOroCuegC4M9de+E1RYrABOKjYCXDy2YmDwLEA" width="800" height="550" uk-responsive>
 </iframe>
+<p>The next simulation is using a push switch instead (push button).
+Notice the difference.</p>
 <iframe style="padding-top:25px;" id="circuitFrame" src="../../CircuitJS/circuitjs.html?ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgoqoQFMBaMMAKADcRsEUQAWOTtxBo8UMf2pUp0BCzCEeCDIWH4KyvgJ4ATOgDMAhgFcANgBcGJutvBjpkVgCd1K-lS483YsPBYBnQR4RF1VRKggzRyM6FiA
 " width="800" height="550" uk-responsive>
 </iframe>
+<p>As you can see, the circuit is complete ONLY so long as the button is
+pressed.</p>
+<p>The schematic symbol for a push button looks a little bit different
+but makes sense when you think about it.</p>
+<div>
+<p><img src="./images/button_schematic.png" width=500 style=""></img></p>
+</div>
+<p>The two wires on the left and right are connected when the plate
+above them is pushed down.</p>
+</section>
+<section id="the-button-pins" class="level3">
+<h3>The button pins</h3>
+<p>The button has 4 pins which makes this a bit confusing.</p>
 <div>
 <p><img src="./images/pinout.gif" width=300 style=""></img></p>
 </div>
 <p>Here is a screenshot in Fritzing to show that the pins in red are
-connected whether the button is pressed or not. Same with the blue
-pins.</p>
+connected whether the button is pressed or not. They are
+<strong>internally connected</strong>. Same with the blue pins.</p>
 <div>
-<p><img src="./images/fritzing.png" width=400 style=""></img></p>
+<p><img src="./images/fritzing.jpg" width=400 style=""></img></p>
 </div>
+<p>This means that when you press the button, the red and blue pins are
+connected together. It might seem hard to know which pins are internally
+connected. If you extend the legs as if the button was a squished bug on
+a flat surface, the legs point away from the button. The pins that
+follow the same line are internally connected.</p>
 <hr />
+</section>
 </section>
 <section id="circuit-demonstration" class="level2">
 <h2>Circuit Demonstration</h2>

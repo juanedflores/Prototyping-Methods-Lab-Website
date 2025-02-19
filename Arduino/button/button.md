@@ -35,22 +35,65 @@ And a case that would cover the look of those buttons:
 
 ## Pinout
 
+### Switches
+
 First it might help to explain that a button is essentially a push **switch**.
+
+The schematic symbol of a generic switch is intuitive. This shows a switch that is open, meaning that the circuit is broken. Current _CANNOT_ pass through the wire.
+
+<div>
+<img src="./images/switch_open.svg" width=400 style="border: none;"></img>
+</div>
+
+This symbol shows the switch closed, meaning that the circuit is complete. Current _CAN_ pass through the wire.
+
+<div>
+<img src="./images/switch_closed.svg" width=400 style="border: none; padding-top:20px; padding-bottom:20px"></img>
+</div>
+
+This is how an On-Off switch works. It is a **toggle** switch.
+
+<div>
+<img src="./images/switch.jpeg" width=400 style=""></img>
+</div>
+
+
+### Toggle vs. Push
+
+Try interacting with the switch in this simulation showing a simple led-resistor circuit with a generic switch. (You may need to click the "RUN / Stop" button)
 
 <iframe style="padding-top:25px;" id="circuitFrame" src="../../CircuitJS/circuitjs.html?ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgoqoQFMBaMMAKADcRsEUQAWOTtxBo8UMf2pUp0BCwDOgniIoZCw-GKoAzAIYAbOXRZhCPBKvWjza-lR4ATOroCuegC4M9de+E1RYrABOKjYCXDy2YmDwLEA" width="800" height="550" uk-responsive></iframe>
 
+The next simulation is using a push switch instead (push button). Notice the difference.
+
 <iframe style="padding-top:25px;" id="circuitFrame" src="../../CircuitJS/circuitjs.html?ctz=CQAgjCAMB0l3BWcMBMcUHYMGZIA4UA2ATmIxAUgoqoQFMBaMMAKADcRsEUQAWOTtxBo8UMf2pUp0BCzCEeCDIWH4KyvgJ4ATOgDMAhgFcANgBcGJutvBjpkVgCd1K-lS483YsPBYBnQR4RF1VRKggzRyM6FiA
 " width="800" height="550" uk-responsive></iframe>
+
+As you can see, the circuit is complete ONLY so long as the button is pressed.
+
+The schematic symbol for a push button looks a little bit different but makes sense when you think about it.
+
+<div>
+<img src="./images/button_schematic.png" width=500 style=""></img>
+</div>
+
+The two wires on the left and right are connected when the plate above them is pushed down.
+
+### The button pins
+
+The button has 4 pins which makes this a bit confusing.
 
 <div>
 <img src="./images/pinout.gif" width=300 style=""></img>
 </div>
 
-Here is a screenshot in Fritzing to show that the pins in red are connected whether the button is pressed or not. Same with the blue pins.
+Here is a screenshot in Fritzing to show that the pins in red are connected whether the button is pressed or not. They are **internally connected**. Same with the blue pins.
 
 <div>
-<img src="./images/fritzing.png" width=400 style=""></img>
+<img src="./images/fritzing.jpg" width=400 style=""></img>
 </div>
+
+This means that when you press the button, the red and blue pins are connected together. It might seem hard to know which pins are internally connected. If you extend the legs as if the button was a squished bug on a flat surface, the legs point away from the button. The pins that follow the same line are internally connected.
 
 ---
 
