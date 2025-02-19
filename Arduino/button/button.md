@@ -295,7 +295,7 @@ buttonState = digitalRead(buttonPin);
 
 `digitalRead()` only takes one parameter, the pin number that is being used as an input.
 
-##### if statements, conditional statements
+#### if statements, conditional statements
 
 The remaining part of the `loop()` introduces something called a **conditional statement**.
 
