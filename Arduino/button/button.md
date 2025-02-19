@@ -143,7 +143,9 @@ This is `Button.ino`.
 
 Of course we should always look at the link provided in the block comment:
 
-[https://www.arduino.cc/en/Tutorial/BuiltInExamples/Button](https://www.arduino.cc/en/Tutorial/BuiltInExamples/Button)
+```txt
+https://www.arduino.cc/en/Tutorial/BuiltInExamples/Button
+```
 
 <div>
 <img src="https://docs.arduino.cc/static/fb8449b4834dfbbf3c03223c8bc3e5b5/29114/schematic.png" width=100% style=""></img>
