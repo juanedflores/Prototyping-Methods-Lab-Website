@@ -37,12 +37,12 @@ Let's start with wiring the 6 LEDs.
 In these images I hooked up LEDs to pins 7 to 12.
 
 ```c
-int led_pin1 = 12;
-int led_pin2 = 11;
-int led_pin3 = 10;
-int led_pin4 = 9;
-int led_pin5 = 8;
-int led_pin6 = 7;
+const int led_pin1 = 12;
+const int led_pin2 = 11;
+const int led_pin3 = 10;
+const int led_pin4 = 9;
+const int led_pin5 = 8;
+const int led_pin6 = 7;
 
 void setup() {
     pinMode(led_pin1, OUTPUT);
@@ -318,17 +318,17 @@ Results:
 
 Now we can combine all ideas together.
 
-We can simply replace all the `Serial.println()` lines with `digitalWrite()` lines:
+We can simply replace all the `Serial.println()` lines with `digitalWrite()`, declare each led_pin `const`, and configure them as outputs:
 
 ```c
 int dice_roll = 0;
 
-int led_pin1 = 12;
-int led_pin2 = 11;
-int led_pin3 = 10;
-int led_pin4 = 9;
-int led_pin5 = 8;
-int led_pin6 = 7;
+const int led_pin1 = 12;
+const int led_pin2 = 11;
+const int led_pin3 = 10;
+const int led_pin4 = 9;
+const int led_pin5 = 8;
+const int led_pin6 = 7;
 
 void setup() {
     Serial.begin(9600);
@@ -365,7 +365,9 @@ void loop() {
 
 Uploading this code reveals a problem. LEDs start to light up one by one but they never turn off. 
 
-This is because when one light gets selected, we need to reset all the LEDs back to `LOW` state each time.
+This is because when one light gets selected and turns on, nothing is telling the Arduino to turn all the other LEDs off.
+
+We need to reset all the LEDs back to `LOW` state each time.
 
 ```c
 int dice_roll = 0;
@@ -418,92 +420,199 @@ void loop() {
 }
 ```
 
-Uploading this code shows that it works just how we wanted. Every second a random LED lights up.
+Uploading this code shows that it works just how we wanted. Every second a random LED lights up. Change the delay to something like `40` to see how fast it can go.
 
 ## The Challenge
 
-See if you can combine the previous LED sketch with the button sketch. The goal is to get one random LED to light up every time you press the button. To get started, you should look at the `StateChangeDetection` example sketch:
+See if you can combine the previous LED sketch with the button sketch. The goal is to get one random LED to light up every time you press and release the button. When you release the button, the picked LED should remain ON.
 
-This is found under **File** -> **Examples** -> **02.Digital** -> **StateChangeDetection**
+To start planning how to tackle the problem, it is good to start thinking in **pseudo code**.
+
+**if** the button is PRESSED, get a new random number.
+
+**if** the button is RELEASED or NOT PRESSED, the corresponding LED should stay on.
+
+Lets write the last two sentences in another way.
+
+**if** the button is HIGH, _then_ get a new random number,
 
 ```c
-/*
-   State change detection (edge detection)
+if (buttonState == HIGH) {
+    dice_roll = random(6);
+}
+```
 
-   Often, you don't need to know the state of a digital input all the time, but
-   you just need to know when the input changes from one state to another.
-   For example, you want to know when a button goes from OFF to ON. This is called
-   state change detection, or edge detection.
+**else** don't get a new random number and just light up the corresponding LED.
 
-   This example shows how to detect when a button or button changes from off to on
-   and on to off.
 
-   The circuit:
-   - pushbutton attached to pin 2 from +5V
-   - 10 kilohm resistor attached to pin 2 from ground
-   - LED attached from pin 13 to ground through 220 ohm resistor (or use the
-   built-in LED on most Arduino boards)
+```c
+else {
+    digitalWrite(picked_led, HIGH);
+}
+```
 
-   created  27 Sep 2005
-   modified 30 Aug 2011
-   by Tom Igoe
+All together:
 
-   This example code is in the public domain.
+```c
+buttonState = digitalRead(button_pin);
 
-   https://www.arduino.cc/en/Tutorial/BuiltInExamples/StateChangeDetection
- */
+if (buttonState == HIGH) {
+    dice_roll = random(6);
+} else {
+    digitalWrite(picked_led, HIGH);
+}
+```
 
-// this constant won't change:
-const int buttonPin = 2;  // the pin that the pushbutton is attached to
-const int ledPin = 13;    // the pin that the LED is attached to
+As we get closer and closer to actual code, we notice that `picked_led` runs us into a problem. How do we get the corresponding LED output pins that go from 7-12 when the random numbers go from 0-5?
 
-// Variables will change:
-int buttonPushCounter = 0;  // counter for the number of button presses
-int buttonState = 0;        // current state of the button
-int lastButtonState = 0;    // previous state of the button
+There are actually many ways to solve this. We could potentially just use digital pins 0 - 5, but that is impractical. We could instead change the random numbers to not be of range 0 - 5, but to 7 - 12.
+
+### 1. use random() min and max value
+
+`random()` can take two parameters. If you provide two parameters, the first one will be the `min` and the second will be the `max`. So instead of starting from 0, it can start from the `min` and up to but not including the `max`.
+
+`random(7, 13)`: will give us the range 7 - 12.
+
+So the solution to our earlier pseudo code would be this:
+
+```c
+if (buttonState == HIGH) {
+    dice_roll = random(7, 13);
+} else {
+    digitalWrite(dice_roll, HIGH);
+}
+```
+
+`dice_roll` can just hold the output pin number instead of having a separate `picked_led` variable. Though you can rename `dice_roll` if that is easier for you to understand.
+
+```c
+if (buttonState == HIGH) {
+    picked_led = random(7, 13);
+} else {
+    digitalWrite(picked_led, HIGH);
+}
+```
+
+If we reset the LEDs to turn off at the end of the loop like we did before:
+
+```c
+void loop() {
+    buttonState = digitalRead(button_pin);
+
+    if (buttonState == HIGH) {
+        picked_led = random(7, 13);
+    } else {
+        digitalWrite(picked_led, HIGH);
+    }
+
+    // reset LEDs
+    digitalWrite(led_pin1, LOW);
+    digitalWrite(led_pin2, LOW);
+    digitalWrite(led_pin3, LOW);
+    digitalWrite(led_pin4, LOW);
+    digitalWrite(led_pin5, LOW);
+    digitalWrite(led_pin6, LOW);
+}
+```
+
+And then when we add the rest we should have something like this. Uploading it and testing it shows that it works just as described.
+
+<ul uk-accordion style='pading-bottom: 5vh'> <li class='uk-open'>
+<a id='code-file' class='uk-accordion-title' href='#'>Solution 1</a>
+<div class='uk-accordion-content' style='padding-bottom:20px; margin-bottom:20px'>
+
+```c
+int picked_led = 0;
+int buttonState = 0;
+
+const int button_pin = 2;
+
+const int led_pin1 = 12;
+const int led_pin2 = 11;
+const int led_pin3 = 10;
+const int led_pin4 = 9;
+const int led_pin5 = 8;
+const int led_pin6 = 7;
 
 void setup() {
-    // initialize the button pin as a input:
-    pinMode(buttonPin, INPUT);
-    // initialize the LED as an output:
-    pinMode(ledPin, OUTPUT);
-    // initialize serial communication:
-    Serial.begin(9600);
+    pinMode(button_pin, INPUT);
+    pinMode(led_pin1, OUTPUT);
+    pinMode(led_pin2, OUTPUT);
+    pinMode(led_pin3, OUTPUT);
+    pinMode(led_pin4, OUTPUT);
+    pinMode(led_pin5, OUTPUT);
+    pinMode(led_pin6, OUTPUT);
 }
 
-
 void loop() {
-    // read the pushbutton input pin:
-    buttonState = digitalRead(buttonPin);
+    buttonState = digitalRead(button_pin);
 
-    // compare the buttonState to its previous state
-    if (buttonState != lastButtonState) {
-        // if the state has changed, increment the counter
-        if (buttonState == HIGH) {
-            // if the current state is HIGH then the button went from off to on:
-            buttonPushCounter++;
-            Serial.println("on");
-            Serial.print("number of button pushes: ");
-            Serial.println(buttonPushCounter);
-        } else {
-            // if the current state is LOW then the button went from on to off:
-            Serial.println("off");
-        }
-        // Delay a little bit to avoid bouncing
-        delay(50);
-    }
-    // save the current state as the last state, for next time through the loop
-    lastButtonState = buttonState;
-
-
-    // turns on the LED every four button pushes by checking the modulo of the
-    // button push counter. the modulo function gives you the remainder of the
-    // division of two numbers:
-    if (buttonPushCounter % 4 == 0) {
-        digitalWrite(ledPin, HIGH);
+    if (buttonState == HIGH) {
+        picked_led = random(7, 13);
     } else {
-        digitalWrite(ledPin, LOW);
+        digitalWrite(picked_led, HIGH);
+    }
+
+    // reset LEDs
+    digitalWrite(led_pin1, LOW);
+    digitalWrite(led_pin2, LOW);
+    digitalWrite(led_pin3, LOW);
+    digitalWrite(led_pin4, LOW);
+    digitalWrite(led_pin5, LOW);
+    digitalWrite(led_pin6, LOW);
+}
+```
+
+</div>
+
+It is not very noticeable, but you might notice that some LEDs vary in brightness. Some are dimmer than others. This is because even the `picked_led` is being turned off at the end of every loop. Ideally, the `picked_led` should just have a `digitalWrite(picked_led, HIGH);` every loop.
+
+We can do that by just moving the `// reset LEDs` section up within he `(buttonState == HIGH)` condition.
+
+```c
+void loop() {
+    buttonState = digitalRead(button_pin);
+
+    if (buttonState == HIGH) {
+        picked_led = random(7, 13);
+
+        // reset LEDs
+        digitalWrite(led_pin2, LOW);
+        digitalWrite(led_pin3, LOW);
+        digitalWrite(led_pin4, LOW);
+        digitalWrite(led_pin5, LOW);
+        digitalWrite(led_pin6, LOW);
+        digitalWrite(led_pin1, LOW);
+    } else {
+        digitalWrite(picked_led, HIGH);
     }
 }
 ```
 
+Now the selected LED will remain `HIGH` when the button is NOT pressed (`LOW` state).
+
+Another nice improvement could be to animate it a little bit when the button is pressed by visualizing the randomness.
+
+```c
+void loop() {
+    buttonState = digitalRead(button_pin);
+
+    if (buttonState == HIGH) {
+        picked_led = random(7, 13);
+
+        // show random selections while pressed
+        digitalWrite(picked_led, HIGH);
+        delay(40);
+
+        // reset LEDs
+        digitalWrite(led_pin2, LOW);
+        digitalWrite(led_pin3, LOW);
+        digitalWrite(led_pin4, LOW);
+        digitalWrite(led_pin5, LOW);
+        digitalWrite(led_pin6, LOW);
+        digitalWrite(led_pin1, LOW);
+    } else {
+        digitalWrite(picked_led, HIGH);
+    }
+}
+```
