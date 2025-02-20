@@ -236,6 +236,16 @@ id="toc-randomly-light-up-one-led">Randomly Light up One LED</a></li>
 id="toc-use-random-min-and-max-value">Use random() min and max
 value</a></li>
 </ul></li>
+<li><a href="#next-steps" id="toc-next-steps">Next Steps</a></li>
+<li><a href="#different-variations"
+id="toc-different-variations">Different Variations</a>
+<ul>
+<li><a href="#piezo-sensor" id="toc-piezo-sensor">Piezo Sensor</a></li>
+<li><a href="#led-matrix" id="toc-led-matrix">LED Matrix</a></li>
+<li><a href="#segment-display-and-buzzer"
+id="toc-segment-display-and-buzzer">7 Segment Display and
+Buzzer</a></li>
+</ul></li>
 </ul></li>
 </ul></div>
         </div>
@@ -793,6 +803,9 @@ up within the <code>(buttonState == HIGH)</code> condition.</p>
 <span id="cb24-17"><a href="#cb24-17" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>Now the selected LED will remain <code>HIGH</code> when the button is
 NOT pressed (<code>LOW</code> state).</p>
+<div>
+<p><img src="./images/rand_led.gif" width=100% style=""></img></p>
+</div>
 <p>Another nice improvement could be to animate it a little bit when the
 button is pressed by visualizing the randomness.</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
@@ -816,6 +829,141 @@ button is pressed by visualizing the randomness.</p>
 <span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>picked_led<span class="op">,</span> HIGH<span class="op">);</span></span>
 <span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
 <span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</section>
+</section>
+<section id="next-steps" class="level2">
+<h2>Next Steps</h2>
+<p>As the next challenge, what if we want the LEDs to display the dot
+format to resemble a die face?</p>
+<ul uk-accordion style='pading-bottom: 5vh'>
+<li class='uk-open'>
+<a id='code-file' class='uk-accordion-title' href='#'>Dice Roller
+Starter</a>
+<div class="uk-accordion-content"
+style="padding-bottom:20px; margin-bottom:20px">
+<div class="sourceCode" id="cb26"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> picked_led <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> buttonState <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> <span class="dt">int</span> button_pin <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> <span class="dt">int</span> led_pin1 <span class="op">=</span> <span class="dv">12</span><span class="op">;</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> <span class="dt">int</span> led_pin2 <span class="op">=</span> <span class="dv">11</span><span class="op">;</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> <span class="dt">int</span> led_pin3 <span class="op">=</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> <span class="dt">int</span> led_pin4 <span class="op">=</span> <span class="dv">9</span><span class="op">;</span></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> <span class="dt">int</span> led_pin5 <span class="op">=</span> <span class="dv">8</span><span class="op">;</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="dt">const</span> <span class="dt">int</span> led_pin6 <span class="op">=</span> <span class="dv">7</span><span class="op">;</span></span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>button_pin<span class="op">,</span> INPUT<span class="op">);</span></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>led_pin1<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>led_pin2<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb26-17"><a href="#cb26-17" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>led_pin3<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb26-18"><a href="#cb26-18" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>led_pin4<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb26-19"><a href="#cb26-19" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>led_pin5<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb26-20"><a href="#cb26-20" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>led_pin6<span class="op">,</span> OUTPUT<span class="op">);</span></span>
+<span id="cb26-21"><a href="#cb26-21" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb26-22"><a href="#cb26-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-23"><a href="#cb26-23" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb26-24"><a href="#cb26-24" aria-hidden="true" tabindex="-1"></a>    buttonState <span class="op">=</span> digitalRead<span class="op">(</span>button_pin<span class="op">);</span></span>
+<span id="cb26-25"><a href="#cb26-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-26"><a href="#cb26-26" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>buttonState <span class="op">==</span> HIGH<span class="op">)</span> <span class="op">{</span></span>
+<span id="cb26-27"><a href="#cb26-27" aria-hidden="true" tabindex="-1"></a>        picked_led <span class="op">=</span> random<span class="op">(</span><span class="dv">7</span><span class="op">,</span> <span class="dv">13</span><span class="op">);</span></span>
+<span id="cb26-28"><a href="#cb26-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-29"><a href="#cb26-29" aria-hidden="true" tabindex="-1"></a>        <span class="co">// reset LEDs</span></span>
+<span id="cb26-30"><a href="#cb26-30" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin2<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb26-31"><a href="#cb26-31" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin3<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb26-32"><a href="#cb26-32" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin4<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb26-33"><a href="#cb26-33" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin5<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb26-34"><a href="#cb26-34" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin6<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb26-35"><a href="#cb26-35" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>led_pin1<span class="op">,</span> LOW<span class="op">);</span></span>
+<span id="cb26-36"><a href="#cb26-36" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb26-37"><a href="#cb26-37" aria-hidden="true" tabindex="-1"></a>        digitalWrite<span class="op">(</span>picked_led<span class="op">,</span> HIGH<span class="op">);</span></span>
+<span id="cb26-38"><a href="#cb26-38" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb26-39"><a href="#cb26-39" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</div>
+</section>
+<section id="different-variations" class="level2">
+<h2>Different Variations</h2>
+<section id="piezo-sensor" class="level3">
+<h3>Piezo Sensor</h3>
+<div style="width: 100%; display: flex; padding-top: 25px;">
+<div style="width: 70%; margin: auto;">
+<li style="list-style-type: none;">
+<div>
+<a href="https://www.spikenzielabs.com/learn/dicekit.html">
+<div
+class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge"
+style="background: #fba99e">
+<div
+class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge">
+<div style="display: inline">
+<p><img src="./images/piezo.jpg" alt="" style="padding-bottom: 10px" uk-image />
+<span class="uk-label" style="background-color: blue">(Click for
+more)</span></p>
+</div>
+</div>
+<p></a></p>
+</div>
+</div>
+</li>
+<p>This project uses vibration to activate the dice.</p>
+</div>
+</div>
+</section>
+<section id="led-matrix" class="level3">
+<h3>LED Matrix</h3>
+<div style="width: 100%; display: flex; padding-top: 25px;">
+<div style="width: 70%; margin: auto;">
+<li style="list-style-type: none;">
+<div>
+<a href="https://projecthub.arduino.cc/shreyas_arbatti/electronic-dice-using-touch-sensor-led-matrix-and-arduino-aead05">
+<div
+class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge"
+style="background: #fba99e">
+<div
+class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge">
+<div style="display: inline">
+<p><img src="./images/matrix.jpeg" alt="" style="padding-bottom: 10px" uk-image />
+<span class="uk-label" style="background-color: blue">(Click for
+more)</span></p>
+</div>
+</div>
+<p></a></p>
+</div>
+</div>
+</li>
+<p>You can use an LED matrix as an alternative display. The link also
+demonstrates the use of a touch sensor to initiate the dice roll.</p>
+</div>
+</div>
+</section>
+<section id="segment-display-and-buzzer" class="level3">
+<h3>7 Segment Display and Buzzer</h3>
+<div style="width: 100%; display: flex; padding-top: 25px;">
+<div style="width: 70%; margin: auto;">
+<li style="list-style-type: none;">
+<div>
+<a href="https://sites.google.com/view/maximagination-workshop/mini-circuit-parts-lists-and-project-files/arduino-digital-dice">
+<div
+class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge"
+style="background: #fba99e">
+<div
+class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge">
+<div style="display: inline">
+<p><img src="./images/segment.webp" alt="" style="padding-bottom: 10px" uk-image />
+<span class="uk-label" style="background-color: blue">(Click for
+more)</span></p>
+</div>
+</div>
+<p></a></p>
+</div>
+</div>
+</li>
+<p>A 7 Segment display is another alternative display. It is essentially
+7 leds. It also adds a buzzer speaker. Another name for a dice roller
+project is “portable random number generator”.</p>
+</div>
+</div>
 </section>
 </section>
 </section></div>

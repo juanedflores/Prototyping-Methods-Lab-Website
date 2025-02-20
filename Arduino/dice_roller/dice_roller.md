@@ -591,6 +591,10 @@ void loop() {
 
 Now the selected LED will remain `HIGH` when the button is NOT pressed (`LOW` state).
 
+<div>
+<img src="./images/rand_led.gif" width=100% style=""></img>
+</div>
+
 Another nice improvement could be to animate it a little bit when the button is pressed by visualizing the randomness.
 
 ```c
@@ -616,3 +620,133 @@ void loop() {
     }
 }
 ```
+
+## Next Steps
+
+As the next challenge, what if we want the LEDs to display the dot format to resemble a die face?
+
+<ul uk-accordion style='pading-bottom: 5vh'> <li class='uk-open'>
+<a id='code-file' class='uk-accordion-title' href='#'>Dice Roller Starter</a>
+<div class='uk-accordion-content' style='padding-bottom:20px; margin-bottom:20px'>
+
+```c
+int picked_led = 0;
+int buttonState = 0;
+
+const int button_pin = 2;
+
+const int led_pin1 = 12;
+const int led_pin2 = 11;
+const int led_pin3 = 10;
+const int led_pin4 = 9;
+const int led_pin5 = 8;
+const int led_pin6 = 7;
+
+void setup() {
+    pinMode(button_pin, INPUT);
+    pinMode(led_pin1, OUTPUT);
+    pinMode(led_pin2, OUTPUT);
+    pinMode(led_pin3, OUTPUT);
+    pinMode(led_pin4, OUTPUT);
+    pinMode(led_pin5, OUTPUT);
+    pinMode(led_pin6, OUTPUT);
+}
+
+void loop() {
+    buttonState = digitalRead(button_pin);
+
+    if (buttonState == HIGH) {
+        picked_led = random(7, 13);
+
+        // reset LEDs
+        digitalWrite(led_pin2, LOW);
+        digitalWrite(led_pin3, LOW);
+        digitalWrite(led_pin4, LOW);
+        digitalWrite(led_pin5, LOW);
+        digitalWrite(led_pin6, LOW);
+        digitalWrite(led_pin1, LOW);
+    } else {
+        digitalWrite(picked_led, HIGH);
+    }
+}
+```
+
+</div>
+
+## Different Variations
+
+### Piezo Sensor
+
+<div style="width: 100%; display: flex; padding-top: 25px;">
+<div style="width: 70%; margin: auto;">
+
+<li style="list-style-type: none;">
+<div>
+<a href="https://www.spikenzielabs.com/learn/dicekit.html">
+<div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge" style="background: #fba99e">
+<div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge">
+<div style="display: inline">
+<img src="./images/piezo.jpg" alt="" style="padding-bottom: 10px" uk-image />
+<span class="uk-label" style="background-color: blue">(Click for more)</span>
+</div>
+</div>
+</a>
+</div>
+</div>
+</li>
+
+This project uses vibration to activate the dice.
+
+</div>
+</div>
+
+
+### LED Matrix
+
+<div style="width: 100%; display: flex; padding-top: 25px;">
+<div style="width: 70%; margin: auto;">
+
+<li style="list-style-type: none;">
+<div>
+<a href="https://projecthub.arduino.cc/shreyas_arbatti/electronic-dice-using-touch-sensor-led-matrix-and-arduino-aead05">
+<div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge" style="background: #fba99e">
+<div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge">
+<div style="display: inline">
+<img src="./images/matrix.jpeg" alt="" style="padding-bottom: 10px" uk-image />
+<span class="uk-label" style="background-color: blue">(Click for more)</span>
+</div>
+</div>
+</a>
+</div>
+</div>
+</li>
+
+You can use an LED matrix as an alternative display. The link also demonstrates the use of a touch sensor to initiate the dice roll.
+
+</div>
+</div>
+
+### 7 Segment Display and Buzzer
+
+<div style="width: 100%; display: flex; padding-top: 25px;">
+<div style="width: 70%; margin: auto;">
+
+<li style="list-style-type: none;">
+<div>
+<a href="https://sites.google.com/view/maximagination-workshop/mini-circuit-parts-lists-and-project-files/arduino-digital-dice">
+<div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge" style="background: #fba99e">
+<div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge">
+<div style="display: inline">
+<img src="./images/segment.webp" alt="" style="padding-bottom: 10px" uk-image />
+<span class="uk-label" style="background-color: blue">(Click for more)</span>
+</div>
+</div>
+</a>
+</div>
+</div>
+</li>
+
+A 7 Segment display is another alternative display. It is essentially 7 leds. It also adds a buzzer speaker. Another name for a dice roller project is "portable random number generator".
+
+</div>
+</div>
