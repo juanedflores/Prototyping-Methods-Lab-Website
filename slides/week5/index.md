@@ -838,6 +838,34 @@ void display_dice() {
 
 ---
 
+### void
+
+<embed style="width: 100%; height: 600" src="https://docs.arduino.cc/language-reference/en/variables/data-types/void/"></embed>
+
+---
+
+### int function
+
+```js [1: 1-5|11]
+int myMultiplyFunction(int x, int y){
+    int result;
+    result = x * y;
+    return result;
+}
+
+void loop() {
+  int i = 2;
+  int j = 3;
+  int k;
+  k = myMultiplyFunction(i, j); // k now contains 6
+  delay(500);
+}
+```
+
+returns an int
+
+---
+
 ### Making a custom Function
 
 ```js

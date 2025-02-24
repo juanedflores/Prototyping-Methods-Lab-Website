@@ -15,7 +15,8 @@ title: Week 5
 - Check In
 - Arduino Check In
 - Refresh of Last Week (Dice Roller) Functions
-- Sweep & Fade Sketches (Pulse Width Modulation)
+- Sweep & Fading Sketches (Pulse Width Modulation)
+- RGB LED
  
 ---
 
@@ -26,12 +27,44 @@ title: Week 5
 
 <li>
 <div>
-<a href="https://docs.arduino.cc/built-in-examples/basics/Fade/">
+<a href="https://docs.arduino.cc/built-in-examples/analog/Fading/">
 <div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge" style="background: #7fcbcd">
 <div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge">
-<h3 class="cardtitle">Fade</h3>
+<h3 class="cardtitle">Fading</h3>
 <div style="display: inline">
 <img src="./Arduino/fade/images/cover.webp" alt="" style="padding-bottom: 10px" uk-image />
+<span class="uk-label" style="background-color: #1e87f0">Arduino</span>
+</div>
+</div>
+</a>
+</div>
+</div>
+</li>
+
+<li>
+<div>
+<a href="https://docs.arduino.cc/language-reference/en/structure/control-structure/for/">
+<div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge" style="background: #7fcbcd">
+<div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge">
+<h3 class="cardtitle">For Loops</h3>
+<div style="display: inline">
+<img src="./weeks/week5/images/for_loops.png" alt="" style="padding-bottom: 10px; width:400px" uk-image />
+<span class="uk-label" style="background-color: #1e87f0">Arduino</span>
+</div>
+</div>
+</a>
+</div>
+</div>
+</li>
+
+<li>
+<div>
+<a href="https://docs.arduino.cc/learn/microcontrollers/analog-output/">
+<div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge" style="background: #7fcbcd">
+<div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge">
+<h3 class="cardtitle">Pulse Width Modulation (PWM)</h3>
+<div style="display: inline">
+<img src="./weeks/week5/images/pwm.gif" alt="" style="padding-bottom: 10px; width:400px" uk-image />
 <span class="uk-label" style="background-color: #1e87f0">Arduino</span>
 </div>
 </div>
@@ -48,6 +81,22 @@ title: Week 5
 <h3 class="cardtitle">Sweep</h3>
 <div style="display: inline">
 <img src="./Arduino/sweep/images/cover.jpg" alt="" style="padding-bottom: 10px" uk-image />
+<span class="uk-label" style="background-color: #1e87f0">Arduino</span>
+</div>
+</div>
+</a>
+</div>
+</div>
+</li>
+
+<li>
+<div>
+<a href="./Arduino/rgb_led/rgb_led.html">
+<div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge" style="background: #5A684E">
+<div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge">
+<h3 class="cardtitle">RGB LED</h3>
+<div style="display: inline">
+<img src="./Arduino/rgb_led/images/cover.png" alt="" style="padding-bottom: 10px" uk-image />
 <span class="uk-label" style="background-color: #1e87f0">Arduino</span>
 </div>
 </div>
