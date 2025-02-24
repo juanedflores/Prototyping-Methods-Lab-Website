@@ -59,7 +59,6 @@ This is how an On-Off switch works. It is a **toggle** switch.
 <img src="./images/switch.jpeg" width=400 style=""></img>
 </div>
 
-
 ### Toggle vs. Push
 
 Try interacting with the switch in this simulation showing a simple led-resistor circuit with a generic switch. (You may need to click the "RUN / Stop" button)

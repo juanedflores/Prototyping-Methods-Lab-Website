@@ -746,7 +746,9 @@ You can use an LED matrix as an alternative display. The link also demonstrates 
 </div>
 </li>
 
-A 7 Segment display is another alternative display. It is essentially 7 leds. It also adds a buzzer speaker. Another name for a dice roller project is "portable random number generator".
+A 7 Segment display is another alternative display. It is essentially 7 leds. It also adds a buzzer speaker. Another name for a dice roller project is "portable random number generator". With 7 segment displays, You can add even more digits to your number display.
 
 </div>
 </div>
+
+

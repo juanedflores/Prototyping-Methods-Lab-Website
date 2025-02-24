@@ -6,8 +6,6 @@ title: Week 4
 <embed type="text/html" src="slides/week4/index.html" width="100%" height="500px" />
 </section>
 
-[Open Slides in New Tab](./slides/week4/index.html)
-
 ---
 
 ### Agenda
@@ -15,7 +13,8 @@ title: Week 4
 - Check In
 - Arduino Check In (Get Set Up)
 - IDE Familiarity
-- First Sketches
+- First Sketches (Blink, Button)
+- Dice Roller Challenge
  
 ---
 

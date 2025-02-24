@@ -3,6 +3,7 @@ title: Week 2
 ---
 
 # Intro to TinkerCAD
+
 ## What is TinkerCAD?
 
 TinkerCAD is a web based design tool. It can do 3D design, but we are going to be interested in using it to build and simulate circuits as a way to introduce the basics of electronics.
@@ -11,7 +12,6 @@ TinkerCAD is a web based design tool. It can do 3D design, but we are going to b
   <source src="https://ibles-content.tinkercad.com/static/tinkercad/marketing/circuits/hero-circuits-720.mp4" type="video/mp4" />
   Your browser does not support the video tag.
 </video>
-
 
 Below is an embed of the TinkerCAD circuit project that I shared in class. Feel free to interact with it or viewing through the shared classroom designs.
 
@@ -246,7 +246,6 @@ Makeability Lab
 </li>
 </ul>
 </blockquote>
-
 
 ## Terminology
 

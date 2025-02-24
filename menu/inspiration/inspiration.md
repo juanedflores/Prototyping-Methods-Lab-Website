@@ -105,6 +105,4 @@ title: Inspiration Board
 
 
 </ul>
-
-</ul>
 </div>
