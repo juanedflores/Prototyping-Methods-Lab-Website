@@ -1,5 +1,5 @@
 ### Week 5 - Learning How to Walk: Pulse Width Modulation, Functions, Analog Input
-<!-- .slide: class="" style=" height: 80vh" -->  
+<!-- .slide: class="code_slide" style=" height: 65vh" -->  
 
 <div>
 <img src="./images/walking.webp" style=" width:45%"></img>
@@ -8,7 +8,7 @@
 ---
 
 ### Dice Roller (Continued)
-<!-- .slide: class="" style=" height: 80vh" -->  
+<!-- .slide: class="code_slide" style=" height: 65vh" -->  
 
 <div>
 <a href="https://www.tinkercad.com/things/ie93D0rU3rM-dice-roller-starter/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard">
@@ -22,7 +22,7 @@
 <!-- .slide: class="code_slide" style=" height: 100vh" -->  
 
 <pre>
-<code class="c-language data-line-numbers" data-trim data-noescape data-line-numbers="0|1|1-8">
+<code class="c-language data-line-numbers" data-trim data-noescape data-line-numbers="|1-8">
 // Declare constants
 const int led_pin1 = 12;
 const int led_pin2 = 11;
@@ -46,7 +46,7 @@ void loop() {
 ### Dice Roller (Continued)
 <!-- .slide: class="code_slide" style=" height: 100vh" -->  
 
-```js [1: 10|10|11-16|9-17]
+```js [1: 10|11-16|9-17]
 // declare constants
 const int led_pin1 = 12;
 const int led_pin2 = 11;
@@ -75,7 +75,7 @@ void loop() {
 ### Dice Roller (Continued)
 <!-- .slide: class="code_slide" style=" height: 100vh" -->  
 
-```js [1: 9|9|9-10]
+```js [1: 9|9-10]
 // declare constants
 const int led_pin1 = 12;
 const int led_pin2 = 11;
@@ -108,7 +108,7 @@ void loop() {
 ### Dice Roller (Continued)
 <!-- .slide: class="code_slide" style=" height: 100vh" -->  
 
-```js [1: 23|23|23-24]
+```js [20: 23|23-24]
 // declare constants
 const int led_pin1 = 12;
 const int led_pin2 = 11;
@@ -141,7 +141,7 @@ void loop() {
 ### Dice Roller (Continued)
 <!-- .slide: class="code_slide" style=" height: 100vh" -->  
 
-```js [1: 21|21|21-22]
+```js [1: 21|21-22]
 // declare constants
 const int led_pin1 = 12;
 const int led_pin2 = 11;
@@ -178,7 +178,7 @@ void loop() {
 ### Dice Roller (Continued)
 <!-- .slide: class="code_slide" style=" height: 100vh" -->  
 
-```js [1: 29|29|29-30]
+```js [1: 29|29-30]
 // declare constants
 const int led_pin1 = 12;
 const int led_pin2 = 11;
@@ -217,7 +217,7 @@ void loop() {
 ### Dice Roller (Continued)
 <!-- .slide: class="code_slide" style=" height: 100vh" -->  
 
-```js [1: 32|32|32-35|36-38|39-41|32-50]
+```js [1: 32|32-35|36-38|39-41|32-50]
 // declare constants
 const int led_pin1 = 12;
 const int led_pin2 = 11;
@@ -273,13 +273,14 @@ void loop() {
     delay(1000);
 }
 ```
+<!-- .element: style="font-size: 12px;"  -->
 
 ---
 
 ### Dice Roller (Continued)
 <!-- .slide: class="code_slide" style=" height: 100vh" -->  
 
-```js [1: 55|55|55-61]
+```js [1: 55|55-61]
 // declare constants
 const int led_pin1 = 12;
 const int led_pin2 = 11;
@@ -350,7 +351,7 @@ void loop() {
 ### Dice Roller (Continued)
 <!-- .slide: class="code_slide" style=" height: 100vh" -->  
 
-```js [1: 9|9]
+```js [1: 9]
 // declare constants
 const int led_pin1 = 12;
 const int led_pin2 = 11;
@@ -423,7 +424,7 @@ void loop() {
 ### Dice Roller (Continued)
 <!-- .slide: class="code_slide" style=" height: 100vh" -->  
 
-```js [1: 23|23|23-24]
+```js [1: 23|23-24]
 // declare constants
 const int led_pin1 = 12;
 const int led_pin2 = 11;
@@ -573,7 +574,7 @@ void loop() {
 ### Dice Roller (Continued)
 <!-- .slide: class="code_slide" style=" height: 100vh" -->  
 
-```js [1: 38|38|38-41|13]
+```js [1: 38|38-41|13]
 // declare constants
 const int led_pin1 = 12;
 const int led_pin2 = 11;
@@ -781,7 +782,7 @@ if (dice_roll == 0) {
 
 
 ---
-<!-- .slide: class="" style=" height: 80vh" -->  
+<!-- .slide: class="code_slide" style=" height: 65vh" -->  
 
 ```js
   if (dice_roll == 0) {
@@ -822,9 +823,9 @@ if (dice_roll == 0) {
 ---
 
 ### Functions
-<!-- .slide: class="" style=" height: 80vh" -->  
+<!-- .slide: class="" style=" height: 65vh" -->  
 
-<iframe width="100%" height="100%" src="https://www.youtube.com/embed/BWZTlfrneD8?si=wmDdk5cXeUT5JheC&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="80%" height="80%" src="https://www.youtube.com/embed/BWZTlfrneD8?si=wmDdk5cXeUT5JheC&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
 ---
 
@@ -839,8 +840,9 @@ void display_dice() {
 ---
 
 ### void
+<!-- .slide: class="" style=" height: 65vh" -->  
 
-<embed style="width: 100%; height: 600" src="https://docs.arduino.cc/language-reference/en/variables/data-types/void/"></embed>
+<embed style="width: 100%;" height=500 src="https://docs.arduino.cc/language-reference/en/variables/data-types/void/"></embed>
 
 ---
 
@@ -867,6 +869,7 @@ returns an int
 ---
 
 ### Making a custom Function
+<!-- .slide: class="" style=" height: 65vh" -->  
 
 ```js
 void display_dice() {
@@ -909,7 +912,7 @@ void display_dice() {
 ---
 
 ### Making a custom Function
-<!-- .slide: class="" style=" height: 80vh" -->  
+<!-- .slide: class="" style=" height: 65vh" -->  
 
 ```js
 void loop() {
@@ -940,7 +943,7 @@ void loop() {
 ---
 
 ### Making a custom Function
-<!-- .slide: class="" style=" height: 80vh" -->  
+<!-- .slide: class="" style=" height: 65vh" -->  
 
 ```js
 void reset() {
@@ -957,9 +960,9 @@ void reset() {
 ---
 
 ### Making a custom Function
-<!-- .slide: class="" style=" height: 80vh" -->  
+<!-- .slide: class="" style=" height: 65vh" -->  
 
-```js [1: 10|10]
+```js [1: 10]
 void loop() {
   buttonState = digitalRead(button_pin);
 
@@ -982,9 +985,10 @@ void loop() {
 ---
 
 ### Test
+<!-- .slide: class="code_slide" style=" height: 65vh" -->  
 
 <div>
 <a href="https://www.tinkercad.com/things/6UpXFhOhgFT-dice-roller-solution/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard%2Fdesigns%2Fcircuits">
-<img src="./images/dot.png" width=70% style=""></img>
+<img src="./images/dot.png" width=50% style=""></img>
 </a>
 </div>

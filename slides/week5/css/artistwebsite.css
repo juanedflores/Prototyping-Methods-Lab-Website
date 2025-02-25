@@ -23,6 +23,13 @@
   src: url('fonts/Altone-Regular.ttf');
 }
 
+<<<<<<< HEAD
+h3 {
+  padding-top: 20px;
+}
+
+=======
+>>>>>>> 20fa2a62061eaf8e1ac58fb9d44b5b9120da0774
 html,
 body {
   color: black;
@@ -33,7 +40,15 @@ body {
 }
 
 .code-wrapper {
+<<<<<<< HEAD
+  height: 60%;
+}
+
+pre {
+  padding: 0 !important;
+=======
   height: 80%;
+>>>>>>> 20fa2a62061eaf8e1ac58fb9d44b5b9120da0774
 }
 
 .par {
@@ -79,6 +94,8 @@ hr {
   border-top: 1px solid rgba(140, 140, 140, 0.8);
 }
 
+<<<<<<< HEAD
+=======
 /*** For Projects Pages ***/
 /* h2 { */
 /*   font-family: 'EdelSansUltraLight' !important; */
@@ -88,11 +105,15 @@ hr {
 /*   font-family: 'EdelSansUltraLight' !important; */
 /* } */
 
+>>>>>>> 20fa2a62061eaf8e1ac58fb9d44b5b9120da0774
 p {
   font-family: 'MenloRegular';
   /*   text-align: center; */
 }
+<<<<<<< HEAD
+=======
 
+>>>>>>> 20fa2a62061eaf8e1ac58fb9d44b5b9120da0774
 .column {
   width: 33.3%;
   float: left;
@@ -105,5 +126,9 @@ p {
 
 .slide-background {
   padding: 0 !important;
+<<<<<<< HEAD
+  /*background: #fdddd8 !important;*/
+=======
   /*background: #fba99e !important;*/
+>>>>>>> 20fa2a62061eaf8e1ac58fb9d44b5b9120da0774
 }
