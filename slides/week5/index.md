@@ -1,5 +1,5 @@
-### Week 5 - Learning How to Walk: Pulse Width Modulation, Functions, Analog Input
-<!-- .slide: class="" style=" height: 80vh" -->  
+### Week 5 - Learning How to Walk: Pulse Width Modulation, Functions, Servo Motors
+<!-- .slide: class="code_slide" style=" height: 80vh" -->  
 
 <div>
 <img src="./images/walking.webp" style=" width:45%"></img>
@@ -8,7 +8,7 @@
 ---
 
 ### Dice Roller (Continued)
-<!-- .slide: class="" style=" height: 80vh" -->  
+<!-- .slide: class="code_slide" style=" height: 80vh" -->  
 
 <div>
 <a href="https://www.tinkercad.com/things/ie93D0rU3rM-dice-roller-starter/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard">
