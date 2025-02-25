@@ -1,5 +1,5 @@
 ### Week 5 - Learning How to Walk: Pulse Width Modulation, Functions, Analog Input
-<!-- .slide: class="code_slide" style=" height: 65vh" -->  
+<!-- .slide: class="" style=" height: 80vh" -->  
 
 <div>
 <img src="./images/walking.webp" style=" width:45%"></img>
@@ -8,7 +8,7 @@
 ---
 
 ### Dice Roller (Continued)
-<!-- .slide: class="code_slide" style=" height: 65vh" -->  
+<!-- .slide: class="" style=" height: 80vh" -->  
 
 <div>
 <a href="https://www.tinkercad.com/things/ie93D0rU3rM-dice-roller-starter/editel?returnTo=https%3A%2F%2Fwww.tinkercad.com%2Fdashboard">
@@ -22,7 +22,7 @@
 <!-- .slide: class="code_slide" style=" height: 100vh" -->  
 
 <pre>
-<code class="c-language data-line-numbers" data-trim data-noescape data-line-numbers="|1-8">
+<code class="c-language data-line-numbers" data-trim data-noescape data-line-numbers="1-8">
 // Declare constants
 const int led_pin1 = 12;
 const int led_pin2 = 11;
@@ -108,7 +108,7 @@ void loop() {
 ### Dice Roller (Continued)
 <!-- .slide: class="code_slide" style=" height: 100vh" -->  
 
-```js [20: 23|23-24]
+```js [1: 23|23-24]
 // declare constants
 const int led_pin1 = 12;
 const int led_pin2 = 11;
@@ -273,7 +273,6 @@ void loop() {
     delay(1000);
 }
 ```
-<!-- .element: style="font-size: 12px;"  -->
 
 ---
 
@@ -823,7 +822,7 @@ if (dice_roll == 0) {
 ---
 
 ### Functions
-<!-- .slide: class="" style=" height: 65vh" -->  
+<!-- .slide: class="code_slide" style=" height: 65vh" -->  
 
 <iframe width="80%" height="80%" src="https://www.youtube.com/embed/BWZTlfrneD8?si=wmDdk5cXeUT5JheC&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
@@ -840,9 +839,10 @@ void display_dice() {
 ---
 
 ### void
-<!-- .slide: class="" style=" height: 65vh" -->  
+<!-- .slide: class="" style=" height: 80vh" -->  
 
-<embed style="width: 100%;" height=500 src="https://docs.arduino.cc/language-reference/en/variables/data-types/void/"></embed>
+
+<embed style="width: 100%; height: 600px" src="https://docs.arduino.cc/language-reference/en/variables/data-types/void/"></embed>
 
 ---
 
@@ -869,7 +869,6 @@ returns an int
 ---
 
 ### Making a custom Function
-<!-- .slide: class="" style=" height: 65vh" -->  
 
 ```js
 void display_dice() {
@@ -912,7 +911,7 @@ void display_dice() {
 ---
 
 ### Making a custom Function
-<!-- .slide: class="" style=" height: 65vh" -->  
+<!-- .slide: class="code_slide" style=" height: 80vh" -->  
 
 ```js
 void loop() {
@@ -943,7 +942,7 @@ void loop() {
 ---
 
 ### Making a custom Function
-<!-- .slide: class="" style=" height: 65vh" -->  
+<!-- .slide: class="code_slide" style=" height: 80vh" -->  
 
 ```js
 void reset() {
@@ -960,7 +959,7 @@ void reset() {
 ---
 
 ### Making a custom Function
-<!-- .slide: class="" style=" height: 65vh" -->  
+<!-- .slide: class="code_slide" style=" height: 80vh" -->  
 
 ```js [1: 10]
 void loop() {

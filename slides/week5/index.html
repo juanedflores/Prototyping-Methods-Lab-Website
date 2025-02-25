@@ -1,10 +1,11 @@
+<!DOCTYPE html>
 <html>
 
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-  <title>Week 5</title>
+  <title>Creative Coding Workshop</title>
 
   <link rel="stylesheet" href="dist/reveal.css" />
   <link rel="stylesheet" href="dist/theme/white.css" />
@@ -12,17 +13,16 @@
   <link rel="stylesheet" href="css/uikit.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js-plugins/menu/font-awesome/css/fontawesome.css">
   <script src="js/uikit.min.js"></script>
-  <script src="../../js/highlight.min.js"></script>
 
 </head>
 
 <body>
   <div class="reveal">
-    <div class="slides"">
-      <section class=" uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge" data-markdown="index.md"
-      data-separator-notes="^Note:" data-charset="iso-8859-15">
-      </section>
+    <div class="slides">
+      <section class="uk-box-shadow-xlarge" data-markdown="index.md" data-separator-notes="^Note:"
+        data-charset="iso-8859-15"></section>
     </div>
+  </div>
   </div>
 
   <script src="dist/reveal.js"></script>
@@ -32,8 +32,7 @@
   <script src="plugin/chalkboard/plugin.js"></script>
   <script src="plugin/customcontrols/plugin.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-  <!--<link rel="stylesheet" href="plugin/highlight/styles/1c-light.css">-->
-  <link rel="stylesheet" href="plugin/highlight/styles/docco.css">
+  <link rel="stylesheet" href="./highlight/styles/arduino-light.css">
   <link rel="stylesheet" href="plugin/chalkboard/style.css">
   <link rel="stylesheet" href="plugin/customcontrols/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -42,26 +41,16 @@
     // - https://revealjs.com/initialization/
     // - https://revealjs.com/config/
     Reveal.initialize({
-      //height: '80%',
-      //width: '100%',
       hash: true,
       controls: true,
       controlsTutorial: false,
       progress: false,
       transition: 'fade',
       hideCursorTime: 100,
-      highlight: {},
+      highlight: {
+      },
       plugins: [RevealMarkdown, RevealNotes, RevealHighlight, RevealChalkboard, RevealCustomControls],
     });
-    Reveal.on('make-it-pop', () => {
-      console.log('✨');
-    });
-  </script>
-
-
-  <!-- hljs -->
-  <script>
-    hljs.highlightAll();
   </script>
 </body>
 
