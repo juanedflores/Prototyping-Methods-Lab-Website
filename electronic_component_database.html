@@ -77,16 +77,19 @@
           <li class="uk-active" uk-filter-control="filter: .all"><a href="#">All</a></li>
           <hr style="background: #292926" />
           <h6 style="font-family: 'Inter-ExtraLight', sans-serif; color: rgb(243, 201, 91)">BY CATEGORY:</h6>
-          <li uk-filter-control="filter: .dc-motor"><a href="#">DC Motor</a></li>
-          <li uk-filter-control="filter: .driver"><a href="#">Drivers</a></li>
-          <li uk-filter-control="filter: .movement"><a href="#">Movement</a></li>
-          <li uk-filter-control="filter: .arduino-shield"><a href="#">Shield</a></li>
-          <li uk-filter-control="filter: .terms"><a href="#">Terms</a></li>
+          <li uk-filter-control="filter: .tools"><a href="#">Tools</a></li>
+          <li uk-filter-control="filter: .electronic_components"><a href="#">Basic Electronic Components</a></li>
+          <li uk-filter-control="filter: .digital_input"><a href="#">Digital Input</a></li>
+          <li uk-filter-control="filter: .motion"><a href="#">Motion</a></li>
+          <li uk-filter-control="filter: .output"><a href="#">Output</a></li>
+          <li uk-filter-control="filter: .light"><a href="#">Light</a></li>
         </ul>
         <hr style="background: #292926" />
         <ul class="uk-nav-default uk-nav" style="list-style: none">
           <h6 style="font-family: 'Inter-ExtraLight', sans-serif; color: rgb(243, 201, 91)">BY WEEK:</h6>
           <li uk-filter-control="filter: .week3"><a href="#">Week 3</a></li>
+          <li uk-filter-control="filter: .week4"><a href="#">Week 4</a></li>
+          <li uk-filter-control="filter: .week5"><a href="#">Week 5</a></li>
         </ul>
       </div>
     </div>
@@ -95,7 +98,7 @@
     <div class="uk-margin" style="padding: 30px">
       <ul class="uk-child-width-1-3@m uk-child-width-1-4@l uk-child-width-1-2@s uk-grid-small uk-grid-match js-filter"
         uk-grid="masonry: pack">
-        <li class="week3 basic_equipment all">
+        <li class="week3 tools all">
           <div class="card-electronics uk-transition-toggle">
             <!--<a class="" href="/Electronics/protoboards/protoboards.html">-->
             <a class="" href="#">
@@ -111,7 +114,7 @@
           </div>
         </li>
 
-        <li class="week3 basic_equipment all">
+        <li class="week3 tools all">
           <div class="card-electronics">
             <!--<a href="/Electronics/breadboards/breadboards.html">-->
             <div class="card-electronics uk-transition-toggle">
@@ -129,7 +132,7 @@
             </div>
         </li>
 
-        <li class="week3 basic_equipment all">
+        <li class="week3 tools all">
           <div class="card-electronics">
             <!--<a href="/Electronics/soldering_kits/soldering_kits.html">-->
             <div class="card-electronics uk-transition-toggle">
@@ -141,6 +144,59 @@
                     <img src="./Electronics/soldering_kits/images/cover.png" alt="" style="padding-bottom: 10px"
                       uk-image />
                     <span class="uk-label" style="background-color: #fed72c">Prototyping Methods</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+        </li>
+
+        <li class="week4 electronic_components digital_input all">
+          <div class="card-electronics">
+            <div class="card-electronics uk-transition-toggle">
+              <a href="./Arduino/button/button.html">
+                <div
+                  class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge uk-transition-scale-up uk-transition-opaque">
+                  <h3 class="cardtitle">Buttons</h3>
+                  <div style="display: inline">
+                    <img src="./Arduino/button/images/button.png" alt="" style="padding-bottom: 10px" uk-image />
+                    <span class="uk-label" style="background-color: #fed72c">Electronic Components</span>
+                    <span class="uk-label" style="background-color: #c38294">Digital Input</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+        </li>
+
+        <li class="week5 motion output all">
+          <div class="card-electronics">
+            <div class="card-electronics uk-transition-toggle">
+              <a href="#">
+                <div
+                  class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge uk-transition-scale-up uk-transition-opaque">
+                  <h3 class="cardtitle">Servo Motor</h3>
+                  <div style="display: inline">
+                    <img
+                      src="https://www.electronicwings.com/storage/PlatformSection/TopicContent/134/icon/Servo%20Motor.jpg"
+                      alt="" style="padding-bottom: 10px" uk-image />
+                    <span class="uk-label" style="background-color: #41258a">Motion</span>
+                    <span class="uk-label" style="background-color: #a2eda7">Output</span>
+                  </div>
+                </div>
+              </a>
+            </div>
+        </li>
+
+        <li class="week5 light output all">
+          <div class="card-electronics">
+            <div class="card-electronics uk-transition-toggle">
+              <a href="./Arduino/rgb_led/rgb_led.html">
+                <div
+                  class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge uk-transition-scale-up uk-transition-opaque">
+                  <h3 class="cardtitle">RGB LED</h3>
+                  <div style="display: inline">
+                    <img src="./Arduino/rgb_led/images/rgb_led.jpg" alt="" style="padding-bottom: 10px" uk-image />
+                    <span class="uk-label" style="background-color: #d1b729">Light</span>
+                    <span class="uk-label" style="background-color: #a2eda7">Output</span>
                   </div>
                 </div>
               </a>

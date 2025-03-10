@@ -227,6 +227,7 @@ id="toc-common-anode-vs.-common-cathode">Common Anode vs. Common
 Cathode</a></li>
 <li><a href="#the-challenge" id="toc-the-challenge">The
 Challenge</a></li>
+<li><a href="#starter-code" id="toc-starter-code">Starter Code</a></li>
 </ul></li>
 </ul></li>
 </ul></div>
@@ -267,6 +268,24 @@ to know how to hook it up to (+) or (-, GND).</p>
 <p>Start with the <code>Fading</code> example that fades a single LED.
 You will need to repeat the process two more times with two other
 independent LEDs.</p>
+</section>
+<section id="starter-code" class="level3">
+<h3>Starter Code</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode c"><code class="sourceCode c"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> red_led <span class="op">=</span> <span class="dv">6</span><span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> green_led <span class="op">=</span> <span class="dv">6</span><span class="op">;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> blue_led <span class="op">=</span> <span class="dv">6</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> delayt <span class="op">=</span> <span class="dv">20</span><span class="op">;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> setup<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>red_led<span class="op">,</span> OUTPUT<span class="op">)</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>green_led<span class="op">,</span> OUTPUT<span class="op">)</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    pinMode<span class="op">(</span>blue_led<span class="op">,</span> OUTPUT<span class="op">)</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="dt">void</span> loop<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 </section>
 </section>
 </section></div>

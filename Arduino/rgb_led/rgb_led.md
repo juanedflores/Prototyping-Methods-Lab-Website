@@ -31,3 +31,23 @@ The ones that we are using will have a _common anode_.
 ### The Challenge
 
 Start with the `Fading` example that fades a single LED. You will need to repeat the process two more times with two other independent LEDs.
+
+### Starter Code
+
+```c
+int red_led = 6;
+int green_led = 6;
+int blue_led = 6;
+
+int delayt = 20;
+
+void setup() {
+    pinMode(red_led, OUTPUT)
+    pinMode(green_led, OUTPUT)
+    pinMode(blue_led, OUTPUT)
+}
+
+
+void loop() {
+}
+```
