@@ -1,5 +1,5 @@
 ---
-title: Week 6
+title: Week 7
 ---
 
 <section class="slides_section">
@@ -11,8 +11,8 @@ title: Week 6
 ### Agenda
 
 - Check In
-- Review
-- RGB LED Continued
+- Serial Data
+- P5js
  
 ---
 
@@ -23,12 +23,12 @@ title: Week 6
 
 <li>
 <div>
-<a href="https://www.arduino.cc/en/Tutorial/BuiltInExamples/AnalogReadSerial">
+<a href="https://itp.nyu.edu/physcomp/labs/labs-serial-communication/lab-serial-output-from-p5-js/">
 <div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge" style="background: #7fcbcd">
 <div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge">
-<h3 class="cardtitle">AnalogReadSerial</h3>
+<h3 class="cardtitle">Receive Serial Data with P5js</h3>
 <div style="display: inline">
-<img src="./weeks/week6/images/serial.jpg" alt="" style="padding-bottom: 10px" uk-image />
+<img src="./weeks/week6/images/bridge.png" alt="" style="padding-bottom: 10px" uk-image />
 <span class="uk-label" style="background-color: #1e87f0">Arduino</span>
 </div>
 </div>
@@ -39,12 +39,12 @@ title: Week 6
 
 <li>
 <div>
-<a href="https://makeabilitylab.github.io/physcomp/electronics/variable-resistors.html">
+<a href="https://makeabilitylab.github.io/physcomp/communication/serial-intro.html">
 <div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge" style="background: #7fcbcd">
 <div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge">
-<h3 class="cardtitle">Variable Resistors</h3>
+<h3 class="cardtitle">Intro to Serial</h3>
 <div style="display: inline">
-<img src="./weeks/week6/images/variable.png" alt="" style="padding-bottom: 10px" uk-image />
+<img src="./weeks/week6/images/intro.png" alt="" style="padding-bottom: 10px" uk-image />
 <span class="uk-label" style="background-color: #1e87f0">Arduino</span>
 </div>
 </div>
