@@ -53,5 +53,23 @@ title: Week 6
 </div>
 </li>
 
+<li>
+<div>
+<a href="https://youtu.be/BMMnOAzcqoE?feature=shared">
+<div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge" style="background: #7fcbcd">
+<div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge">
+<h3 class="cardtitle">Analog vs. Digital Signals</h3>
+<div style="display: inline">
+<img src="./slides/week6/images/analog.png" alt="" style="padding-bottom: 10px" uk-image />
+<span class="uk-label" style="background-color: #1e87f0">Arduino</span>
+</div>
+</div>
+</a>
+</div>
+</div>
+</li>
+
 </ul>
 </div>
+
+https://youtu.be/BMMnOAzcqoE?feature=shared

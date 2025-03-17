@@ -3,7 +3,7 @@ title: Week 7
 ---
 
 <section class="slides_section">
-<embed type="text/html" src="slides/week6/index.html" width="100%" height="500px" />
+<embed type="text/html" src="slides/week7/index.html" width="100%" height="500px" />
 </section>
 
 ---
@@ -52,6 +52,24 @@ title: Week 7
 </div>
 </div>
 </li>
+
+<li>
+<div>
+<a href="https://docs.arduino.cc/tutorials/nano-33-iot/imu-accelerometer/">
+<div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge" style="background: #7fcbcd">
+<div class="uk-card-small uk-card-default uk-card-body uk-box-shadow-xlarge">
+<h3 class="cardtitle">Accelerometer Data</h3>
+<div style="display: inline">
+<img src="./weeks/week7/images/acc.png" alt="" style="padding-bottom: 10px" uk-image />
+<span class="uk-label" style="background-color: #1e87f0">Arduino</span>
+</div>
+</div>
+</a>
+</div>
+</div>
+</li>
+
+
 
 </ul>
 </div>
