@@ -7,6 +7,7 @@ title: Week 7
 ### Agenda
 
 - p5js group
+- Bluetooth Demo
 - Introducing Some Sensors
 - Studio Group Workshop
 
